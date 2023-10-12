@@ -1,0 +1,29 @@
+{{#if template}}
+<template>
+  <y-card id="{{ name }}" class="y-page"></y-card>
+</template>
+{{/if}}
+
+{{#if script}}
+<script>
+export default {
+  name: '{{ properCase name }}',
+  components: {},
+  props: {},
+  data() {
+    return {}
+  },
+  computed: {},
+  watch: {},
+  created() {},
+  mounted() {},
+  methods: {},
+}
+</script>
+{{/if}}
+
+{{#if style}}
+<style lang="scss">
+#{{ name }} { }
+</style>
+{{/if}}

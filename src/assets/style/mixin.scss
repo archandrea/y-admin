@@ -1,0 +1,54 @@
+@mixin full {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-row {
+  @include flex;
+  flex-direction: row;
+}
+
+@mixin flex-col {
+  @include flex;
+  flex-direction: column;
+}
+
+@mixin container {
+  @include flex-col;
+  justify-content: flex-start;
+  align-items: flex-start;
+  
+  flex: 1;
+  padding: 24px;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin title {
+  width: max-content;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 34px;
+  // white-space: nowrap;
+}
+
+@mixin text-overflow($line) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: justify;
+}
