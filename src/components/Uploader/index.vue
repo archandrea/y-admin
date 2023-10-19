@@ -3,6 +3,7 @@
     <el-upload
       ref="uploader"
       class="upload-area"
+      :disabled="disabled"
       action=""
       :accept="typeLimit ? typeLimit + '/*' : '*/*'"
       :show-file-list="false"
@@ -25,10 +26,17 @@
         <slot></slot>
       </div>
     </el-upload>
-    <i
+    <div
       v-if="preview"
-      class="btn-cancel el-icon-error"
-      @click="clearFiles"></i>
+      class="btn-cancel"
+      @click="clearFiles">
+      <i class="el-icon-delete"></i>
+    </div>
+    <div
+      class="uploader-tag"
+      v-if="tag">
+      {{ tag }}
+    </div>
   </div>
 </template>
 
@@ -48,6 +56,10 @@ export default {
     },
     typeLimit: {
       type: String,
+    },
+    tag: {
+      type: String,
+      default: '',
     },
   },
   data() {
@@ -116,6 +128,7 @@ export default {
     },
     clearFiles() {
       this.preview = ''
+      this.type = ''
       this.$emit('clear-files')
       this.$refs.uploader.clearFiles()
     },
@@ -173,11 +186,37 @@ export default {
   }
 
   .btn-cancel {
+    @include flex-center;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
     font-size: 16px;
+    border-radius: 4px;
+    background: rgba(38, 38, 38, 0.6);
     cursor: pointer;
+
+    i {
+      color: $txtColor-reverse;
+    }
+
+    &:hover {
+      background: rgba(38, 38, 38, 0.4);
+    }
+  }
+
+  .uploader-tag {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 16px;
+    color: $txtColor-reverse;
+    border-radius: 4px 0px 4px 0px;
+    background-color: $themeColor;
   }
 }
 </style>
