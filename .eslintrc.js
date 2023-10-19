@@ -42,5 +42,7 @@ module.exports = {
     'spaced-comment': 'off',
     'prefer-const': 'off',
     'no-debugger': 'off',
+    'vue/require-default-prop': 'off',
+    'vue/order-in-components': 'off',
   }
 }
