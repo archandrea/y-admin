@@ -1,7 +1,8 @@
 <template>
   <div
     class="y-tagBar"
-    v-scroll-horizontal>
+    v-scroll-horizontal
+    v-if="visitedViews.length > 0">
     <router-link
       class="y-tagBar-item flex-row"
       :class="isActive(tag) ? 'is-active' : ''"
@@ -14,7 +15,7 @@
         v-else
         :icon="tag.meta.tagIcon"></svg-icon>
       <i
-        v-if="!isAffix(tag)"
+        v-if="!isAffix(tag) && visitedViews.length > 1"
         class="el-icon-close"
         @click.prevent.stop="delSelectedTag(tag)"></i>
     </router-link>
@@ -24,12 +25,20 @@
       class="y-tagBar-contextmenu">
       <li @click="refreshSelectedTag(selectedTag)">刷新</li>
       <li
-        v-if="!isAffix(selectedTag)"
+        v-if="!isAffix(selectedTag) && visitedViews.length > 1"
         @click="delSelectedTag(selectedTag)">
         关闭
       </li>
-      <li @click="delOtherTags(selectedTag)">关闭其他</li>
-      <li @click="delAllTags(selectedTag)">关闭全部</li>
+      <li
+        v-if="visitedViews.length > 1"
+        @click="delOtherTags(selectedTag)">
+        关闭其他
+      </li>
+      <li
+        v-if="visitedViews.length > 1"
+        @click="delAllTags(selectedTag)">
+        关闭全部
+      </li>
     </ul>
   </div>
 </template>
@@ -201,11 +210,10 @@ export default {
 
 .y-tagBar-item {
   flex: 0;
-
   padding: 8px;
   font-size: 14px;
   line-height: 14px;
-  color: $txtColor-light;
+  color: $txtColor;
   border-radius: 4px;
   background-color: $bgColor;
 
@@ -216,11 +224,19 @@ export default {
   &.is-active {
     color: $txtColor-reverse;
     background-color: $themeColor;
+
+    i {
+      color: $txtColor-reverse;
+    }
   }
 
   span {
     white-space: nowrap;
     margin-right: 8px;
+  }
+
+  i {
+    color: $txtColor-light;
   }
 }
 

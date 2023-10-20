@@ -11,6 +11,7 @@
   redirect: 自动跳转路由
   meta.title: 菜单栏和标签页的标题
   meta.icon: 菜单栏的图标（kebab-case命名，可以是element的icon，也可以是svg-icon）
+  meta.promote: 在只有一个显示子菜单的情况下，一级菜单名显示为子菜
 
 二级路由
   path: 相对一级路由的路径

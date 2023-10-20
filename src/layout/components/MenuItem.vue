@@ -66,6 +66,9 @@ export default {
   computed: {},
   methods: {
     hasOneShowingChild(parent) {
+      if (parent.meta.promote) {
+        return false
+      }
       if (!parent.children) {
         this.onlyOneChild = { ...parent, path: '', noShowingChildren: true }
         return true
