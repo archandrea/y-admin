@@ -28,3 +28,23 @@ npm run new
 
 ```
 
+
+
+### 请求封装
+
+1. 直接调$axios
+
+```js
+this.$axios(...)
+```
+
+
+
+2. 使用封装接口
+
+```js
+const [err,res] = await api(params)
+// 或者
+api(params).then(([err,res])=>{})
+```
+

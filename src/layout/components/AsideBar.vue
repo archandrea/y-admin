@@ -103,7 +103,7 @@ export default {
 
     .sub-el-icon,
     .svg-icon {
-      vertical-align: middle;
+      vertical-align: baseline;
       margin-left: 2px;
       margin-right: 16px;
       text-align: center;
