@@ -1,6 +1,6 @@
 {{#if template}}
 <template>
-  <y-card id="{{ name }}" class="y-page"></y-card>
+  <y-card id="{{ kebabCase name }}" class="y-page"></y-card>
 </template>
 {{/if}}
 
@@ -24,6 +24,6 @@ export default {
 
 {{#if style}}
 <style lang="scss">
-#{{ name }} { }
+#{{ kebabCase name }} { }
 </style>
 {{/if}}

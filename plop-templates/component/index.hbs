@@ -1,6 +1,6 @@
 {{#if template}}
 <template>
-  <div class="{{ name }}"></div>
+  <div class="{{ kebabCase name }}"></div>
 </template>
 {{/if}}
 
@@ -24,6 +24,6 @@ export default {
 
 {{#if style}}
 <style lang="scss">
-.{{ name }} { }
+.{{ kebabCase name }} { }
 </style>
 {{/if}}

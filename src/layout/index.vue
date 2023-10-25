@@ -81,9 +81,8 @@ export default {
 
   .y-layout_main {
     flex: 1;
-    margin: 16px;
-    margin-bottom: 0;
-    padding-bottom: 16px;
+    margin: 16px 0 0 16px;
+    padding: 0 16px 16px 0;
     height: calc(100vh - 64px);
     overflow: auto;
   }
