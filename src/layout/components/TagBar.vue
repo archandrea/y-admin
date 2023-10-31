@@ -177,9 +177,7 @@ export default {
       const asideBarWidth = 200
       const offsetWidth = this.$el.offsetWidth // container width
       const maxLeft = offsetWidth - menuMinWidth + asideBarWidth // left boundary
-      console.log(offsetWidth)
       const left = e.clientX
-      console.log(left, maxLeft)
       if (left > maxLeft) {
         this.menuPos.left = maxLeft
       } else {
