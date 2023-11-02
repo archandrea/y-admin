@@ -2,7 +2,6 @@
 
 // 页面
 .y-page {
-  overflow: auto;
   @include full;
 }
 
@@ -42,6 +41,7 @@
     }
   }
 
+  &+.y-bar,
   &+.y-container,
   &+.y-container--tight {
     padding-top: 0;
@@ -126,6 +126,46 @@
   }
 }
 
+// 简单分类侧边栏
+.y-class-menu {
+  >.y-class-menu_item {
+    @include flex-row;
+    padding: 12px 16px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+
+    span {
+      @include text-overflow(2);
+      flex: 1;
+    }
+
+    .svg-icon {
+      flex: 0 0 16px;
+      margin-left: 8px;
+      font-size: 16px;
+
+      &:hover {
+        color: $themeColor;
+      }
+    }
+
+    &.is-active,
+    &:hover {
+      color: $themeColor;
+      background-color: transparentize($themeColor, 0.95);
+
+      .svg-icon {
+        color: $themeColor;
+      }
+    }
+
+    +.y-class-menu_item {
+      margin-top: 4px;
+    }
+  }
+}
+
 // 卡片布局
 .y-card-wrapper {
   display: grid;
@@ -172,6 +212,34 @@
 
     .svg-icon {
       display: block;
+    }
+  }
+}
+
+// 可增删的input组
+.y-multi-input {
+  @include flex-col;
+  width: 100%;
+
+  .y-multi-input_item {
+    @include flex-row;
+    width: 100%;
+
+    .el-input {
+      flex: 1;
+
+      +.el-input {
+        margin-left: 8px;
+      }
+    }
+
+    .el-button {
+      margin-left: 8px;
+      padding: 12px;
+    }
+
+    +.y-multi-input_item {
+      margin-top: 16px;
     }
   }
 }
