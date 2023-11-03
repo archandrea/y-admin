@@ -1,8 +1,8 @@
 <template>
   <div class="multi-switch">
     <div
-      :class="['multi-switch_item', value == key ? 'is-active' : '', mode]"
-      v-for="(item, key) in items"
+      :class="['multi-switch_item', isActive(key) ? 'is-active' : '', mode]"
+      v-for="(item, key) in options"
       :style="[cursorStyle]"
       @click="onSwitch(String(key))">
       {{ item }}
@@ -22,8 +22,8 @@ export default {
     value: {
       required: true,
     },
-    items: {
-      type: Array,
+    options: {
+      type: [Array, Object],
       default: () => {
         return []
       },
@@ -35,6 +35,10 @@ export default {
     mode: {
       type: String,
       default: 'button', //tab|button
+    },
+    multiple: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -57,11 +61,25 @@ export default {
   created() {},
   mounted() {},
   methods: {
+    isActive(key) {
+      return this.value == key || this.value.includes(key)
+    },
     onSwitch(key) {
       if (this.fixed) {
         return false
       }
-      this.$emit('change', key)
+      if (!this.multiple) {
+        this.$emit('change', key)
+      } else {
+        const result = [...this.value]
+        const idx = result.indexOf(key)
+        if (idx !== -1) {
+          result.splice(idx, 1)
+        } else {
+          result.push(key)
+        }
+        this.$emit('change', result)
+      }
     },
   },
 }
@@ -103,8 +121,15 @@ export default {
 
     &.is-active {
       color: $themeColor;
-      font-weight: 600;
       border-color: $themeColor;
+
+      &.tab {
+        font-weight: 600;
+      }
+
+      &.button {
+        background-color: transparentize($themeColor, 0.95);
+      }
     }
 
     & + .multi-switch_item {
