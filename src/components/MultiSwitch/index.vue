@@ -62,7 +62,7 @@ export default {
   mounted() {},
   methods: {
     isActive(key) {
-      return this.value == key || this.value.includes(key)
+      return this.value == key || this.value?.includes(key)
     },
     onSwitch(key) {
       if (this.fixed) {
