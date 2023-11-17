@@ -1,5 +1,5 @@
 <template>
-  <div class="y-layout_nav flex">
+  <div class="y-layout_nav flex-col">
     <el-scrollbar>
       <el-menu
         :default-active="activeMenu"

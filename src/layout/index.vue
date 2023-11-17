@@ -5,7 +5,7 @@
     <top-bar></top-bar>
     <div class="container flex-row">
       <aside-bar></aside-bar>
-      <div class="container flex">
+      <div class="container flex-col">
         <tag-bar></tag-bar>
         <div class="y-layout_main">
           <transition
@@ -87,7 +87,7 @@ export default {
     overflow: auto;
   }
 
-  .flex {
+  .flex-col {
     width: 100%;
     height: 100%;
     display: flex;
