@@ -6,7 +6,7 @@
     <div class="container flex-row">
       <aside-bar></aside-bar>
       <div class="container flex-col">
-        <tag-bar></tag-bar>
+        <tag-bar v-if="showTagBar"></tag-bar>
         <div class="y-layout_main">
           <transition
             appear
@@ -18,11 +18,15 @@
           </transition>
         </div>
       </div>
+      <right-panel v-if="showSettings">
+        <setting></setting>
+      </right-panel>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { debounce } from '@/utils'
 
 export default {
@@ -32,6 +36,8 @@ export default {
     'top-bar': () => import('./components/TopBar.vue'),
     'aside-bar': () => import('./components/AsideBar.vue'),
     'tag-bar': () => import('./components/TagBar.vue'),
+    setting: () => import('./components/Setting.vue'),
+    'right-panel': () => import('@/components/RightPanel'),
   },
   data() {
     return {}
@@ -43,6 +49,10 @@ export default {
     routeKey() {
       return this.$route.path
     },
+    ...mapState({
+      showSettings: (state) => state.setting.showSettings,
+      showTagBar: (state) => state.setting.showTagBar,
+    }),
   },
   created() {
     this.verifySession = debounce(

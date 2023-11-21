@@ -66,7 +66,7 @@ export default {
   computed: {},
   methods: {
     hasOneShowingChild(parent) {
-      if (parent.meta.notPromote) {
+      if (parent?.meta?.notPromote) {
         return false
       }
       if (!parent.children) {

@@ -2,7 +2,7 @@
   <div class="y-layout_bar flex-row">
     <div class="y-layout_logo">
       <router-link to="/">
-        <h1>LOGO</h1>
+        <h1 style="color: #fff">LOGO</h1>
       </router-link>
     </div>
     <div class="container flex-row">
@@ -93,7 +93,6 @@ export default {
 
 <style lang="scss">
 .y-layout_bar {
-  
   align-items: center;
   padding: 0 16px;
   width: 100%;

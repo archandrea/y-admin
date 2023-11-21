@@ -116,11 +116,11 @@
 }
 
 .el-input .el-input__inner:hover {
-  border-color: #0555ce !important;
+  border-color: #0555ce;
 }
 
 .el-input .el-input__inner:active {
-  border-color: #0555ce !important;
+  border-color: #0555ce;
 }
 
 .el-input .el-input__inner:focus {
@@ -277,15 +277,11 @@
 
 .el-table thead .el-table__cell {
   padding: 6px 0;
-  background-color: rgba(5, 85, 206, 0.08) !important;
+  background-color: rgba(5, 85, 206, 0.05) !important;
 }
 
 .el-table th {
-  background-color: rgba(5, 85, 206, 0.08) !important;
-}
-
-.el-table .el-input__inner {
-  background: #fff;
+  background-color: rgba(5, 85, 206, 0.05) !important;
 }
 
 .el-table .el-select--small .el-input__suffix .el-input__icon {
@@ -293,12 +289,12 @@
 }
 
 .el-table__body tr:hover>td {
-  background-color: rgba(5, 85, 206, 0.05) !important;
+  background-color: rgba(5, 85, 206, 0.03) !important;
 }
 
 .el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
   padding: 9px 0;
-  background: rgba(5, 85, 206, 0.05) !important;
+  background: rgba(5, 85, 206, 0.03) !important;
 }
 
 .el-pagination button:disabled {
@@ -325,6 +321,10 @@
 .el-radio__input.is-checked .el-radio__inner {
   border-color: #0555ce;
   background: #0555ce;
+}
+
+.el-cascader:not(.is-disabled):hover .el-input__inner {
+  border-color: #0555ce;
 }
 
 .el-cascader-node.in-active-path,
@@ -470,19 +470,20 @@
 }
 
 .el-menu .el-menu-item {
-  color: #868686;
+  color: #262626;
 }
 
 .el-menu .el-menu-item>i {
+  font-size: 16px;
   color: #868686;
 }
 
 .el-menu .el-menu-item .el-menu-item {
-  color: #c5c5c5;
+  color: #262626;
 }
 
 .el-menu .el-menu-item .el-menu-item>i {
-  color: #c5c5c5;
+  color: #868686;
 }
 
 .el-menu .el-menu-item:focus,
@@ -506,11 +507,11 @@
 }
 
 .el-menu .el-submenu__title {
-  color: #868686;
+  color: #262626;
 }
 
 .el-menu .el-submenu__title>i {
-  color: #868686;
+  color: #262626;
 }
 
 .el-menu .el-submenu__title:focus,
@@ -595,10 +596,6 @@
 
 .el-dialog__close {
   font-size: 24px;
-}
-
-.el-drawer {
-  min-width: 600px !important;
 }
 
 .el-drawer__header {
@@ -899,4 +896,11 @@ video {
 
 .el-drawer {
   max-width: 100vw;
+}
+
+.el-table th.el-table__cell>.cell {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 22px;
+  color: #868686;
 }

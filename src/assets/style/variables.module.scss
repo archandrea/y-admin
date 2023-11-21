@@ -19,3 +19,7 @@ $color-success: #52C41A;
 $color-warning: #FA9904;
 $color-danger: #F03838;
 $color-info: #909399;
+
+:export {
+  themeColor: $themeColor;
+}

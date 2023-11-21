@@ -25,10 +25,10 @@ module.exports = defineConfig({
         // 防止重复注入
         additionalData: (content, loaderContext) => {
           const { resourcePath } = loaderContext;
-          if (/variables\.scss/.test(resourcePath) || /mixin\.scss/.test(resourcePath)) {
+          if (/variables\.module\.scss/.test(resourcePath) || /mixin\.scss/.test(resourcePath)) {
             return content
           }
-          return '@import "@/assets/style/variables.scss";' + '@import "@/assets/style/mixin.scss";' + content
+          return '@import "@/assets/style/variables.module.scss";' + '@import "@/assets/style/mixin.scss";' + content
         },
       }
     }
