@@ -33,10 +33,10 @@ export default {
   name: 'layout',
   components: {
     // 框架组件
-    'top-bar': () => import('./components/TopBar.vue'),
-    'aside-bar': () => import('./components/AsideBar.vue'),
-    'tag-bar': () => import('./components/TagBar.vue'),
-    setting: () => import('./components/Setting.vue'),
+    'top-bar': () => import('./components/TopBar'),
+    'aside-bar': () => import('./components/AsideBar'),
+    'tag-bar': () => import('./components/TagBar'),
+    setting: () => import('./components/Setting'),
     'right-panel': () => import('@/components/RightPanel'),
   },
   data() {

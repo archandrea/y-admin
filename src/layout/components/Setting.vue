@@ -19,7 +19,6 @@ export default {
   watch: {},
   methods: {
     themeChange(val) {
-      console.log(val)
       this.$store.dispatch('setting/changeSetting', {
         key: 'themeColor',
         value: val,

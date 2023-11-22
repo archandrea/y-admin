@@ -29,7 +29,7 @@ import { debounce } from '@/utils'
 
 export default {
   components: {
-    MenuItem: () => import('./MenuItem.vue'),
+    MenuItem: () => import('./components//MenuItem.vue'),
   },
   data() {
     return {

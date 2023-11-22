@@ -9,7 +9,6 @@
 <script>
 const version = require('element-ui/package.json').version // element-ui version from node_modules
 const ORIGINAL_THEME = '#0555CE' // default color
-console.log(version)
 
 export default {
   data() {
@@ -48,9 +47,9 @@ export default {
       this.originalCluster = this.getThemeCluster(oldVal.replace('#', ''))
 
       // 获取css文件
+      // TODO: 变成本地获取
       const url = `https://unpkg.com/element-ui@${version}/lib/theme-chalk/index.css`
       this.chalk = await this.getCSSString(url)
-      console.log(this.chalk)
 
       if (typeof this.chalk !== 'string') return
 
