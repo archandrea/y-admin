@@ -1,5 +1,10 @@
 <template>
-  <y-card id="table-template" class="y-page">列表模板</y-card>
+  <y-card
+    id="table-template"
+    class="y-page">
+    列表模板
+    <el-input v-model="input"></el-input>
+  </y-card>
 </template>
 
 <script>
@@ -8,7 +13,9 @@ export default {
   components: {},
   props: {},
   data() {
-    return {}
+    return {
+      input: '',
+    }
   },
   computed: {},
   watch: {},
@@ -19,5 +26,6 @@ export default {
 </script>
 
 <style lang="scss">
-#table-template { }
+#table-template {
+}
 </style>
