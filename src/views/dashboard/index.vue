@@ -133,7 +133,6 @@ export default {
   },
   methods: {
     async fetchData() {
-      console.log('fetchData')
       // const [err, res] = await fetchData()
       // if (res) {
       //   // ...

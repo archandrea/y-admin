@@ -11,8 +11,6 @@ const whiteList = [] // no redirect whitelist
 let flag = false
 
 router.beforeEach(async (to, from, next) => {
-  // console.log('route-to', to)
-  // console.log('route-from', from)
   NProgress.start()
 
   // 鉴权流程

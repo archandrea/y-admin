@@ -1,13 +1,18 @@
 <template>
   <div v-if="!item.hidden">
     <template v-if="hasOneShowingChild(item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && !item.alwaysShow">
-      <el-menu-item
-        :index="resolvePath(onlyOneChild.path)"
-        :class="{ 'submenu-title-noDropdown': !isNest }">
-        <item
-          :icon="onlyOneChild?.meta?.icon || (item?.meta && item?.meta?.icon) || (defaultIcon ? 'el-icon-menu' : '')"
-          :title="onlyOneChild?.meta?.title" />
-      </el-menu-item>
+      <app-link
+        v-if="onlyOneChild.meta"
+        :to="resolvePath(onlyOneChild.path)"
+        :target="onlyOneChild.meta.target">
+        <el-menu-item
+          :index="resolvePath(onlyOneChild.path)"
+          :class="{ 'submenu-title-noDropdown': !isNest }">
+          <item
+            :icon="onlyOneChild?.meta?.icon || (item?.meta && item?.meta?.icon) || (defaultIcon ? 'el-icon-menu' : '')"
+            :title="onlyOneChild?.meta?.title" />
+        </el-menu-item>
+      </app-link>
     </template>
     <el-submenu
       v-else
@@ -40,6 +45,7 @@ export default {
   name: 'MenuItem',
   components: {
     Item: () => import('./Item.vue'),
+    AppLink: () => import('./Link.vue'),
   },
   props: {
     item: {

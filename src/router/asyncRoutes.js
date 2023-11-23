@@ -22,6 +22,8 @@
   component: 统一为'views/'下扁平管理（kebab-case命名）
   meta.title: 菜单栏和标签页的标题
   meta.icon: 不需要
+  meta.target: 当为跳转外部链接时，不需要name，target取值可以是blank、self；
+               当为内嵌iframe打开时，需要name，target取值inner
 
 */
 
@@ -43,6 +45,39 @@ export default [
         name: 'TreeTemplate',
         meta: { title: '树型' },
         component: 'views/tree-template',
+      },
+    ]
+  },
+  {
+    path: '/test',
+    component: 'layout',
+    redirect: '/dashboard',
+    meta: { title: '测试', icon: 'function' },
+    children: [
+      {
+        path: 'https://www.baidu.com/',
+        meta: { title: 'Baidu', icon: 'el-icon-link', target: 'blank' }
+      },
+      {
+        path: 'https://www.baidu.com/s?ie=UTF-8&wd=123',
+        meta: { title: 'Baidu123', icon: 'el-icon-link', target: 'self' }
+      },
+      {
+        path: 'http://localhost:8081/#/dashboard',
+        name: 'InnerLink',
+        meta: { title: 'InnerLink', icon: 'el-icon-link', target: 'inner' }
+      },
+    ]
+  },
+  {
+    path: '/inner',
+    component: 'layout',
+    meta: { title: 'InnerLink2', icon: 'el-icon-link' },
+    children: [
+      {
+        path: '/#/template/table-template',
+        name: 'InnerLink3',
+        meta: { title: 'InnerLink3', icon: 'el-icon-link', target: 'inner' }
       },
     ]
   },

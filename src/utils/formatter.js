@@ -12,8 +12,15 @@ export function formatRoutes(routes) {
   }
   if (Array.isArray(routes) && routes.length !== 0) {
     return routes.map(route => formatRoutes(route))
-  } else if (typeof routes === 'object' && Object.prototype.hasOwnProperty.call(routes, 'component')) {
-    if (typeof routes.component === 'string') {
+  } else if (typeof routes === 'object') {
+    // inner类型链接处理
+    if (routes?.meta?.target === 'inner') {
+      routes.component = 'views/inner-link'
+      routes.meta.link = routes.path
+      routes.path = '/' + routes.name
+    }
+    // 挂载组件
+    if (Object.prototype.hasOwnProperty.call(routes, 'component') && typeof routes.component === 'string') {
       routes.component = loadComponent(routes.component)
     }
     if (routes.children && routes.children?.length !== 0) {

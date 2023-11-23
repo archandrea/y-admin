@@ -4,8 +4,7 @@
       <el-menu
         :default-active="activeMenu"
         :collapse="isCollapse"
-        :collapse-transition="true"
-        :router="true">
+        :collapse-transition="true">
         <MenuItem
           v-for="route in $store.getters.permissionRoutes"
           :item="route"
