@@ -1,12 +1,12 @@
 <template>
-  <div class="y-layout_bar flex-row">
-    <div class="y-layout_logo">
+  <div :class="[`${namespace}-layout_bar`, 'flex-row']">
+    <div :class="`${namespace}-layout_logo`">
       <router-link to="/">
         <h1 style="color: #fff">LOGO</h1>
       </router-link>
     </div>
     <div class="container flex-row">
-      <div class="y-layout_tools flex-row">
+      <div :class="[`${namespace}-layout_tools`, 'flex-row']">
         <svg-icon icon="notification"></svg-icon>
         <svg-icon icon="tag"></svg-icon>
         <full-screen></full-screen>
@@ -23,15 +23,18 @@ export default {
     'full-screen': () => import('@/components/FullScreen'),
   },
   data() {
-    return {
-    }
+    return {}
   },
-  computed: {},
+  computed: {
+    namespace() {
+      return this.$store.state.setting.namespace
+    },
+  },
 }
 </script>
 
 <style lang="scss">
-.y-layout_bar {
+.#{$namespace}-layout_bar {
   align-items: center;
   padding: 0 16px;
   width: 100%;
@@ -44,7 +47,7 @@ export default {
   }
 }
 
-.y-layout_user {
+.#{$namespace}-layout_user {
   align-items: center;
   color: $txtColor-reverse;
   cursor: pointer;
@@ -55,7 +58,7 @@ export default {
   }
 }
 
-.y-layout_tools {
+.#{$namespace}-layout_tools {
   align-items: center;
   font-size: 14px;
   color: $txtColor-reverse;

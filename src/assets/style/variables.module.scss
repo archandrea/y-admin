@@ -1,3 +1,6 @@
+// 系列样式前缀
+$namespace: y;
+
 // 主题色
 $themeColor: #0555CE;
 
@@ -22,4 +25,5 @@ $color-info: #909399;
 
 :export {
   themeColor: $themeColor;
+  namespace: $namespace;
 }

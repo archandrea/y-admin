@@ -1,13 +1,13 @@
 <template>
   <div
-    id="y-layout"
+    :id="`${namespace}-layout`"
     class="clearfix">
     <top-bar></top-bar>
     <div class="container flex-row">
-      <aside-bar></aside-bar>
+      <aside-bar v-if="showAsideBar"></aside-bar>
       <div class="container flex-col">
         <tag-bar v-if="showTagBar"></tag-bar>
-        <div class="y-layout_main">
+        <div :class="`${namespace}-layout_main`">
           <transition
             appear
             name="fade-transform"
@@ -50,8 +50,10 @@ export default {
       return this.$route.path
     },
     ...mapState({
+      namespace: (state) => state.setting.namespace,
       showSettings: (state) => state.setting.showSettings,
       showTagBar: (state) => state.setting.showTagBar,
+      showAsideBar: (state) => state.setting.showAsideBar,
     }),
   },
   created() {
@@ -72,7 +74,7 @@ export default {
 </script>
 
 <style lang="scss">
-#y-layout {
+##{$namespace}-layout {
   width: 100%;
   height: 100%;
   display: flex;
@@ -89,7 +91,7 @@ export default {
     }
   }
 
-  .y-layout_main {
+  .#{$namespace}-layout_main {
     flex: 1;
     margin: 16px 0 0 16px;
     padding: 0 16px 16px 0;

@@ -1,6 +1,6 @@
 <template>
   <el-dropdown trigger="click">
-    <div class="y-layout_user flex-row">
+    <div :class="[`${namespace}-layout_user`, 'flex-row']">
       <el-avatar icon="el-icon-user-solid"></el-avatar>
       <span class="username">username</span>
       <i class="el-icon-arrow-down"></i>
@@ -29,7 +29,11 @@ export default {
   data() {
     return {}
   },
-  computed: {},
+  computed: {
+    namespace() {
+      return this.$store.state.setting.namespace
+    },
+  },
   methods: {
     async logout() {
       await this.$store.dispatch('user/logout')

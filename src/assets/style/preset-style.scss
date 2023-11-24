@@ -1,12 +1,12 @@
 // y系列公共样式
 
 // 页面
-.y-page {
+.#{$namespace}-page {
   @include full;
 }
 
 // 通用bar
-.y-bar {
+.#{$namespace}-bar {
   @include flex-row;
   flex-wrap: wrap;
   padding: 12px 24px;
@@ -21,7 +21,7 @@
     margin-bottom: 8px;
   }
 
-  .y-title {
+  .#{$namespace}-title {
     flex: 1;
     white-space: nowrap;
   }
@@ -41,15 +41,15 @@
     }
   }
 
-  &+.y-bar,
-  &+.y-container,
-  &+.y-container--tight {
+  &+.#{$namespace}-bar,
+  &+.#{$namespace}-container,
+  &+.#{$namespace}-container--tight {
     padding-top: 0;
   }
 }
 
 // 普通容器，可以配合no-padding类名
-.y-container {
+.#{$namespace}-container {
   @include container;
 
   &.no-padding {
@@ -58,7 +58,7 @@
 }
 
 // 限制大小overflow:auto的容器，可以配合no-padding类名
-.y-container--tight {
+.#{$namespace}-container--tight {
   @include container;
   overflow: auto;
 
@@ -68,12 +68,12 @@
 }
 
 // 标题
-.y-title {
+.#{$namespace}-title {
   @include title;
 }
 
 // 前面有竖线的标题
-.y-title--secondary {
+.#{$namespace}-title--secondary {
   @include title;
   position: relative;
   margin-left: 12px;
@@ -92,7 +92,7 @@
 }
 
 // table标签专用，模仿el-table样式
-.y-table {
+.#{$namespace}-table {
   overflow: hidden;
   flex: unset;
   border: 1px solid $borderColor;
@@ -127,8 +127,8 @@
 }
 
 // 简单分类侧边栏
-.y-class-menu {
-  >.y-class-menu_item {
+.#{$namespace}-class-menu {
+  >.#{$namespace}-class-menu_item {
     @include flex-row;
     padding: 12px 16px;
     width: 100%;
@@ -160,16 +160,16 @@
       }
     }
 
-    +.y-class-menu_item {
+    +.#{$namespace}-class-menu_item {
       margin-top: 4px;
     }
   }
 }
 
 // 卡片布局
-.y-card-wrapper {
+.#{$namespace}-card-wrapper {
   display: grid;
-  justify-content: space-around;
+  justif#{$namespace}-content: space-around;
   gap: 16px;
   flex-wrap: wrap;
   overflow: unset;
@@ -177,7 +177,7 @@
 }
 
 // 无数据
-.y-no-data {
+.#{$namespace}-no-data {
   display: block;
   width: 100%;
   text-align: center;
@@ -185,7 +185,7 @@
 }
 
 // 复选框
-.y-checkbox {
+.#{$namespace}-checkbox {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -217,11 +217,11 @@
 }
 
 // 可增删的input组
-.y-multi-input {
+.#{$namespace}-multi-input {
   @include flex-col;
   width: 100%;
 
-  .y-multi-input_item {
+  .#{$namespace}-multi-input_item {
     @include flex-row;
     width: 100%;
 
@@ -238,7 +238,7 @@
       padding: 12px;
     }
 
-    +.y-multi-input_item {
+    +.#{$namespace}-multi-input_item {
       margin-top: 16px;
     }
   }

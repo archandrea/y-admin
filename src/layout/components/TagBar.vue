@@ -1,11 +1,10 @@
 <template>
   <div
-    class="y-tagBar"
+    :class="`${namespace}-tagBar`"
     v-scroll-horizontal
     v-if="visitedViews.length > 0">
     <router-link
-      class="y-tagBar-item flex-row"
-      :class="isActive(tag) ? 'is-active' : ''"
+      :class="[`${namespace}-tagBar-item`, 'flex-row', isActive(tag) ? 'is-active' : '']"
       v-for="tag in visitedViews"
       :key="tag.path"
       :to="tag"
@@ -22,7 +21,7 @@
     <ul
       v-show="contextMenuShow"
       :style="menuPosStyle"
-      class="y-tagBar-contextmenu">
+      :class="`${namespace}-tagBar-contextmenu`">
       <li @click="refreshSelectedTag(selectedTag)">刷新</li>
       <li
         v-if="!isAffix(selectedTag) && visitedViews.length > 1"
@@ -68,6 +67,9 @@ export default {
         left: this.menuPos.left + 'px',
         top: this.menuPos.top + 'px',
       }
+    },
+    namespace() {
+      return this.$store.state.setting.namespace
     },
   },
   watch: {
@@ -196,7 +198,7 @@ export default {
 </script>
 
 <style lang="scss">
-.y-tagBar {
+.#{$namespace}-tagBar {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -208,7 +210,7 @@ export default {
   overflow: auto;
 }
 
-.y-tagBar-item {
+.#{$namespace}-tagBar-item {
   flex: 0;
   padding: 8px;
   font-size: 14px;
@@ -217,7 +219,7 @@ export default {
   border-radius: 4px;
   background-color: $bgColor;
 
-  & + .y-tagBar-item {
+  & + .#{$namespace}-tagBar-item {
     margin-left: 8px;
   }
 
@@ -240,7 +242,7 @@ export default {
   }
 }
 
-.y-tagBar-contextmenu {
+.#{$namespace}-tagBar-contextmenu {
   position: absolute;
   margin: 0;
   padding: 5px 0;

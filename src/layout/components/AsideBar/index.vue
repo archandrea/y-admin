@@ -1,5 +1,5 @@
 <template>
-  <div class="y-layout_nav flex-col">
+  <div :class="[`${namespace}-layout_nav`, 'flex-col']">
     <el-scrollbar>
       <el-menu
         :default-active="activeMenu"
@@ -44,6 +44,9 @@ export default {
         return path
       }
     },
+    namespace() {
+      return this.$store.state.setting.namespace
+    },
   },
   created() {
     // this.resizeHandler = debounce(() => this.collapseHandler(), 500)
@@ -76,7 +79,7 @@ export default {
 </script>
 
 <style lang="scss">
-.y-layout_nav {
+.#{$namespace}-layout_nav {
   flex: 0;
   height: calc(100vh - 64px);
   background-color: $bgColor;

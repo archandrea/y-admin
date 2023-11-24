@@ -1,6 +1,6 @@
-import { themeColor } from '@/assets/style/variables.module.scss'
+import { themeColor, namespace } from '@/assets/style/variables.module.scss'
 import settings from '@/setting.js'
-const { showSettings, showTagBar } = settings
+const { showSettings, showTagBar, showAsideBar } = settings
 
 export default {
   namespaced: true,
@@ -8,6 +8,8 @@ export default {
     themeColor,
     showSettings,
     showTagBar,
+    showAsideBar,
+    namespace,
   }),
   mutations: {
     CHANGE_SETTING: (state, { key, value }) => {
