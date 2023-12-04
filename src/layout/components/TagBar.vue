@@ -1,44 +1,46 @@
 <template>
-  <div
-    :class="`${namespace}-tagBar`"
-    v-scroll-horizontal
-    v-if="visitedViews.length > 0">
-    <router-link
-      :class="[`${namespace}-tagBar-item`, 'flex-row', isActive(tag) ? 'is-active' : '']"
-      v-for="tag in visitedViews"
-      :key="tag.path"
-      :to="tag"
-      @contextmenu.native.prevent="openMenu(tag, $event)">
-      <span v-if="!tag.meta.tagIcon">{{ tag.title }}</span>
-      <svg-icon
-        v-else
-        :icon="tag.meta.tagIcon"></svg-icon>
-      <i
-        v-if="!isAffix(tag) && visitedViews.length > 1"
-        class="el-icon-close"
-        @click.prevent.stop="delSelectedTag(tag)"></i>
-    </router-link>
-    <ul
-      v-show="contextMenuShow"
-      :style="menuPosStyle"
-      :class="`${namespace}-tagBar-contextmenu`">
-      <li @click="refreshSelectedTag(selectedTag)">刷新</li>
-      <li
-        v-if="!isAffix(selectedTag) && visitedViews.length > 1"
-        @click="delSelectedTag(selectedTag)">
-        关闭
-      </li>
-      <li
-        v-if="visitedViews.length > 1"
-        @click="delOtherTags(selectedTag)">
-        关闭其他
-      </li>
-      <li
-        v-if="visitedViews.length > 1"
-        @click="delAllTags(selectedTag)">
-        关闭全部
-      </li>
-    </ul>
+  <div :class="`${namespace}-tagBar`">
+    <div
+      :class="`${namespace}-tagBar-wrapper`"
+      v-scroll-horizontal
+      v-if="visitedViews.length > 0">
+      <router-link
+        :class="[`${namespace}-tagBar-item`, 'flex-row', isActive(tag) ? 'is-active' : '']"
+        v-for="tag in visitedViews"
+        :key="tag.path"
+        :to="tag"
+        @contextmenu.native.prevent="openMenu(tag, $event)">
+        <span v-if="!tag.meta.tagIcon">{{ tag.title }}</span>
+        <svg-icon
+          v-else
+          :icon="tag.meta.tagIcon"></svg-icon>
+        <i
+          v-if="!isAffix(tag) && visitedViews.length > 1"
+          class="el-icon-close"
+          @click.prevent.stop="delSelectedTag(tag)"></i>
+      </router-link>
+      <ul
+        v-show="contextMenuShow"
+        :style="menuPosStyle"
+        :class="`${namespace}-tagBar-contextmenu`">
+        <li @click="refreshSelectedTag(selectedTag)">刷新</li>
+        <li
+          v-if="!isAffix(selectedTag) && visitedViews.length > 1"
+          @click="delSelectedTag(selectedTag)">
+          关闭
+        </li>
+        <li
+          v-if="visitedViews.length > 1"
+          @click="delOtherTags(selectedTag)">
+          关闭其他
+        </li>
+        <li
+          v-if="visitedViews.length > 1"
+          @click="delAllTags(selectedTag)">
+          关闭全部
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -199,6 +201,11 @@ export default {
 
 <style lang="scss">
 .#{$namespace}-tagBar {
+  height: 45px;
+  overflow: hidden;
+}
+
+.#{$namespace}-tagBar-wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
