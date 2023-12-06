@@ -1,5 +1,6 @@
 import { login, logout, getUserInfo } from '@/api/auth'
 import router, { resetRouter } from '@/router'
+import { formatRoutes } from '@/utils/formatter.js'
 import asyncRoutes from '@/router/asyncRoutes.js'
 
 export default {
@@ -41,6 +42,7 @@ export default {
     async setPermission({ dispatch, state }) {
       resetRouter()
       const additionRoutes = asyncRoutes
+      additionRoutes = formatRoutes(additionRoutes)
       dispatch('permission/generateRoutes', additionRoutes, { root: true })
       router.addRoutes(additionRoutes)
       // additionRoutes.forEach(route => {

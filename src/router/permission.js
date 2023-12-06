@@ -10,11 +10,32 @@ const whiteList = [] // no redirect whitelist
 
 await store.dispatch('user/setPermission')
 
-// 获取菜单的第一个页面
-// let firstRoute
-// let firstMenu = store.getters.permissionRoutes[constantRoutes.length]
-// if (firstMenu) {
-//   firstRoute = firstMenu?.children ? firstMenu?.children[0] : firstMenu
+// 登陆页和应用是分离的，应用本身在需要鉴权的目录下
+await store.dispatch('user/setPermission')
+
+// 获取菜单的第一个有name不hidden的页面
+// let asyncRoutes = store.getters.permissionRoutes.slice(constantRoutes.length)
+// let firstMenu
+
+// for (let i = 0; i < asyncRoutes.length; i++) {
+//   let route = asyncRoutes[i]
+//   if (!route.hidden) {
+//     if (route.name) {
+//       firstMenu = route
+//       break
+//     } else if (route.children && route.children.length > 0) {
+//       for (let j = 0; j < route.children.length; j++) {
+//         let childRoute = route.children[j]
+//         if (!childRoute.hidden && childRoute.name) {
+//           firstMenu = childRoute
+//           break
+//         }
+//       }
+//       if (firstMenu) {
+//         break
+//       }
+//     }
+//   }
 // }
 
 router.beforeEach(async (to, from, next) => {
@@ -22,8 +43,8 @@ router.beforeEach(async (to, from, next) => {
   console.log('route-start', to, from)
 
   // 在'#/'根路由没有首页的情况，导航到菜单的第一个路由
-  // if (to.path === '/' && firstRoute) {
-  //   router.push(firstRoute)
+  // if (to.path === '/' && firstMenu) {
+  //   router.push(firstMenu)
   // }
 
   next()

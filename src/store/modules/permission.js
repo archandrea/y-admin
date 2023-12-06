@@ -1,5 +1,4 @@
 import { constantRoutes } from '@/router'
-import { formatRoutes } from '@/utils/formatter.js'
 
 export default {
   namespaced: true,
@@ -19,8 +18,7 @@ export default {
   },
   actions: {
     generateRoutes({ commit, dispatch }, routes) {
-      const additionRoutes = formatRoutes(routes)
-      commit('SET_ROUTES', additionRoutes)
+      commit('SET_ROUTES', routes)
     },
   },
 }
