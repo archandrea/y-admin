@@ -5,15 +5,11 @@ export default {
   state: () => ({
     routes: [],
     additionRoutes: [],
-    routesLoaded: false,
   }),
   mutations: {
     SET_ROUTES: (state, routes) => {
       state.additionRoutes = routes
       state.routes = constantRoutes.concat(routes)
-    },
-    LOADED_DONE: (state) => {
-      state.routesLoaded = true
     },
   },
   actions: {

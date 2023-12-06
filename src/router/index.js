@@ -66,4 +66,30 @@ export function resetRouter() {
   router.matcher = newRouter.matcher // reset router
 }
 
+Router.prototype.openTemporaryPage = (parent, option) => {
+  let { path, name, hidden, meta, component, query, casheAs } = option
+
+  if (parent) {
+    router.addRoute(parent, {
+      path,
+      name,
+      hidden,
+      meta,
+      casheAs,
+      component,
+    })
+  } else {
+    router.addRoute({
+      path,
+      name,
+      hidden,
+      meta,
+      casheAs,
+      component,
+    })
+  }
+
+  router.push({ name, query })
+}
+
 export default router

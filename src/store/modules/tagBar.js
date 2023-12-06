@@ -1,3 +1,11 @@
+function getCacheName(view) {
+  let name = view.name
+  if (view.meta.cacheAs) {
+    name = view.meta.cacheAs
+  }
+  return name
+}
+
 export default {
   namespaced: true,
   state: () => ({
@@ -14,9 +22,10 @@ export default {
       )
     },
     ADD_CACHED_VIEW: (state, view) => {
-      if (state.cachedViews.includes(view.name)) return
+      let name = getCacheName(view)
+      if (state.cachedViews.includes(name)) return
       if (!view.meta.noCache) {
-        state.cachedViews.push(view.name)
+        state.cachedViews.push(name)
       }
     },
     DEL_VISITED_VIEW: (state, view) => {
@@ -26,7 +35,8 @@ export default {
       }
     },
     DEL_CACHED_VIEW: (state, view) => {
-      const idx = state.cachedViews.indexOf(view.name)
+      let name = getCacheName(view)
+      const idx = state.cachedViews.indexOf(name)
       if (idx !== -1) {
         state.cachedViews.splice(idx, 1)
       }
@@ -37,7 +47,8 @@ export default {
       })
     },
     DEL_OTHER_CACHED_VIEWS: (state, view) => {
-      const index = state.cachedViews.indexOf(view.name)
+      let name = getCacheName(view)
+      const index = state.cachedViews.indexOf(name)
       if (index !== -1) {
         state.cachedViews = state.cachedViews.slice(index, index + 1)
       } else {
