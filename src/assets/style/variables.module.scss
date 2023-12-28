@@ -1,8 +1,7 @@
-// 系列样式前缀
-$namespace: y;
-
 // 主题色
 $themeColor: #0555CE;
+$themeColor-dark: #0446A7; //focus
+$themeColor-light: #4480DA; //hover
 
 // 背景颜色
 $bgColor: #fff;
@@ -22,6 +21,8 @@ $color-success: #52C41A;
 $color-warning: #FA9904;
 $color-danger: #F03838;
 $color-info: #909399;
+$color-delay: #22B8CF;
+
 
 :export {
   themeColor: $themeColor;

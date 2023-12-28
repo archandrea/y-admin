@@ -7,11 +7,14 @@ export default {
   data() {
     return {
       chart: null,
+      documentWidth,
     }
   },
   watch: {
     data() {
-      this.chart.setOption(this.option, true)
+      if (this.chart) {
+        this.chart.setOption(this.option, true)
+      }
     },
   },
   created() {
@@ -19,11 +22,23 @@ export default {
       this.getChart()
     })
   },
+  // updated() {
+  //   this.$nextTick(() => {
+  //     if (!this.data || this.data?.length === 0) {
+  //       this.destroyChart()
+  //     } else if (!this.chart) {
+  //       this.getChart()
+  //     }
+  //   })
+  // },
   beforeDestroy() {
     this.destroyChart()
   },
   methods: {
     getChart() {
+      if (!this.$refs['chart-container']) {
+        return false
+      }
       if (this.chart) this.chart.dispose()
       let chart = this.$echarts.init(this.$refs['chart-container'])
       this.chart = chart
@@ -33,15 +48,23 @@ export default {
       window.addEventListener('resize', this.resizeHandler)
     },
     destroyChart() {
-      this.chart.dispose()
-      this.chart = null
+      this.$nextTick(() => {
+        if (this.chart) {
+          this.chart.dispose()
+          this.chart = null
+        }
 
-      window.removeEventListener('resize', this.resizeHandler)
+        window.removeEventListener('resize', this.resizeHandler)
+      })
     },
     chartResize() {
-      if (this.chart) this.chart.resize()
+      this.documentWidth = document.documentElement.clientWidth
+      if (this.chart) {
+        this.chart.resize()
+      }
     },
     nowSize(val, initWidth = 1920) {
+      let documentWidth = this.documentWidth || 1920
       return val * (documentWidth / initWidth);
     },
   },

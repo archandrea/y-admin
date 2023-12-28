@@ -1,9 +1,9 @@
 // 变量
-@import './variables.module.scss';
+@import './variables.scss';
 // 混入
 @import './mixin.scss';
 // y系列公共样式
-@import './preset-style.scss';
+@import './y-style.scss';
 // Element覆盖样式
 @import './resetElement.scss';
 
@@ -28,7 +28,8 @@ html {
 body {
   font-size: 1.4rem;
   height: 100%;
-  color: #333;
+  color: $txtColor;
+  overflow: hidden;
 }
 
 body {
@@ -51,13 +52,13 @@ select {
   outline: 0;
 }
 
+ul {
+  list-style: none;
+}
+
 #app {
   @include full;
   overflow: hidden;
-}
-
-ul {
-  list-style: none;
 }
 
 ::-webkit-scrollbar {
@@ -79,6 +80,19 @@ ul {
   background-color: #A8A8A8;
 }
 
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
+}
 
 
 // 过渡样式

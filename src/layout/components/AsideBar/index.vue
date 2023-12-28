@@ -110,7 +110,6 @@ export default {
       margin-right: 16px;
       text-align: center;
       font-size: 16px;
-      color: $txtColor;
     }
 
     &.el-menu--collapse {
