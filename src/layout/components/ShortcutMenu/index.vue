@@ -1,6 +1,6 @@
 <template>
   <el-dropdown trigger="click">
-    <div :class="[`${namespace}-layout_user`, 'flex-row']">
+    <div :class="[`${namespace}-layout_user`, 'layout-flex-row']">
       <el-avatar icon="el-icon-user-solid"></el-avatar>
       <span class="username">username</span>
       <i class="el-icon-arrow-down"></i>

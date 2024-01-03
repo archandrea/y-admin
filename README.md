@@ -29,6 +29,13 @@ npm run new
 ```
 
 
+### 初始配置
+
+1. .env文件
+2. setting.js文件
+3. package.json文件name 
+4. assets/style/element-variables.scss系列样式前缀
+
 
 ### 请求封装
 

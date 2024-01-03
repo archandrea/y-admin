@@ -24,6 +24,8 @@
   meta.icon: 不需要
   meta.target: 当为跳转外部链接时，不需要name，target取值可以是blank、self；
                当为内嵌iframe打开时，需要name，target取值inner
+  meta.noCache: 不缓存
+  meta.cacheAs: 缓存组件名（用于临时tab页面缓存）
 
 */
 

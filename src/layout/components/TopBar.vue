@@ -1,12 +1,12 @@
 <template>
-  <div :class="[`${namespace}-layout_bar`, 'flex-row']">
+  <div :class="[`${namespace}-layout_bar`, 'layout-flex-row']">
     <div :class="`${namespace}-layout_logo`">
       <router-link to="/">
         <h1 style="color: #fff">LOGO</h1>
       </router-link>
     </div>
-    <div class="container flex-row">
-      <div :class="[`${namespace}-layout_tools`, 'flex-row']">
+    <div class="container layout-flex-row">
+      <div :class="[`${namespace}-layout_tools`, 'layout-flex-row']">
         <svg-icon icon="notification"></svg-icon>
         <svg-icon icon="tag"></svg-icon>
         <full-screen></full-screen>

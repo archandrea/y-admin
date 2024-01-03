@@ -41,7 +41,7 @@ export default {
     // 鉴权成功后调用
     async setPermission({ dispatch, state }) {
       resetRouter()
-      const additionRoutes = asyncRoutes
+      let additionRoutes = asyncRoutes
       additionRoutes = formatRoutes(additionRoutes)
       dispatch('permission/generateRoutes', additionRoutes, { root: true })
       router.addRoutes(additionRoutes)

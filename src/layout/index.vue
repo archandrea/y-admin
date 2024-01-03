@@ -3,9 +3,9 @@
     :id="`${namespace}-layout`"
     class="clearfix">
     <top-bar></top-bar>
-    <div class="container flex-row">
+    <div class="container layout-flex-row">
       <aside-bar v-if="showAsideBar"></aside-bar>
-      <div class="container flex-col">
+      <div class="container layout-flex-col">
         <tag-bar v-if="showTagBar"></tag-bar>
         <div :class="`${namespace}-layout_main`">
           <transition
@@ -99,12 +99,12 @@ export default {
     overflow: auto;
   }
 
-  .flex-col {
+  .layout-flex-col {
     display: flex;
     flex-direction: column;
   }
 
-  .flex-row {
+  .layout-flex-row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;

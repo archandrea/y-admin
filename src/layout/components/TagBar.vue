@@ -5,7 +5,7 @@
       v-scroll-horizontal
       v-if="visitedViews.length > 0">
       <router-link
-        :class="[`${namespace}-tagBar-item`, 'flex-row', isActive(tag) ? 'is-active' : '']"
+        :class="[`${namespace}-tagBar-item`, 'layout-flex-row', isActive(tag) ? 'is-active' : '']"
         v-for="tag in visitedViews"
         :key="tag.path"
         :to="tag"
