@@ -11,10 +11,11 @@ module.exports = defineConfig({
     open: true,
     hot: true,
     proxy: {
-      '/': {
+      '/api': {
         target: 'http://172.0.0.1:8080/',
         changeOrigin: true,
         ws: false,
+        // pathRewrite: {'^/api' : ''},
       }
     },
   },

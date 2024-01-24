@@ -57,6 +57,12 @@ export default [
     meta: { title: '测试', icon: 'function' },
     children: [
       {
+        path: 'setting-test',
+        name: 'SettingTest',
+        meta: { title: '全局设置' },
+        component: 'views/setting-test',
+      },
+      {
         path: 'https://www.baidu.com/',
         meta: { title: 'Baidu', icon: 'el-icon-link', target: 'blank' }
       },
@@ -68,6 +74,11 @@ export default [
         path: 'http://localhost:8081/#/dashboard',
         name: 'InnerLink',
         meta: { title: 'InnerLink', icon: 'el-icon-link', target: 'inner' }
+      },
+      {
+        path: 'http://172.16.66.41:8082',
+        name: 'InnerLinkTest',
+        meta: { title: 'InnerLink-Test-1', icon: 'el-icon-link', target: 'inner' }
       },
     ]
   },

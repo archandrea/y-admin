@@ -1,5 +1,5 @@
 <template>
-  <y-card id="inner-test" class="y-page"></y-card>
+  <base-card id="inner-test" class="y-page"></base-card>
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="y-card"
+    class="base-card"
     :style="[borderStyle]">
     <slot></slot>
   </div>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'MaasCard',
+  name: 'BaseCard',
   props: {
     border: {
       type: Boolean,
@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss">
-.y-card {
+.base-card {
   position: relative;
   display: flex;
   flex-direction: column;

@@ -10,10 +10,10 @@ import './assets/style/index.scss'
 
 import './router/permission.js'
 
-import Card from './components/Card'
+import BaseCard from './components/Card'
 import scrollHorizontal from './directives/scroll-horizontal.js'
 
-Vue.component('y-card', Card)
+Vue.component('BaseCard', BaseCard)
 Vue.directive('scroll-horizontal', scrollHorizontal)
 
 Vue.config.productionTip = false

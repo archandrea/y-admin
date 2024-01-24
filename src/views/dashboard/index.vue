@@ -3,7 +3,7 @@
     id="dashboard"
     class="y-page flex-row">
     <div class="y-dashboard_left flex">
-      <y-card class="flex">
+      <base-card class="flex">
         <div class="y-bar">
           <h4 class="y-title">发送数据量</h4>
           <el-button-group>
@@ -27,22 +27,22 @@
             end-placeholder="结束日期">
           </el-date-picker>
         </div>
-      </y-card>
+      </base-card>
       <div class="y-dashboard_left_bottom flex-row">
-        <y-card class="flex">
+        <base-card class="flex">
           <div class="y-bar">
             <h4 class="y-title">发送量类型占比分析</h4>
           </div>
-        </y-card>
-        <y-card class="flex">
+        </base-card>
+        <base-card class="flex">
           <div class="y-bar">
             <h4 class="y-title">发送量类型分析</h4>
           </div>
-        </y-card>
+        </base-card>
       </div>
     </div>
     <div class="y-dashboard_right flex">
-      <y-card class="flex">
+      <base-card class="flex">
         <div class="y-bar">
           <h4 class="y-title">最近编辑</h4>
           <router-link
@@ -51,8 +51,8 @@
             >更多<i class="el-icon-d-arrow-right"></i
           ></router-link>
         </div>
-      </y-card>
-      <y-card class="flex">
+      </base-card>
+      <base-card class="flex">
         <div class="y-bar">
           <h4 class="y-title">已群发消息</h4>
           <router-link
@@ -61,7 +61,7 @@
             >更多<i class="el-icon-d-arrow-right"></i
           ></router-link>
         </div>
-      </y-card>
+      </base-card>
     </div>
   </div>
 </template>
@@ -128,15 +128,6 @@ export default {
   },
   created() {
     this.fetchData()
-    this.$store.dispatch('setting/changeSetting', { showTopBar: false })
-  },
-  activated() {
-    console.log('activated')
-    this.$store.dispatch('setting/changeSetting', { showTopBar: false })
-  },
-  deactivated() {
-    console.log('deactivated')
-    this.$store.dispatch('setting/resetSetting')
   },
   methods: {
     async fetchData() {

@@ -8,9 +8,8 @@ NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const whiteList = [] // no redirect whitelist
 
-await store.dispatch('user/setPermission')
 
-// 登陆页和应用是分离的，应用本身在需要鉴权的目录下
+// 挂载权限菜单
 await store.dispatch('user/setPermission')
 
 // 获取菜单的第一个有name不hidden的页面

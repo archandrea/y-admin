@@ -1,10 +1,10 @@
 <template>
-  <y-card
+  <base-card
     id="table-template"
     class="y-page">
     列表模板
     <el-input v-model="input"></el-input>
-  </y-card>
+  </base-card>
 </template>
 
 <script>

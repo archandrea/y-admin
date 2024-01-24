@@ -30,7 +30,7 @@ import { mapState } from 'vuex'
 import { debounce } from '@/utils'
 
 export default {
-  name: 'layout',
+  name: 'Layout',
   components: {
     // 框架组件
     'top-bar': () => import('./components/TopBar'),

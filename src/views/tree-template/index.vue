@@ -1,5 +1,5 @@
 <template>
-  <y-card id="tree-template" class="y-page">树模板</y-card>
+  <base-card id="tree-template" class="y-page">树模板</base-card>
 </template>
 
 <script>

@@ -1,11 +1,12 @@
 <template>
-  <y-card
+  <base-card
     id="inner-link"
     class="y-page">
     <iframe
+      ref="iframe"
       :src="link"
       frameborder="0"></iframe>
-  </y-card>
+  </base-card>
 </template>
 
 <script>
@@ -23,7 +24,6 @@ export default {
   },
   watch: {},
   created() {},
-  mounted() {},
   methods: {},
 }
 </script>
