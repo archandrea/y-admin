@@ -67,11 +67,9 @@
 </template>
 
 <script>
-
 export default {
   name: 'Dashboard',
-  components: {
-  },
+  components: {},
   data() {
     return {
       // 日期选择
@@ -130,6 +128,15 @@ export default {
   },
   created() {
     this.fetchData()
+    this.$store.dispatch('setting/changeSetting', { showTopBar: false })
+  },
+  activated() {
+    console.log('activated')
+    this.$store.dispatch('setting/changeSetting', { showTopBar: false })
+  },
+  deactivated() {
+    console.log('deactivated')
+    this.$store.dispatch('setting/resetSetting')
   },
   methods: {
     async fetchData() {

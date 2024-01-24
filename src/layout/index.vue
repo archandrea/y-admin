@@ -2,7 +2,7 @@
   <div
     :id="`${namespace}-layout`"
     class="clearfix">
-    <top-bar></top-bar>
+    <top-bar v-if="showTopBar"></top-bar>
     <div class="container layout-flex-row">
       <aside-bar v-if="showAsideBar"></aside-bar>
       <div class="container layout-flex-col">
@@ -54,6 +54,7 @@ export default {
       showSettings: (state) => state.setting.showSettings,
       showTagBar: (state) => state.setting.showTagBar,
       showAsideBar: (state) => state.setting.showAsideBar,
+      showTopBar: (state) => state.setting.showTopBar,
     }),
   },
   created() {

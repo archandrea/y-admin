@@ -1,6 +1,6 @@
 import { themeColor, namespace } from '@/assets/style/variables.module.scss'
 import settings from '@/setting.js'
-const { showSettings, showTagBar, showAsideBar } = settings
+const { showSettings, showTagBar, showAsideBar, showTopBar } = settings
 
 export default {
   namespaced: true,
@@ -9,18 +9,31 @@ export default {
     showSettings,
     showTagBar,
     showAsideBar,
+    showTopBar,
     namespace,
   }),
   mutations: {
-    CHANGE_SETTING: (state, { key, value }) => {
-      if (Object.prototype.hasOwnProperty.call(state, key)) {
-        state[key] = value
+    CHANGE_SETTING: (state, setting) => {
+      for (let key in setting) {
+        if (Object.prototype.hasOwnProperty.call(state, key)) {
+          state[key] = setting[key]
+        }
       }
     }
   },
   actions: {
     changeSetting({ commit }, data) {
       commit('CHANGE_SETTING', data)
+    },
+    resetSetting({ commit }) {
+      commit('CHANGE_SETTING', {
+        themeColor,
+        showSettings,
+        showTagBar,
+        showAsideBar,
+        showTopBar,
+        namespace,
+      })
     }
   },
 }
