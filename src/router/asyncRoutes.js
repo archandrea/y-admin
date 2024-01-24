@@ -9,9 +9,9 @@
   hidden: Boolean，不显示在菜单栏
   component: 统一为layout
   redirect: 自动跳转路由
+  alwaysShow: 为true时，在只有一个显示子菜单的情况下，该子菜单不会提示至父级
   meta.title: 菜单栏和标签页的标题
   meta.icon: 菜单栏的图标（kebab-case命名，可以是element的icon，也可以是svg-icon）
-  meta.notPromote: 为true时，在只有一个显示子菜单的情况下，该子菜单不会提示至父级
   meta.affix: 固定存在于标签栏，不可删除
   meta.tagIcon: 此值存在时，该菜单标签显示为该值对应的图标
 

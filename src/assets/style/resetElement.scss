@@ -814,7 +814,7 @@ video {
 }
 
 .el-message {
-  z-index: 99999;
+  z-index: 9999 !important;
 }
 
 .el-pagination.is-background .el-pager li.active:not(.disabled):hover {
@@ -853,6 +853,13 @@ video {
 
 .el-table th.el-table__cell>.cell {
   white-space: nowrap;
+}
+
+.el-table {
+  .el-input__inner,
+  .el-textarea__inner {
+    background: $bgColor;
+  }
 }
 
 .el-tooltip__popper,
