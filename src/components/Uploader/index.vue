@@ -3,29 +3,36 @@
     <el-upload
       ref="uploader"
       class="upload-area"
-      :disabled="disabled"
       action=""
       :accept="typeLimit ? typeLimit + '/*' : '*/*'"
       :show-file-list="false"
       :auto-upload="false"
       :on-change="handleFileChange"
-      drag
+      @click.native.capture="disableClick"
       v-bind="$attrs"
       v-on="$listeners">
-      <media-viewer
-        v-if="preview && (type === 'image' || type === 'video')"
-        :type="type"
-        :src="preview"></media-viewer>
-      <audio
-        v-else-if="preview && type === 'audio'"
-        controls
-        :src="preview"></audio>
       <div
-        v-else
+        v-if="!preview"
+        ref="btnUpload"
         class="btn-upload">
         <slot></slot>
       </div>
     </el-upload>
+    <div
+      class="preview-area"
+      v-if="preview"
+      @click="previewClickEmitter">
+      <media-viewer
+        ref="mediaViewer"
+        v-if="type === 'image' || type === 'video'"
+        :type="type"
+        :preview="mediaClickEvent === 'preview'"
+        :src="preview"></media-viewer>
+      <audio
+        v-else-if="type === 'audio'"
+        controls
+        :src="preview"></audio>
+    </div>
     <div
       v-if="preview"
       class="btn-cancel"
@@ -34,6 +41,7 @@
     </div>
     <div
       class="uploader-tag"
+      @click="tagClickEmitter"
       v-if="tag">
       {{ tag }}
     </div>
@@ -47,10 +55,6 @@ export default {
     'media-viewer': () => import('@/components/MediaViewer'),
   },
   props: {
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
     sizeLimit: {
       type: Number,
     },
@@ -61,21 +65,44 @@ export default {
       type: String,
       default: '',
     },
+    mediaClickEvent: {
+      type: String,
+      default: 'none', // preview | none
+    },
+    // 接管uploader组件的click事件
+    // 有此属性则el-upload的click事件将不会被触发
+    handleClick: {
+      type: Function,
+      default: null,
+    },
+    // 接管tag的click事件
+    // 触发覆盖优先级为 el-upload.click < handleClick < handleTagClick
+    handleTagClick: {
+      type: Function,
+      default: null,
+    },
   },
   data() {
     return {
       type: '',
       preview: '',
+      avoidLock: false,
     }
   },
-  computed: {},
+  computed: {
+    uploadClickLock() {
+      if (!this.avoidLock && this.handleClick && typeof this.handleClick === 'function') {
+        return true
+      } else {
+        return false
+      }
+    },
+  },
   watch: {},
   created() {},
   mounted() {},
   methods: {
     handleFileChange(file) {
-      // 验证允许上传
-      if (!this.verifyPermit()) return false
       // 验证文件大小限制
       if (!this.verifySize(file)) return false
       // 验证文件类型限制
@@ -85,13 +112,6 @@ export default {
       if (file) {
         this.preview = URL.createObjectURL(file.raw)
       }
-    },
-    verifyPermit() {
-      if (this.disabled) {
-        this.$emit('not-permit')
-        return false
-      }
-      return true
     },
     verifySize(file) {
       if (this.sizeLimit && file.raw.size > this.sizeLimit) {
@@ -141,25 +161,76 @@ export default {
         return size + 'B'
       }
     },
+    previewClickEmitter(e) {
+      if (e.target === this.$refs.btnUpload) {
+        if (this.uploadClickLock) {
+          this.handleClick(e)
+        } else {
+          this.openUpload()
+        }
+      } else {
+        if (this.mediaClickEvent === 'none') {
+          this.$refs.uploader.$el.click()
+        }
+      }
+    },
+    tagClickEmitter(e) {
+      if (this.handleTagClick && typeof this.handleTagClick === 'function') {
+        this.handleTagClick(e)
+      } else if (this.uploadClickLock) {
+        this.handleClick(e)
+      } else {
+        this.openUpload()
+      }
+    },
+    openUpload() {
+      let upload = this.$refs.uploader?.$refs?.['upload-inner']?.$el
+
+      if (upload) {
+        this.avoidLock = true
+        upload.click()
+        this.avoidLock = false
+      }
+    },
+    disableClick(e) {
+      if (this.uploadClickLock) {
+        e.preventDefault()
+        e.stopPropagation()
+
+        this.handleClick(e)
+      }
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.uploader {
+.uploader::v-deep {
   position: relative;
   flex: 1;
   height: 150px;
+  border: 1px solid $bgColor-dark;
+  border-radius: 4px;
+  overflow: hidden;
 
-  .upload-area::v-deep {
-    // @include flex-center;
+  .preview-area {
     @include full;
+    @include flex-center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+  }
+
+  .upload-area {
+    @include full;
+    position: absolute;
     overflow: hidden;
-    border-radius: 4px;
 
     .el-upload {
       @include full;
-      // @include flex-center;
+      @include flex-center;
+      background: $bgColor-dark;
 
       .el-upload-dragger {
         @include full;
@@ -196,6 +267,7 @@ export default {
     border-radius: 4px;
     background: rgba(38, 38, 38, 0.6);
     cursor: pointer;
+    z-index: 5;
 
     i {
       color: $txtColor-reverse;
@@ -217,6 +289,12 @@ export default {
     color: $txtColor-reverse;
     border-radius: 4px 0px 4px 0px;
     background-color: $themeColor;
+    cursor: pointer;
+    z-index: 5;
   }
+}
+
+.el-form-item.is-error .uploader {
+  border-color: #f56c6c;
 }
 </style>
