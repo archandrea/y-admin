@@ -6,6 +6,12 @@
         :src="require('@/assets/images/404.png')"
         fit="contain"></el-image>
       <h4>抱歉，页面走丢了</h4>
+      <el-button
+        type="primary"
+        plain
+        @click.native="$router.push('/')"
+        >返回首页</el-button
+      >
     </div>
   </div>
 </template>

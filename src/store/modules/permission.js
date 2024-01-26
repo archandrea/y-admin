@@ -44,10 +44,9 @@ export default {
         asyncRoutes = filterPermissionRoutes(asyncRoutes, state.permissionTags)
       }
       dispatch('generateRoutes', asyncRoutes)
-      router.addRoutes(asyncRoutes)
-      // asyncRoutes.forEach(route => {
-      //   router.addRoute(route)
-      // });
+      asyncRoutes.forEach(route => {
+        router.addRoute(route)
+      });
     },
   },
 }
