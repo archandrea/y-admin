@@ -5,9 +5,9 @@ function scrollHorizontal(e) {
 
 export default {
   bind(el, binding, vnode) {
-    el.addEventListener('mousewheel', scrollHorizontal)
+    el.addEventListener('mousewheel', scrollHorizontal, { passive: false })
   },
   unbind(el) {
-    el.removeEventListener('mousewheel', scrollHorizontal)
+    el.removeEventListener('mousewheel', scrollHorizontal, { passive: false })
   }
 }
