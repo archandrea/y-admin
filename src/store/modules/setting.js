@@ -1,6 +1,6 @@
 import { themeColor, namespace } from '@/assets/style/variables.module.scss'
 import settings from '@/setting.js'
-const { showSettings, showTagBar, showAsideBar, showTopBar } = settings
+const { showSettings, showTagBar, showAsideBar, showTopBar, permissionRequired } = settings
 
 export default {
   namespaced: true,
@@ -11,6 +11,8 @@ export default {
     showAsideBar,
     showTopBar,
     namespace,
+    // TODO: 完成permission路由注册功能
+    permissionRequired,
   }),
   mutations: {
     CHANGE_SETTING: (state, setting) => {
@@ -25,15 +27,17 @@ export default {
     changeSetting({ commit }, data) {
       commit('CHANGE_SETTING', data)
     },
-    resetSetting({ commit }) {
-      commit('CHANGE_SETTING', {
+    resetSetting({ commit }, exclude = []) {
+      const defaultSetting = {
         themeColor,
         showSettings,
         showTagBar,
         showAsideBar,
         showTopBar,
         namespace,
-      })
+      }
+      exclude?.length > 0 && exclude.forEach(key => delete defaultSetting[key])
+      commit('CHANGE_SETTING', defaultSetting)
     }
   },
 }

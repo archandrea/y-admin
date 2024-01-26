@@ -3,4 +3,5 @@ export default {
   showTagBar: true,
   showAsideBar: true,
   showTopBar: true,
+  permissionRequired: true,
 }
