@@ -10,7 +10,6 @@
       <span>是否开启Header</span>
       <el-switch
         v-model="showTopBar"
-        @change="toggleHeader"
         active-color="#52C41A"
         :active-value="true"
         :inactive-value="false">
@@ -20,7 +19,6 @@
       <span>是否开启Menu</span>
       <el-switch
         v-model="showAsideBar"
-        @change="toggleMenu"
         active-color="#52C41A"
         :active-value="true"
         :inactive-value="false">
@@ -30,7 +28,15 @@
       <span>是否开启TagBar</span>
       <el-switch
         v-model="showTagBar"
-        @change="toggleTagBar"
+        active-color="#52C41A"
+        :active-value="true"
+        :inactive-value="false">
+      </el-switch>
+    </div>
+    <div :class="`${namespace}-bar`">
+      <span>切换权限</span>
+      <el-switch
+        v-model="permission"
         active-color="#52C41A"
         :active-value="true"
         :inactive-value="false">
@@ -45,37 +51,53 @@ export default {
     'theme-picker': () => import('@/components/ThemePicker'),
   },
   data() {
-    return {}
+    return {
+      permission: true,
+    }
   },
   computed: {
     namespace() {
       return this.$store.state.setting.namespace
     },
-    showTopBar() {
-      return this.$store.state.setting.showTopBar
+    showTopBar: {
+      get() {
+        return this.$store.state.setting.showTopBar
+      },
+      set() {
+        this.$store.dispatch('setting/changeSetting', { showTopBar: !this.showTopBar })
+      },
     },
-    showTagBar() {
-      return this.$store.state.setting.showTagBar
+    showTagBar: {
+      get() {
+        return this.$store.state.setting.showTagBar
+      },
+      set() {
+        this.$store.dispatch('setting/changeSetting', { showTagBar: !this.showTagBar })
+      },
     },
-    showAsideBar() {
-      return this.$store.state.setting.showAsideBar
+    showAsideBar: {
+      get() {
+        return this.$store.state.setting.showAsideBar
+      },
+      set() {
+        this.$store.dispatch('setting/changeSetting', { showAsideBar: !this.showAsideBar })
+      },
     },
   },
-  watch: {},
+  watch: {
+    permission(v) {
+      if (v) {
+        this.$store.dispatch('permission/setPermission', ['permission-test-user', 'permission-test-admin'])
+      } else {
+        this.$store.dispatch('permission/setPermission', ['permission-test-user'])
+      }
+    },
+  },
   methods: {
     themeChange(val) {
       this.$store.dispatch('setting/changeSetting', {
         themeColor: val,
       })
-    },
-    toggleHeader() {
-      this.$store.dispatch('setting/changeSetting', { showTopBar: !this.showTopBar })
-    },
-    toggleMenu() {
-      this.$store.dispatch('setting/changeSetting', { showAsideBar: !this.showAsideBar })
-    },
-    toggleTagBar() {
-      this.$store.dispatch('setting/changeSetting', { showTagBar: !this.showTagBar })
     },
   },
 }

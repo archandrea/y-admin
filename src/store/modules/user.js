@@ -1,7 +1,5 @@
 import { login, logout, getUserInfo } from '@/api/auth'
-import router, { resetRouter } from '@/router'
-import { formatRoutes } from '@/utils/formatter.js'
-import asyncRoutes from '@/router/asyncRoutes.js'
+import { resetRouter } from '@/router'
 
 export default {
   namespaced: true,
@@ -35,19 +33,9 @@ export default {
       const [err, res] = await getUserInfo()
       if (res) {
         commit('SET_USERINFO', res)
+        commit('SET_USERINFO', res)
       }
       return [err, res]
-    },
-    // 鉴权成功后调用
-    async setPermission({ dispatch, state }) {
-      resetRouter()
-      let additionRoutes = asyncRoutes
-      additionRoutes = formatRoutes(additionRoutes)
-      dispatch('permission/generateRoutes', additionRoutes, { root: true })
-      router.addRoutes(additionRoutes)
-      // additionRoutes.forEach(route => {
-      //   router.addRoute(route)
-      // });
     },
   },
 }

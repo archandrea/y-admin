@@ -1,6 +1,7 @@
 import store from '@/store'
 import router from './index.js'
 import NProgress from 'nprogress'
+
 import 'nprogress/nprogress.css'
 // import getPageTitle from '@/utils/get-page-title'
 
@@ -8,9 +9,10 @@ NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const whiteList = [] // no redirect whitelist
 
-
+// 设置权限/角色
+await store.dispatch('permission/setPermission', ['permission-test-user', 'permission-test-admin'])
 // 挂载权限菜单
-await store.dispatch('user/setPermission')
+
 
 // 获取菜单的第一个有name不hidden的页面
 // let asyncRoutes = store.getters.permissionRoutes.slice(constantRoutes.length)

@@ -32,6 +32,24 @@ export function formatRoutes(routes) {
   }
 }
 
+export function filterPermissionRoutes(routes, permissions) {
+  if (!routes) {
+    return false
+  }
+  if (Array.isArray(routes) && routes.length !== 0) {
+    routes = routes.filter(route => Object.prototype.hasOwnProperty.call(route, 'permissionTag') ? permissions.includes(route.permissionTag) : true)
+
+    return routes.map(route => {
+      if (route.children && route.children?.length !== 0) {
+        route.children = filterPermissionRoutes(route.children, permissions)
+      }
+      return route
+    })
+  } else {
+    return routes
+  }
+}
+
 // 路由懒加载
 export const loadComponent = (path) => {
   return () => import(`@/${path}`)

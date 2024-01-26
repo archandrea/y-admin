@@ -94,4 +94,20 @@ export default [
       },
     ]
   },
+  {
+    path: '/permission',
+    component: 'layout',
+    meta: { title: '权限测试' },
+    permissionTag: 'permission-test-user',
+    alwaysShow: true,
+    children: [
+      {
+        path: 'permission-test',
+        name: 'PermissionTest',
+        meta: { title: '权限测试-子菜单' },
+        permissionTag: 'permission-test-admin',
+        component: 'views/permission-test',
+      },
+    ]
+  },
 ]

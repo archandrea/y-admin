@@ -1,8 +1,14 @@
-import { constantRoutes } from '@/router'
+import router, { resetRouter, constantRoutes } from '@/router'
+import { formatRoutes, filterPermissionRoutes } from '@/utils/formatter.js'
+import settings from '@/setting.js'
+import asyncRoutes from '@/router/asyncRoutes.js'
+const { permissionRequired } = settings
 
 export default {
   namespaced: true,
   state: () => ({
+    permissionRequired,
+    permissionTags: [],
     routes: [],
     additionRoutes: [],
   }),
@@ -11,10 +17,37 @@ export default {
       state.additionRoutes = routes
       state.routes = constantRoutes.concat(routes)
     },
+    SET_PERMISSION(state, tag) {
+      if (!state.permissionTags.includes(tag)) {
+        state.permissionTags.push(tag)
+      }
+    },
+    RESET_PERMISSION(state) {
+      state.permissionTags = []
+    }
   },
   actions: {
     generateRoutes({ commit, dispatch }, routes) {
       commit('SET_ROUTES', routes)
+    },
+    setPermission({ commit, dispatch }, tags) {
+      commit('RESET_PERMISSION')
+      tags.forEach(tag => commit('SET_PERMISSION', tag))
+      dispatch('setRoutes', JSON.parse(JSON.stringify(asyncRoutes)))
+      dispatch('tagBar/delAllViews', null, { root: true })
+    },
+    // 鉴权成功后调用
+    setRoutes({ state, commit, dispatch }, asyncRoutes) {
+      resetRouter()
+      asyncRoutes = formatRoutes(asyncRoutes)
+      if (permissionRequired) {
+        asyncRoutes = filterPermissionRoutes(asyncRoutes, state.permissionTags)
+      }
+      dispatch('generateRoutes', asyncRoutes)
+      router.addRoutes(asyncRoutes)
+      // asyncRoutes.forEach(route => {
+      //   router.addRoute(route)
+      // });
     },
   },
 }

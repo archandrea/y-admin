@@ -1,6 +1,6 @@
 import { themeColor, namespace } from '@/assets/style/variables.module.scss'
 import settings from '@/setting.js'
-const { showSettings, showTagBar, showAsideBar, showTopBar, permissionRequired } = settings
+const { showSettings, showTagBar, showAsideBar, showTopBar } = settings
 
 export default {
   namespaced: true,
@@ -11,8 +11,6 @@ export default {
     showAsideBar,
     showTopBar,
     namespace,
-    // TODO: 完成permission路由注册功能
-    permissionRequired,
   }),
   mutations: {
     CHANGE_SETTING: (state, setting) => {
