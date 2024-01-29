@@ -179,3 +179,11 @@ export function getQueryString(query) {
 
   return res
 }
+
+export function extractParamsFromStr(str, reg = /\$\{([^}(${)])+?\}/g) {
+  if (!str?.matchAll) {
+    return []
+  }
+  const matches = Array.from(str.matchAll(reg))
+  return matches
+}

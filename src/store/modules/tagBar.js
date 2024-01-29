@@ -1,3 +1,5 @@
+import { extractParamsFromStr } from '@/utils'
+
 function getCacheName(view) {
   let name = view.name
   if (view.meta.cacheAs) {
@@ -15,10 +17,23 @@ export default {
   mutations: {
     ADD_VISITED_VIEW: (state, view) => {
       if (state.visitedViews.some(v => v.path === view.path)) return
+      let title = '未命名'
+      if (view.meta.title) {
+        title = view.meta.title
+      }
+
+      // 动态标题
+      const titleParams = extractParamsFromStr(title)
+      titleParams.forEach(param => {
+        const key = param[0].slice(2, param[0].length - 1)
+        if (view.params[key]) {
+          title = title.replaceAll(param[0], view.params[key])
+        } else {
+          title = title.replaceAll(param[0], '')
+        }
+      })
       state.visitedViews.push(
-        Object.assign({}, view, {
-          title: view.meta.title || '未命名'
-        })
+        Object.assign({}, view, { title })
       )
     },
     ADD_CACHED_VIEW: (state, view) => {
