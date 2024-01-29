@@ -10,7 +10,7 @@
   component: 统一为layout
   redirect: 自动跳转路由
   alwaysShow: 为true时，在只有一个显示子菜单的情况下，该子菜单不会提示至父级
-  meta.title: 菜单栏和标签页的标题
+  meta.title: 菜单栏和标签页的标题，${}语法可以获取route.params里的属性作为标题变量
   meta.icon: 菜单栏的图标（kebab-case命名，可以是element的icon，也可以是svg-icon）
   meta.affix: 固定存在于标签栏，不可删除
   meta.tagIcon: 此值存在时，该菜单标签显示为该值对应的图标
@@ -20,7 +20,7 @@
   name: 必须有（PascalCase命名）
   hidden: Boolean，不显示在菜单栏
   component: 统一为'views/'下扁平管理（kebab-case命名）
-  meta.title: 菜单栏和标签页的标题
+  meta.title: 菜单栏和标签页的标题，${}语法可以获取route.params里的属性作为标题变量
   meta.icon: 不需要
   meta.target: 当为跳转外部链接时，不需要name，target取值可以是blank、self；
                当为内嵌iframe打开时，需要name，target取值inner
@@ -79,6 +79,19 @@ export default [
         path: 'http://172.16.66.41:8082',
         name: 'InnerLinkTest',
         meta: { title: 'InnerLink-Test-1', icon: 'el-icon-link', target: 'inner' }
+      },
+      {
+        path: 'dynamic-router-test',
+        name: 'DynamicRouterTest',
+        meta: { title: '动态路由独立组件测试' },
+        component: 'views/dynamic-router-test',
+      },
+      {
+        path: ':id',
+        name: 'IndependentTagviewTest',
+        hidden: true,
+        meta: { title: '独立组件${id}' },
+        component: 'views/independent-tagview-test',
       },
     ]
   },
