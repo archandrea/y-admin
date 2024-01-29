@@ -52,6 +52,9 @@ export function filterPermissionRoutes(routes, permissions) {
 
 // 路由懒加载
 export const loadComponent = (path) => {
+  if (process.env.NODE_ENV === 'development') {
+    return require(`@/${path}`).default
+  }
   return () => import(`@/${path}`)
 }
 
