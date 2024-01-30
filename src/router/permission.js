@@ -10,7 +10,7 @@ NProgress.configure({ showSpinner: false }) // NProgress Configuration
 const whiteList = [] // no redirect whitelist
 
 // 设置权限/角色
-await store.dispatch('permission/setPermission', ['permission-test-user', 'permission-test-admin'])
+await store.dispatch('permission/setPermission')
 // 挂载权限菜单
 
 

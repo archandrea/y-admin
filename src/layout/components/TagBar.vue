@@ -46,6 +46,7 @@
 
 <script>
 import path from 'path'
+const localViews = JSON.parse(sessionStorage.getItem(process.env.VUE_APP_TITLE + '-VISITED-VIEWS') || '[]')
 
 export default {
   components: {},
@@ -90,12 +91,32 @@ export default {
   created() {
     this.initTags()
     this.addTag()
+
+    // 页面关闭前存储tag
+    window.addEventListener('beforeunload', this.saveViews)
   },
   methods: {
     initTags() {
+      // 固定标签
       this.affixTags = this.filterAffixTags(this.routes)
       for (const tag of this.affixTags) {
         if (tag.name) {
+          this.$store.dispatch('tagBar/addVisitedView', tag)
+        }
+      }
+
+      // 本地存储
+      for (const view of localViews) {
+        if (!view.meta.affix) {
+          const tagPath = path.resolve('/', view.path)
+          const tag = {
+            fullPath: tagPath,
+            path: tagPath,
+            name: view.name,
+            meta: { ...view.meta },
+            query: view.query,
+            params: view.params,
+          }
           this.$store.dispatch('tagBar/addVisitedView', tag)
         }
       }
@@ -194,6 +215,20 @@ export default {
     },
     closeMenu() {
       this.contextMenuShow = false
+    },
+    saveViews() {
+      sessionStorage.setItem(
+        process.env.VUE_APP_TITLE + '-VISITED-VIEWS',
+        JSON.stringify(
+          this.visitedViews
+            .map((view) => {
+              const copy = { ...view }
+              delete copy.matched
+              return copy
+            })
+            .filter((view) => !view.meta.affix) || []
+        )
+      )
     },
   },
 }

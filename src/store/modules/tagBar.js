@@ -26,7 +26,7 @@ export default {
       const titleParams = extractParamsFromStr(title)
       titleParams.forEach(param => {
         const key = param[0].slice(2, param[0].length - 1)
-        if (view.params[key]) {
+        if (view.params?.[key]) {
           title = title.replaceAll(param[0], view.params[key])
         } else {
           title = title.replaceAll(param[0], '')

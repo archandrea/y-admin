@@ -30,7 +30,7 @@ export default {
     generateRoutes({ commit, dispatch }, routes) {
       commit('SET_ROUTES', routes)
     },
-    setPermission({ commit, dispatch }, tags) {
+    setPermission({ commit, dispatch }, tags = []) {
       commit('RESET_PERMISSION')
       tags.forEach(tag => commit('SET_PERMISSION', tag))
       dispatch('setRoutes', JSON.parse(JSON.stringify(asyncRoutes)))
