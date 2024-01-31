@@ -117,6 +117,11 @@ export default {
       .svg-icon {
         margin-right: 0;
       }
+
+      .el-menu-item,
+      .el-submenu__title {
+        text-align: center;
+      }
     }
 
     .nest-menu {
@@ -125,8 +130,6 @@ export default {
 
       .el-menu-item {
         padding: 0 38px !important;
-        width: calc(100% - 32px);
-        min-width: 168px;
         line-height: 50px;
         border-radius: 4px;
       }
@@ -134,7 +137,7 @@ export default {
   }
 
   .el-menu:not(.el-menu--collapse) {
-    width: 200px;
+    width: 264px;
   }
 
   .bottom-bar {

@@ -17,9 +17,7 @@
     padding: 0;
   }
 
-  >* {
-    margin-bottom: 8px;
-  }
+
 
   .#{$namespace}-title {
     flex: 1;
@@ -45,6 +43,12 @@
   &+.#{$namespace}-container,
   &+.#{$namespace}-container--tight {
     padding-top: 0;
+  }
+}
+
+#app .#{$namespace}-bar {
+  >* {
+    margin-bottom: 8px;
   }
 }
 
@@ -169,7 +173,7 @@
 // 卡片布局
 .#{$namespace}-card-wrapper {
   display: grid;
-  justif#{$namespace}-content: space-around;
+  justify-content: space-around;
   gap: 16px;
   flex-wrap: wrap;
   overflow: unset;
