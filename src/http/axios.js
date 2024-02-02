@@ -30,7 +30,7 @@ service.interceptors.response.use(
   (response) => {
     // console.log('axios-response',response)
     if (response.status !== 200) return Promise.reject(response)
-    const flag = handleGeneralError(response.data?.code, response.data?.msg)
+    const flag = handleGeneralError(response.data?.state, response.data?.msg)
     if (!flag) return Promise.reject(response)
     return response.data
   },

@@ -30,10 +30,10 @@ export const post = async (url, data, params, headers) => {
       url,
       data,
       params,
-      headers: headers || { 'Content-type': 'multipart/form-data' },
+      headers: headers || { 'Content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
     })
       .then((result) => {
-        resolve([null, result.data])
+        resolve([null, result])
       })
       .catch((err) => {
         resolve([err, undefined])

@@ -13,13 +13,14 @@ module.exports = {
       }
     ],
   ],
-  "plugins": [
-    [
-      "component",
-      {
-        "libraryName": "element-ui",
-        "styleLibraryName": "theme-chalk"
-      }
-    ],
-  ],
+  // Element按需引入
+  // "plugins": [
+  //   [
+  //     "component",
+  //     {
+  //       "libraryName": "element-ui",
+  //       "styleLibraryName": "theme-chalk"
+  //     }
+  //   ],
+  // ],
 }

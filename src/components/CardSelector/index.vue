@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'base-cardSelector',
+  name: 'CardSelector',
   props: {
     list: {
       type: Array,
@@ -46,7 +46,7 @@ export default {
     return h(
       'div',
       {
-        class: ['card-selector', 'base-card-wrapper'],
+        class: ['card-selector', 'card-wrapper'],
         style: [this.gridStyle],
       },
       // 卡片列表
