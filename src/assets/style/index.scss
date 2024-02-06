@@ -4,6 +4,8 @@
 @import './mixin.scss';
 // y系列公共样式
 @import './preset-style.scss';
+// Element样式
+@import './element-variables.scss';
 // Element覆盖样式
 @import './resetElement.scss';
 
@@ -73,11 +75,11 @@ ul {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 8px;
-  background-color: #C1C1C1;
+  background-color: #E8E8E8;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #A8A8A8;
+  background-color: #c5c5c5;
 }
 
 .clearfix:before,
