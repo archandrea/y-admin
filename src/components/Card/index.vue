@@ -48,7 +48,7 @@ export default {
   border-color: $borderColor;
   
 
-  .active {
+  &.active {
     border-color: $themeColor;
   }
 }
