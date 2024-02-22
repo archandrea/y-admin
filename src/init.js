@@ -23,7 +23,10 @@ iconModules.keys().map(iconModules)
 
 // components
 import BaseCard from './components/Card'
+import EmptyWrapper from './components/EmptyWrapper'
+
 Vue.component('BaseCard', BaseCard)
+Vue.component('EmptyWrapper', EmptyWrapper)
 
 // directives
 const directiveModules = require.context('./directives', false, /\.js$/)
