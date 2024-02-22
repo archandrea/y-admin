@@ -55,6 +55,7 @@
 // 普通容器，可以配合no-padding类名
 .#{$namespace}-container {
   @include container;
+  overflow: hidden;
 
   &.no-padding {
     padding: 0;

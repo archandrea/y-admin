@@ -1,5 +1,5 @@
 <template>
-  <div class="empty-wrapper y-container--tight no-padding">
+  <div class="empty-wrapper y-container no-padding">
     <el-empty
       v-if="toggle"
       v-bind="attrs"></el-empty>
