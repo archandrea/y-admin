@@ -16,7 +16,7 @@ export default {
   }),
   mutations: {
     ADD_VISITED_VIEW: (state, view) => {
-      if (state.visitedViews.some(v => v.path === view.path)) return
+      if (state.visitedViews.some(v => decodeURI(v.path) === decodeURI(view.path))) return
       let title = '未命名'
       if (view.meta.title) {
         title = view.meta.title
