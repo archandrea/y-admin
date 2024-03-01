@@ -9,8 +9,8 @@
           :index="resolvePath(onlyOneChild.path)"
           :class="{ 'submenu-title-noDropdown': !isNest }">
           <item
-            :icon="onlyOneChild?.meta?.icon || (item?.meta && item?.meta?.icon) || (defaultIcon ? 'el-icon-menu' : '')"
-            :title="onlyOneChild?.meta?.title" />
+            :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon) || (defaultIcon ? 'el-icon-menu' : '')"
+            :title="onlyOneChild.meta.title" />
         </el-menu-item>
       </app-link>
     </template>

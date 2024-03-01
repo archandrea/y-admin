@@ -14,7 +14,7 @@
         ref="items"
         class="virtual-list-item"
         v-for="item in visibleList"
-        :key="item?.[keyName]">
+        :key="item[keyName]">
         <slot
           name="item"
           :data="item"></slot>

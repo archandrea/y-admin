@@ -13,7 +13,7 @@
         ref="items"
         class="virtual-list-plus-item"
         v-for="item in renderList"
-        :key="item?.[keyName]">
+        :key="item[keyName]">
         <slot
           name="item"
           :data="item"></slot>

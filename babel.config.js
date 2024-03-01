@@ -13,8 +13,8 @@ module.exports = {
       }
     ],
   ],
-  // Element按需引入
   // "plugins": [
+  //  Element按需引入
   //   [
   //     "component",
   //     {
