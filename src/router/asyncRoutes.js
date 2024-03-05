@@ -87,11 +87,17 @@ export default [
         component: 'views/dynamic-router-test',
       },
       {
-        path: ':id',
+        path: ':id/test',
         name: 'IndependentTagviewTest',
         hidden: true,
         meta: { title: '独立组件${id}' },
         component: 'views/independent-tagview-test',
+      },
+      {
+        path: 'composition-api',
+        name: 'CompositionApi',
+        meta: { title: 'composition-api' },
+        component: 'views/composition-api',
       },
     ]
   },
