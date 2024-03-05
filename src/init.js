@@ -36,3 +36,9 @@ const directives = directiveModules.keys().map((key)=>{
   return module
 })
 directives.forEach(directive => Vue.directive(directive.name, directive.default))
+
+// filters
+import * as filters from './filters'
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
