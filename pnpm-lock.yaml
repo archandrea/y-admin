@@ -57,7 +57,7 @@ devDependencies:
     version: 5.0.8(@vue/cli-service@5.0.8)
   '@vue/cli-service':
     specifier: ~5.0.8
-    version: 5.0.8(sass-loader@13.3.2)(vue@2.7.16)
+    version: 5.0.8(sass-loader@12.6.0)(vue@2.7.16)
   axios:
     specifier: ^1.4.0
     version: 1.4.0
@@ -74,11 +74,11 @@ devDependencies:
     specifier: ^3.1.2
     version: 3.1.2
   sass:
-    specifier: 1.26.2
-    version: 1.26.2
+    specifier: ^1.32.7
+    version: 1.71.1
   sass-loader:
-    specifier: ^13.3.2
-    version: 13.3.2(sass@1.26.2)(webpack@5.90.3)
+    specifier: ^12.0.0
+    version: 12.6.0(sass@1.71.1)(webpack@5.90.3)
   svg-sprite-loader:
     specifier: ^6.0.11
     version: 6.0.11
@@ -1872,7 +1872,7 @@ packages:
     dependencies:
       '@babel/core': 7.12.16
       '@vue/babel-preset-app': 5.0.8(@babel/core@7.12.16)(core-js@3.8.3)(vue@2.7.16)
-      '@vue/cli-service': 5.0.8(sass-loader@13.3.2)(vue@2.7.16)
+      '@vue/cli-service': 5.0.8(sass-loader@12.6.0)(vue@2.7.16)
       '@vue/cli-shared-utils': 5.0.8
       babel-loader: 8.3.0(@babel/core@7.12.16)(webpack@5.90.3)
       thread-loader: 3.0.4(webpack@5.90.3)
@@ -1894,7 +1894,7 @@ packages:
       '@vue/cli-service': ^3.0.0 || ^4.0.0 || ^5.0.0-0
       eslint: '>=7.5.0'
     dependencies:
-      '@vue/cli-service': 5.0.8(sass-loader@13.3.2)(vue@2.7.16)
+      '@vue/cli-service': 5.0.8(sass-loader@12.6.0)(vue@2.7.16)
       '@vue/cli-shared-utils': 5.0.8
       eslint: 7.32.0
       eslint-webpack-plugin: 3.2.0(eslint@7.32.0)(webpack@5.90.3)
@@ -1914,7 +1914,7 @@ packages:
     peerDependencies:
       '@vue/cli-service': ^3.0.0 || ^4.0.0 || ^5.0.0-0
     dependencies:
-      '@vue/cli-service': 5.0.8(sass-loader@13.3.2)(vue@2.7.16)
+      '@vue/cli-service': 5.0.8(sass-loader@12.6.0)(vue@2.7.16)
       '@vue/cli-shared-utils': 5.0.8
     transitivePeerDependencies:
       - encoding
@@ -1925,10 +1925,10 @@ packages:
     peerDependencies:
       '@vue/cli-service': ^3.0.0 || ^4.0.0 || ^5.0.0-0
     dependencies:
-      '@vue/cli-service': 5.0.8(sass-loader@13.3.2)(vue@2.7.16)
+      '@vue/cli-service': 5.0.8(sass-loader@12.6.0)(vue@2.7.16)
     dev: true
 
-  /@vue/cli-service@5.0.8(sass-loader@13.3.2)(vue@2.7.16):
+  /@vue/cli-service@5.0.8(sass-loader@12.6.0)(vue@2.7.16):
     resolution: {integrity: sha512-nV7tYQLe7YsTtzFrfOMIHc5N2hp5lHG2rpYr0aNja9rNljdgcPZLyQRb2YRivTHqTv7lI962UXFURcpStHgyFw==}
     engines: {node: ^12.0.0 || >= 14.0.0}
     hasBin: true
@@ -2002,7 +2002,7 @@ packages:
       postcss: 8.4.35
       postcss-loader: 6.2.1(postcss@8.4.35)(webpack@5.90.3)
       progress-webpack-plugin: 1.0.16(webpack@5.90.3)
-      sass-loader: 13.3.2(sass@1.26.2)(webpack@5.90.3)
+      sass-loader: 12.6.0(sass@1.71.1)(webpack@5.90.3)
       ssri: 8.0.1
       terser-webpack-plugin: 5.3.10(webpack@5.90.3)
       thread-loader: 3.0.4(webpack@5.90.3)
@@ -5057,6 +5057,10 @@ packages:
     hasBin: true
     dev: true
 
+  /immutable@4.3.5:
+    resolution: {integrity: sha512-8eabxkth9gZatlwl5TBuJnCsoTADlL6ftEr7A4qgdaTsPyreilDSnUk57SO+jfKcNtxPa22U5KK6DSeAYhpBJw==}
+    dev: true
+
   /import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -7204,12 +7208,12 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: true
 
-  /sass-loader@13.3.2(sass@1.26.2)(webpack@5.90.3):
-    resolution: {integrity: sha512-CQbKl57kdEv+KDLquhC+gE3pXt74LEAzm+tzywcA0/aHZuub8wTErbjAoNI57rPUWRYRNC5WUnNl8eGJNbDdwg==}
-    engines: {node: '>= 14.15.0'}
+  /sass-loader@12.6.0(sass@1.71.1)(webpack@5.90.3):
+    resolution: {integrity: sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==}
+    engines: {node: '>= 12.13.0'}
     peerDependencies:
       fibers: '>= 3.1.0'
-      node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
+      node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
       sass: ^1.3.0
       sass-embedded: '*'
       webpack: ^5.0.0
@@ -7223,17 +7227,20 @@ packages:
       sass-embedded:
         optional: true
     dependencies:
+      klona: 2.0.6
       neo-async: 2.6.2
-      sass: 1.26.2
+      sass: 1.71.1
       webpack: 5.90.3
     dev: true
 
-  /sass@1.26.2:
-    resolution: {integrity: sha512-9TRp1d1NH0mWH8rqaR/jCS05f/TFD1ykPF2zSYviprMhLb0EmXVqtKMUHsvDt3YIT/jbSK6qAvUlfCW/HJkdCw==}
-    engines: {node: '>=8.9.0'}
+  /sass@1.71.1:
+    resolution: {integrity: sha512-wovtnV2PxzteLlfNzbgm1tFXPLoZILYAMJtvoXXkD7/+1uP41eKkIt1ypWq5/q2uT94qHjXehEYfmjKOvjL9sg==}
+    engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
       chokidar: 3.6.0
+      immutable: 4.3.5
+      source-map-js: 1.0.2
     dev: true
 
   /schema-utils@2.7.1:

@@ -1,4 +1,7 @@
-import { themeColor, namespace } from '@/assets/style/variables.module.scss'
+// css module 引入js文件的暂时解决方法，各种vue-cli的配置都不行
+// 在devServer时，require()即是，在production打包时，require().default才是
+const styleModule = require('@/assets/style/variables.module.scss')
+const { themeColor, namespace } = styleModule.default || styleModule
 import settings from '@/setting.js'
 const { showSettings, showTagBar, showAsideBar, showTopBar } = settings
 
