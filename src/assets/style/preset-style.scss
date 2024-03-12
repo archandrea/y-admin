@@ -126,46 +126,6 @@
   }
 }
 
-// 简单分类侧边栏
-.#{$namespace}-class-menu {
-  >.#{$namespace}-class-menu_item {
-    @include flex-row;
-    padding: 12px 16px;
-    width: 100%;
-    border-radius: 4px;
-    cursor: pointer;
-
-    span {
-      @include text-overflow(2);
-      flex: 1;
-    }
-
-    .svg-icon {
-      flex: 0 0 16px;
-      margin-left: 8px;
-      font-size: 16px;
-
-      &:hover {
-        color: $themeColor;
-      }
-    }
-
-    &.is-active,
-    &:hover {
-      color: $themeColor;
-      background-color: transparentize($themeColor, 0.95);
-
-      .svg-icon {
-        color: $themeColor;
-      }
-    }
-
-    +.#{$namespace}-class-menu_item {
-      margin-top: 4px;
-    }
-  }
-}
-
 // 卡片布局
 .#{$namespace}-card-wrapper {
   display: grid;
