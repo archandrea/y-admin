@@ -6,7 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "new": "plop"
+    "new": "plop",
+    "inspect:prod": "vue-cli-service inspect --mode production",
+    "inspect:dev": "vue-cli-service inspect --mode development"
   },
   "dependencies": {
     "@vue/preload-webpack-plugin": "^2.0.0",
