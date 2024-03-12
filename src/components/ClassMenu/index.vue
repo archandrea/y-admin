@@ -22,8 +22,8 @@ export default {
       default: () => [],
     },
     activeMenu: {
-      type: [String, Array, Object],
-      default: () => null,
+      type: String,
+      default: '',
     },
     idProp: {
       type: String,
