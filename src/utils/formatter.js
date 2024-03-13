@@ -20,7 +20,7 @@ export function formatRoutes(routes) {
       routes.path = '/' + routes.name
     }
     // 挂载组件
-    if (Object.prototype.hasOwnProperty.call(routes, 'component') && typeof routes.component === 'string') {
+    if (typeof routes.component === 'string') {
       routes.component = loadComponent(routes.component)
     }
     if (routes.children && routes.children?.length !== 0) {
