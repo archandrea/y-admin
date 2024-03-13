@@ -7,7 +7,7 @@
   path: 路径
   name: 不需要
   hidden: Boolean，不显示在菜单栏
-  component: 统一为layout
+  component: 统一为layout或router-view（前者为框架，后者仅作为嵌套时的过渡）
   redirect: 自动跳转路由
   alwaysShow: 为true时，在只有一个显示子菜单的情况下，该子菜单不会提示至父级
   meta.title: 菜单栏和标签页的标题，${}语法可以获取route.params里的属性作为标题变量

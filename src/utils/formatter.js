@@ -21,7 +21,11 @@ export function formatRoutes(routes) {
     }
     // 挂载组件
     if (typeof routes.component === 'string') {
-      routes.component = loadComponent(routes.component)
+      let compStr = routes.component
+      if (compStr === 'router-view') {
+        compStr = 'views/view'
+      }
+      routes.component = loadComponent(compStr)
     }
     if (routes.children && routes.children?.length !== 0) {
       routes.children = formatRoutes(routes.children)

@@ -69,26 +69,20 @@ export function resetRouter() {
 Router.prototype.openTemporaryPage = (parent, option) => {
   let { path, name, hidden, meta, component, query, casheAs } = option
 
+  const args = [{
+    path,
+    name,
+    hidden,
+    meta,
+    casheAs,
+    component,
+  }]
+
   if (parent) {
-    router.addRoute(parent, {
-      path,
-      name,
-      hidden,
-      meta,
-      casheAs,
-      component,
-    })
-  } else {
-    router.addRoute({
-      path,
-      name,
-      hidden,
-      meta,
-      casheAs,
-      component,
-    })
+    args.unshift(parent)
   }
 
+  router.addRoute(args)
   router.push({ name, query })
 }
 
