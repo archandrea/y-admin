@@ -138,8 +138,12 @@ export default {
 
   .el-menu:not(.el-menu--collapse) {
     width: 264px;
-  }
 
+    .el-menu:not(.el-menu--collapse) {
+      width: 100%;
+    }
+  }
+  
   .bottom-bar {
     padding: 0 22px;
     height: 40px;
