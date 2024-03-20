@@ -99,6 +99,12 @@ export default [
         meta: { title: 'composition-api' },
         component: 'views/composition-api',
       },
+      {
+        path: 'span-table',
+        name: 'CompositionApi',
+        meta: { title: 'el-table自动span写法' },
+        component: 'views/span-table',
+      },
     ]
   },
   {
