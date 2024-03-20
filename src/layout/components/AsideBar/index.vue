@@ -81,7 +81,7 @@ export default {
 <style lang="scss">
 .#{$namespace}-layout_nav {
   flex: 0;
-  height: 100%;
+  height: calc(100vh - 64px);
   background-color: $bgColor;
   box-shadow: 0px 3px 16px 0px rgba(38, 38, 38, 0.12);
 
@@ -97,6 +97,12 @@ export default {
   .el-menu {
     border: none;
 
+    &.el-menu--collapse {
+      .el-submenu__title {
+        text-align: center;
+      }
+    }
+
     .el-menu-item,
     .el-submenu__title {
       font-size: 16px;
@@ -105,11 +111,10 @@ export default {
 
     .sub-el-icon,
     .svg-icon {
-      vertical-align: baseline;
-      margin-left: 2px;
       margin-right: 16px;
       text-align: center;
       font-size: 16px;
+      vertical-align: -0.12em;
     }
 
     &.el-menu--collapse {
@@ -125,13 +130,10 @@ export default {
     }
 
     .nest-menu {
-      padding: 0 16px;
       width: 100%;
 
       .el-menu-item {
-        padding: 0 38px !important;
         line-height: 50px;
-        border-radius: 4px;
       }
     }
   }
@@ -143,7 +145,7 @@ export default {
       width: 100%;
     }
   }
-  
+
   .bottom-bar {
     padding: 0 22px;
     height: 40px;

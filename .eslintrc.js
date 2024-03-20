@@ -8,6 +8,7 @@ module.exports = {
     browser: true,
     node: true,
     es6: true,
+    'vue/setup-compiler-macros': true,
   },
   extends: ['plugin:vue/recommended', 'eslint:recommended'],
 
