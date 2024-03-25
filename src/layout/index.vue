@@ -98,6 +98,12 @@ export default {
     padding: 0 16px 16px 0;
     height: calc(100vh - 64px);
     overflow: auto;
+
+    &:has(> div[class*='fade-transform']) {
+      margin: 16px;
+      padding: 0;
+      overflow: hidden;
+    }
   }
 
   .layout-flex-col {
