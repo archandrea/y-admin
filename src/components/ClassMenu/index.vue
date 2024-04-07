@@ -1,5 +1,7 @@
 <template>
-  <div class="class-menu y-container--tight">
+  <empty-wrapper
+    class="class-menu y-container--tight"
+    :toggle="!list || list?.length === 0">
     <div
       :class="['class-menu_item', isActive(item) ? 'is-active' : '']"
       v-for="item in list"
@@ -7,50 +9,47 @@
       @click="$emit('set-current', item)">
       <slot :item="item"></slot>
     </div>
-  </div>
+  </empty-wrapper>
 </template>
 
-<script>
+<script setup>
 import { generateId } from '@/utils'
+import EmptyWrapper from '@/components/EmptyWrapper'
 
-export default {
-  name: 'ClassMenu',
-  components: {},
-  props: {
-    list: {
-      type: Array,
-      default: () => [],
-    },
-    activeMenu: {
-      type: String,
-      default: '',
-    },
-    idProp: {
-      type: String,
-      default: () => 'id',
-    },
+const props = defineProps({
+  list: {
+    type: Array,
+    default: () => [],
   },
-  data() {
-    return {}
+  activeMenu: {
+    type: String,
+    default: '',
   },
-  computed: {},
-  watch: {},
-  created() {},
-  mounted() {},
-  methods: {
-    isActive(item) {
-      if(!this.idProp) {
-        return item === this.activeMenu
-      }
-      return item[this.idProp] === this.activeMenu
-    },
-    generateId,
+  idProp: {
+    type: String,
+    default: () => 'id',
   },
+})
+
+const isActive = (item) => {
+  if (!props.idProp) {
+    return item === props.activeMenu
+  }
+  return item[props.idProp] === props.activeMenu
 }
 </script>
 
-<style lang="scss">
-.class-menu {
+<style lang="scss" scoped>
+.class-menu::v-deep {
+  .el-empty {
+    padding: 0;
+    height: max-content;
+
+    .el-empty__image {
+      display: none;
+    } 
+  }
+
   > .class-menu_item {
     @include flex-row;
     padding: 12px 16px;
