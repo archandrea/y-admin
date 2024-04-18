@@ -41,6 +41,8 @@ const isActive = (item) => {
 
 <style lang="scss" scoped>
 .class-menu::v-deep {
+  padding: 8px 24px;
+
   .el-empty {
     padding: 0;
     height: max-content;
