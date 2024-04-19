@@ -185,10 +185,10 @@
     @include flex-row;
     width: 100%;
 
-    .el-input {
+    >div {
       flex: 1;
 
-      +.el-input {
+      +div {
         margin-left: 8px;
       }
     }

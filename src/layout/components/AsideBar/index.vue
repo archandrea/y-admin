@@ -115,6 +115,9 @@ export default {
       text-align: center;
       font-size: 16px;
       vertical-align: -0.12em;
+    }
+
+    .sub-el-icon {
       color: $txtColor;
     }
 
