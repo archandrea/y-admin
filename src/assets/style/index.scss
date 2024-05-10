@@ -83,6 +83,13 @@ ul {
   background-color: #c5c5c5;
 }
 
+// @supports (scrollbar-width: thin) {
+//   * {
+//     scrollbar-width: thin;
+//     scrollbar-color: #E8E8E8 transparent;
+//   }
+// }
+
 .clearfix:before,
 .clearfix:after {
   content: " ";

@@ -18,19 +18,21 @@ export default {
     },
   },
   created() {
+    this.resizeHandler = debounce(() => this.chartResize(), 500)
+    window.addEventListener('resize', this.resizeHandler)
     this.$nextTick(() => {
       this.getChart()
     })
   },
-  // updated() {
-  //   this.$nextTick(() => {
-  //     if (!this.data || this.data?.length === 0) {
-  //       this.destroyChart()
-  //     } else if (!this.chart) {
-  //       this.getChart()
-  //     }
-  //   })
-  // },
+  updated() {
+    this.$nextTick(() => {
+      if (!this.data || this.data?.length === 0) {
+        this.destroyChart()
+      } else if (!this.chart) {
+        this.getChart()
+      }
+    })
+  },
   beforeDestroy() {
     this.destroyChart()
   },
@@ -43,9 +45,7 @@ export default {
       let chart = this.$echarts.init(this.$refs['chart-container'])
       this.chart = chart
       chart.setOption(this.option, true)
-
-      this.resizeHandler = debounce(() => this.chartResize(), 500)
-      window.addEventListener('resize', this.resizeHandler)
+      this.$nextTick(this.resizeHandler)
     },
     destroyChart() {
       this.$nextTick(() => {

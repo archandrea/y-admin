@@ -715,8 +715,8 @@ video {
 }
 
 .el-button {
-  padding: 12px 40px;
   outline: none;
+  border: none;
 
   &.el-button--small {
     font-size: 14px;
@@ -727,12 +727,11 @@ video {
   }
 
   &.mini {
-    padding: 8px 16px;
+    padding: 9px 16px;
   }
 
   &.is-plain {
     color: $themeColor;
-    border: none;
 
     &:hover,
     &:active,
