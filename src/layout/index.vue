@@ -26,18 +26,22 @@
 </template>
 
 <script>
+import TopBar from './components/TopBar'
+import AsideBar from './components/AsideBar'
+import TagBar from './components/TagBar'
+import Setting from './components/Setting'
+import RightPanel from '@/components/RightPanel'
 import { mapState } from 'vuex'
 import { debounce } from '@/utils'
 
 export default {
   name: 'Layout',
   components: {
-    // 框架组件
-    'top-bar': () => import('./components/TopBar'),
-    'aside-bar': () => import('./components/AsideBar'),
-    'tag-bar': () => import('./components/TagBar'),
-    setting: () => import('./components/Setting'),
-    'right-panel': () => import('@/components/RightPanel'),
+    TopBar,
+    AsideBar,
+    TagBar,
+    Setting,
+    RightPanel,
   },
   data() {
     return {}

@@ -17,10 +17,12 @@
 </template>
 
 <script>
+import ShortcutMenu from '../ShortcutMenu'
+import FullScreen from '@/components/FullScreen'
 export default {
   components: {
-    'shortcut-menu': () => import('./ShortcutMenu'),
-    'full-screen': () => import('@/components/FullScreen'),
+    ShortcutMenu,
+    FullScreen,
   },
   data() {
     return {}

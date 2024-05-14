@@ -24,11 +24,12 @@
 </template>
 
 <script>
+import MenuItem from './components/MenuItem.vue'
 import { debounce } from '@/utils'
 
 export default {
   components: {
-    MenuItem: () => import('./components//MenuItem.vue'),
+    MenuItem,
   },
   data() {
     return {
@@ -49,7 +50,6 @@ export default {
     },
   },
   created() {
-    // this.resizeHandler = debounce(() => this.collapseHandler(), 500)
     window.addEventListener('resize', this.resizeHandler)
   },
   beforeDestroy() {
