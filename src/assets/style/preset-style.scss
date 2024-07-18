@@ -22,7 +22,7 @@
     white-space: nowrap;
   }
 
-  div {
+  >div {
 
     +div,
     +span,
@@ -31,7 +31,7 @@
     }
   }
 
-  span {
+  >span {
     +div {
       margin-left: 8px;
     }

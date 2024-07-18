@@ -6,8 +6,10 @@ export default {
   inserted(el, binding) {
     const { evtHandler, delay = 800, immediate = true } = binding.value
 
-    if (typeof evtHandler === 'function') {
-      const debounced = debounce(evtHandler, delay, immediate)
+    let fn
+    if (typeof (fn = binding.value) === 'function' ||
+      typeof (fn = evtHandler) === 'function') {
+      const debounced = debounce(fn, delay, immediate)
       el.addEventListener('click', debounced)
       debouncedHandlers.click = debounced
     } else {
