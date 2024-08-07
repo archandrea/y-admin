@@ -1,0 +1,22 @@
+> .y-container {
+  > .y-bar {
+    justify-content: flex-start;
+    border-bottom: 1px solid $borderColor;
+  }
+
+  > .y-container--tight {
+    padding-bottom: 0;
+    border-bottom: 1px solid $borderColor;
+
+    .el-table {
+      &::before {
+        content: none;
+      }
+    }
+  }
+}
+
+.base-pagination {
+  align-self: flex-end;
+  padding: 24px 8px;
+}

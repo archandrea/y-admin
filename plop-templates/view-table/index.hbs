@@ -1,0 +1,216 @@
+{{#if template}}
+<template>
+  <base-card
+    id="{{ kebabCase name }}"
+    class="y-page">
+    <div class="y-container no-padding">
+      <div class="y-bar">
+        <!-- 修改标题 -->
+        <h2 class="y-title">列表页面</h2>
+        <el-button
+          class="mini"
+          type="primary"
+          plain>
+          <i class="el-icon-download"></i>
+          下载模板
+        </el-button>
+        <el-button
+          class="mini"
+          type="primary"
+          plain>
+          <svg-icon icon="exit"></svg-icon>
+          导出
+        </el-button>
+        <!-- 修改on-change回调函数 -->
+        <el-upload
+          ref="upload"
+          action=""
+          accept=".xlsx, .xls"
+          :auto-upload="false"
+          :show-file-list="false"
+          :multiple="false"
+          :on-change="someMethod">
+          <el-button
+            class="mini"
+            type="primary"
+            plain
+            style="margin-left: 8px">
+            <svg-icon icon="enter"></svg-icon>
+            导入
+          </el-button>
+        </el-upload>
+        <el-button
+          class="mini"
+          type="danger"
+          plain
+          style="margin-left: 8px">
+          <svg-icon icon="remove"></svg-icon>
+          批量删除
+        </el-button>
+        <el-button
+          class="mini"
+          type="primary">
+          <svg-icon icon="add"></svg-icon>
+          添加
+        </el-button>
+      </div>
+      <div class="y-container--tight">
+        <el-form
+          ref="searchForm"
+          :inline="true"
+          :model="searchForm"
+          :rules="rules"
+          size="small"
+          style="margin-top: 16px">
+          <el-form-item 
+            label="关键字"
+            prop="keyword">
+            <el-input
+              v-model="searchForm.keyword"
+              v-trim
+              clearable
+              style="width: 220px"
+              placeholder="请输入关键字进行搜索"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button
+              class="mini"
+              type="primary"
+              size="small"
+              plain
+              @click.native="resetSearch">
+              <svg-icon icon="reset"></svg-icon>
+              重置
+            </el-button>
+            <el-button
+              v-debounce="fetchData"
+              class="mini"
+              type="primary">
+              <i class="el-icon-search"></i>
+              搜索
+            </el-button>
+          </el-form-item>
+        </el-form>
+        <el-table
+          :data="list"
+          v-loading="loading"
+          v-reset-scroll="'div.el-table__body-wrapper'"
+          stripe
+          height="100%"
+          fit
+          ref="table"
+          style="width: 100%">
+          <el-table-column
+            type="selection"
+            width="50">
+          </el-table-column>
+          <el-table-column
+            type="index"
+            label="序号"
+            width="50">
+          </el-table-column>
+          <el-table-column
+            label="some label"
+            prop="SOME_PROP"
+            show-overflow-tooltip>
+          </el-table-column>
+          <el-table-column
+            label="操作"
+            width="100"
+            fixed="right">
+            <template slot-scope="scope">
+              <el-link
+                type="primary"
+                :underline="false"
+                >编辑</el-link
+              >
+              <el-link
+                type="danger"
+                :underline="false"
+                >删除</el-link
+              >
+            </template>
+          </el-table-column>
+          <el-empty
+            slot="empty"
+            :image="require('@/assets/images/no-info.png')"
+            description="暂无信息"></el-empty>
+        </el-table>
+      </div>
+      <pagination
+        :current-page.sync="formData.pageIndex"
+        :page-size.sync="formData.pageSize"
+        :total="total"
+        @page="fetchData"></pagination>
+    </div>
+  </base-card>
+</template>
+{{/if}}
+
+
+{{#if script}}
+<script>
+// 引入你的API
+import { getList } from '@/api/some-module'
+
+export default {
+  name: '{{ properCase name }}',
+  components: { },
+  data() {
+    return {
+      loading: false,
+      searchForm: {
+        keyword: '',
+      },
+      rules: {},
+      formData: {
+        pageSize: 15,
+        pageIndex: 1,
+        pageType: 3,
+      },
+      total: 0,
+      list: [],
+    }
+  },
+  computed: {},
+  created() {
+    this.fetchData()
+  },
+  mounted() {},
+  methods: {
+    async fetchData() {
+      this.loading = true
+
+      const payload = {
+        ...this.searchForm,
+        ...this.formData,
+      }
+
+      const [err, res] = await getList(payload)
+      if (res) {
+        this.list = res.data || []
+        this.total = res.totalRow
+      }
+      this.loading = false
+    },
+    resetSearch() {
+      this.$refs.searchForm?.resetFields()
+      this.formData = {
+        pageSize: 15,
+        pageIndex: 1,
+        pageType: 3,
+      }
+      this.fetchData()
+    },
+  },
+}
+</script>
+{{/if}}
+
+{{#if style}}
+<style lang="scss">
+#{{ kebabCase name }} {
+  @import '@/assets/style/modules/table-page.scss';
+}
+</style>
+{{/if}}
