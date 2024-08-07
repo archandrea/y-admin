@@ -5,7 +5,7 @@ const path = require('path')
 import './http/axios'
 
 // style
-import './assets/style/index.scss'
+import './assets/style/common/index.scss'
 
 // permission
 import './router/permission.js'

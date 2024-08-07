@@ -34,7 +34,7 @@ npm run new
 1. .env文件
 2. setting.js文件
 3. package.json文件name 
-4. assets/style/variables.module.scss系列样式前缀
+4. assets/style/common/variables.module.scss系列样式前缀
 
 
 ### 请求封装

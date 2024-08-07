@@ -32,7 +32,7 @@ module.exports = defineConfig({
           if (/variables\.module\.scss/.test(resourcePath) || /mixin\.scss/.test(resourcePath)) {
             return content
           }
-          return '@import "@/assets/style/variables.module.scss";' + '@import "@/assets/style/mixin.scss";' + content
+          return '@import "@/assets/style/common/variables.module.scss";' + '@import "@/assets/style/common/mixin.scss";' + content
         },
       }
     }
