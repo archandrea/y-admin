@@ -28,6 +28,12 @@ export const constantRoutes = [
       },
     ]
   },
+  // 如果没有默认首页，则需要添加此路由
+  // {
+  //   path: '/',
+  //   hidden: true,
+  //   component: () => import('@/layout'),
+  // },
   {
     path: '/login',
     hidden: true,

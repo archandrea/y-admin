@@ -1,5 +1,5 @@
 import store from '@/store'
-import router from './index.js'
+import router, { constantRoutes } from './index.js'
 import NProgress from 'nprogress'
 
 import 'nprogress/nprogress.css'
