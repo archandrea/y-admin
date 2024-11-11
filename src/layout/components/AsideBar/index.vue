@@ -105,15 +105,26 @@ export default {
 
     .el-menu-item,
     .el-submenu__title {
+      display: flex;
+      align-items: center;
       font-size: 16px;
       line-height: 56px;
     }
 
     .sub-el-icon,
     .svg-icon {
+      flex: 0 0 16px;
       margin-right: 16px;
       text-align: center;
       font-size: 16px;
+      vertical-align: -0.12em;
+    }
+
+    .el-submenu__icon-arrow {
+      position: static;
+      flex: 0 0 16px;
+      margin-top: 0;
+      margin-left: 16px;
       vertical-align: -0.12em;
     }
 

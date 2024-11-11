@@ -19,7 +19,13 @@ export default {
     }
 
     if (title) {
-      vnodes.push(<span slot="title">{title}</span>)
+      vnodes.push(
+        <span
+          slot="title"
+          class="title">
+          {title}
+        </span>
+      )
     }
     return vnodes
   },
@@ -31,5 +37,14 @@ export default {
   color: currentColor;
   width: 1em;
   height: 1em;
+}
+
+.title {
+  flex: 1;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: justify;
+  word-break: break-all;
 }
 </style>
