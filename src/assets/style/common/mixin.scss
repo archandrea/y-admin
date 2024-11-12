@@ -42,6 +42,13 @@
   // white-space: nowrap;
 }
 
+@mixin bar($v-padding: 12px, $h-padding: 24px) {
+  @include flex-row;
+  flex-wrap: wrap;
+  padding: $v-padding $h-padding;
+  width: 100%;
+}
+
 @mixin text-overflow($line) {
   display: -webkit-box;
   -webkit-box-orient: vertical;
