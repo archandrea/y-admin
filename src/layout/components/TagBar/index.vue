@@ -276,10 +276,10 @@ export default {
 
   span {
     white-space: nowrap;
-    margin-right: 8px;
   }
 
   i {
+    margin-left: 8px;
     color: $txtColor-light;
   }
 }
