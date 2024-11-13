@@ -106,6 +106,7 @@ export default {
       }
 
       // 本地存储
+      // TODO: 排除没有菜单权限的views
       for (const view of localViews) {
         if (!view.meta.affix) {
           const tagPath = path.resolve('/', view.path)
