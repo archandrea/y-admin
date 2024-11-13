@@ -22,12 +22,16 @@ const iconModules = require.context('./assets/icons', false, /\.svg$/)
 iconModules.keys().map(iconModules)
 
 // components
-import BaseCard from './components/Card'
+import BaseCard from './components/Card' 
 import EmptyWrapper from './components/EmptyWrapper'
+import Pagination from './components/Pagination'
+import OverflowText from './components/OverflowText'
 
 Vue.component('BaseCard', BaseCard)
 Vue.component('EmptyWrapper', EmptyWrapper)
-
+Vue.component('Pagination', Pagination)
+Vue.component('OverflowText', OverflowText)
+ 
 // directives
 const directiveModules = require.context('./directives', false, /\.js$/)
 const directives = directiveModules.keys().map((key)=>{
