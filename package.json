@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --no-module && node scripts/afterBuild.js --portal",
+    "build:login": "vue-cli-service build --target app --name login src/views/login/index.js --no-module && node scripts/afterBuild.js --login",
     "lint": "vue-cli-service lint",
     "new": "plop",
     "inspect:prod": "vue-cli-service inspect --mode production",

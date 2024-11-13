@@ -5,8 +5,13 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
+let argv = process.argv
+let app = argv[argv.findIndex(i => i === '--name') + 1] === 'login' ? 'login' : 'portal'
+console.log('build ' + app)
+
 module.exports = defineConfig({
   publicPath: './',
+  outputDir: `dist/${app}`,
   transpileDependencies: true,
   // 关闭生产环境sourceMap
   productionSourceMap: false,
@@ -34,6 +39,7 @@ module.exports = defineConfig({
           }
           return '@import "@/assets/style/common/variables.module.scss";' + '@import "@/assets/style/common/mixin.scss";' + content
         },
+        sassOptions: { outputStyle: 'expanded' } // fix: 解决 element-ui 图标 icon 偶现乱码问题
       }
     }
   },
