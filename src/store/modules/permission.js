@@ -33,6 +33,7 @@ export default {
     setPermission({ commit, dispatch }, tags = []) {
       commit('RESET_PERMISSION')
       tags.forEach(tag => commit('SET_PERMISSION', tag))
+      // 如果由服务端返回权限，则修改此处
       dispatch('setRoutes', JSON.parse(JSON.stringify(asyncRoutes)))
       dispatch('tagBar/delAllViews', null, { root: true })
     },
