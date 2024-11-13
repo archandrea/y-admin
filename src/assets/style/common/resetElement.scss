@@ -716,7 +716,7 @@ video {
 
 .el-button {
   outline: none;
-  border: none;
+  border-color: $themeColor;
 
   &.el-button--small {
     font-size: 14px;

@@ -8,19 +8,12 @@
 // 通用bar
 .#{$namespace}-bar {
   @include bar;
-  padding-bottom: 8px;
 
   &.no-padding {
     padding: 0;
   }
 
-  .#{$namespace}-title {
-    flex: 1;
-    white-space: nowrap;
-  }
-
   >div {
-
     +div,
     +span,
     +button {
@@ -33,23 +26,16 @@
       margin-left: 8px;
     }
   }
-
-  &+.#{$namespace}-bar,
-  &+.#{$namespace}-container,
-  &+.#{$namespace}-container--tight {
-    padding-top: 0;
-  }
-}
-
-#app .#{$namespace}-bar {
-  >* {
-    margin-bottom: 8px;
-  }
 }
 
 .#{$namespace}-header {
   @include bar;
   border-bottom: 1px solid $borderColor;
+
+  .#{$namespace}-title {
+    flex: 1;
+    white-space: nowrap;
+  }
 }
 
 .#{$namespace}-footer {

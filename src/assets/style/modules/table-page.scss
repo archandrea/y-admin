@@ -1,12 +1,10 @@
-> .y-container {
-  > .y-bar {
+>.y-container {
+  >.y-header {
     justify-content: flex-start;
-    border-bottom: 1px solid $borderColor;
   }
 
-  > .y-container--tight {
-    padding-bottom: 0;
-    border-bottom: 1px solid $borderColor;
+  >.y-container--tight {
+    padding: 0 24px;
 
     .el-table {
       &::before {
