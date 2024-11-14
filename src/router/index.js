@@ -46,14 +46,14 @@ export const constantRoutes = [
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: () => import('@/views/redirect')
+        component: () => import('@/views/built-in/redirect')
       }
     ]
   },
   {
     path: '/404',
     hidden: true,
-    component: () => import('@/views/not-found'),
+    component: () => import('@/views/built-in/not-found'),
     meta: { title: 'not-found' }
   },
   { path: '*', redirect: '/404', hidden: true }
