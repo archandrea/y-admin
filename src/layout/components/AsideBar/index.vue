@@ -182,6 +182,9 @@ export default {
 }
 
 .el-menu--popup {
+  max-height: 100vh;
+  overflow-y: auto;
+  
   .svg-icon {
     display: none;
   }
