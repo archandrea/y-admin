@@ -5,9 +5,9 @@ import '@/http/axios.js'
 import '@/assets/style/common/index.scss'
 
 // icons
-import SvgIcon from './components/SvgIcon'
+import SvgIcon from '@/components/SvgIcon'
 Vue.component('SvgIcon', SvgIcon)
-const iconModules = require.context('./assets/icons', false, /\.svg$/)
+const iconModules = require.context('@/assets/icons', false, /\.svg$/)
 iconModules.keys().map(iconModules)
 
 
