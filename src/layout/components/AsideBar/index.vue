@@ -119,7 +119,6 @@ export default {
       text-align: center;
       font-size: 16px;
       vertical-align: -0.12em;
-      color: $txtColor;
     }
 
     .el-submenu__icon-arrow {
@@ -128,6 +127,10 @@ export default {
       margin-top: 0;
       margin-left: 16px;
       vertical-align: -0.12em;
+    }
+
+    .sub-el-icon {
+      color: $txtColor;
     }
 
     &.el-menu--collapse {
