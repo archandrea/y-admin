@@ -5,7 +5,7 @@
     v-loading="loading">
     <iframe
       ref="iframe"
-      :src="link"
+      :src="route?.meta?.link"
       frameborder="0"></iframe>
   </base-card>
 </template>
@@ -14,17 +14,18 @@
 export default {
   name: 'InnerLink',
   components: {},
-  props: {},
+  props: {
+    route: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       loading: true,
     }
   },
-  computed: {
-    link() {
-      return this.$route?.meta?.link
-    },
-  },
+  computed: {},
   watch: {},
   mounted() {
     this.$refs.iframe &&

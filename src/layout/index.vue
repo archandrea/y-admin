@@ -1,3 +1,8 @@
+<!-- TODO: 
+ 1. 优化iframe页面首次加载（不应该一次性加载所有） 
+ 2. 优化iframe页面缓存逻辑
+ 3. 测试noCache对iframe页面是否有效
+ -->
 <template>
   <div
     :id="`${namespace}-layout`"
@@ -8,12 +13,24 @@
       <div class="container layout-flex-col">
         <tag-bar v-if="showTagBar"></tag-bar>
         <div :class="`${namespace}-layout_main`">
+          <transition-group
+            appear
+            name="fade-transform"
+            mode="out-in">
+            <inner-link
+              v-for="view in iframeViews"
+              :key="view.name"
+              :route="view"
+              v-show="view.fullPath === routeKey"></inner-link>
+          </transition-group>
           <transition
             appear
             name="fade-transform"
             mode="out-in">
-            <keep-alive :include="cachedViews">
-              <router-view :key="routeKey"></router-view>
+            <keep-alive :include="noIframeCachedViews">
+              <router-view
+                :key="routeKey"
+                v-if="noIframeCachedViews.includes(routeName)"></router-view>
             </keep-alive>
           </transition>
         </div>
@@ -29,8 +46,10 @@
 import TopBar from './components/TopBar'
 import AsideBar from './components/AsideBar'
 import TagBar from './components/TagBar'
+import TrafficBar from './components/TrafficBar'
 import Setting from './components/Setting'
 import RightPanel from '@/components/RightPanel'
+import InnerLink from '@/views/built-in/inner-link'
 import { mapState } from 'vuex'
 import { debounce } from '@/utils'
 
@@ -40,15 +59,32 @@ export default {
     TopBar,
     AsideBar,
     TagBar,
+    TrafficBar,
     Setting,
     RightPanel,
+    InnerLink,
   },
   data() {
     return {}
   },
   computed: {
+    visitedViews() {
+      return this.$store.state.tagBar.visitedViews
+    },
     cachedViews() {
       return this.$store.state.tagBar.cachedViews
+    },
+    iframeViews() {
+      return this.visitedViews.filter((view) => this.isIframePage(view))
+    },
+    iframeViewNames() {
+      return this.iframeViews.map((view) => view.name)
+    },
+    noIframeCachedViews() {
+      return this.cachedViews.filter((view) => !this.iframeViewNames.includes(view))
+    },
+    routeName() {
+      return this.$route.name
     },
     routeKey() {
       return this.$route.path
@@ -74,7 +110,13 @@ export default {
   beforeDestroy() {
     // document.removeEventListener('visibilitychange', this.verifySession)
   },
-  methods: {},
+  methods: {
+    methods: {
+      isIframePage(route) {
+        return route.meta?.target === 'inner' && route.meta?.link
+      },
+    },
+  },
 }
 </script>
 

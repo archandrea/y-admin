@@ -56,4 +56,4 @@ api(params).then(([err,res])=>{})
 ```
 
 TODO：
-- [ ] tagBar iframe缓存
+- [x] tagBar iframe缓存
