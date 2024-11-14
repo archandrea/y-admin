@@ -1,7 +1,8 @@
 <template>
   <base-card
     id="inner-link"
-    class="y-page">
+    class="y-page"
+    v-loading="loading">
     <iframe
       ref="iframe"
       :src="link"
@@ -15,7 +16,9 @@ export default {
   components: {},
   props: {},
   data() {
-    return {}
+    return {
+      loading: true,
+    }
   },
   computed: {
     link() {
@@ -23,7 +26,12 @@ export default {
     },
   },
   watch: {},
-  created() {},
+  mounted() {
+    this.$refs.iframe &&
+      (this.$refs.iframe.onload = () => {
+        this.loading = false
+      })
+  },
   methods: {},
 }
 </script>
