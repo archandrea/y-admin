@@ -11,6 +11,11 @@
     <div class="container layout-flex-row">
       <aside-bar v-if="showAsideBar"></aside-bar>
       <div class="container layout-flex-col">
+        <top-bar
+          v-if="showTopBar"
+          @collapse="$refs.asideBar && ($refs.asideBar.isCollapse = $event)"></top-bar>
+        <!-- 预留话务条 -->
+        <traffic-bar v-if="false"></traffic-bar>
         <tag-bar v-if="showTagBar"></tag-bar>
         <div :class="`${namespace}-layout_main`">
           <transition-group
@@ -30,7 +35,7 @@
             <keep-alive :include="noIframeCachedViews">
               <router-view
                 :key="routeKey"
-                v-if="noIframeCachedViews.includes(routeName)"></router-view>
+                v-if="showRouterView"></router-view>
             </keep-alive>
           </transition>
         </div>
@@ -111,10 +116,11 @@ export default {
     // document.removeEventListener('visibilitychange', this.verifySession)
   },
   methods: {
-    methods: {
-      isIframePage(route) {
-        return route.meta?.target === 'inner' && route.meta?.link
-      },
+    showRouterView() {
+      return this.noIframeCachedViews.includes(this.routeName) || this.routerKey.startsWith('/redirect/')
+    },
+    isIframePage(route) {
+      return route.meta?.target === 'inner' && route.meta?.link
     },
   },
 }
