@@ -18,7 +18,6 @@ async function start() {
     try {
       let res = await fs.access('../dg-portal/src/main/webapp/pages', fs.constants.W_OK)
       updateDist(process.argv[2])
-      console.log('dist已更新至：' + dest + '\n可以直接提交！')
     } catch (err) {
       console.log(err)
     }
@@ -31,6 +30,7 @@ async function updateDist() {
   try {
     await deleteFormerDist()
     await copyNewDist()
+    console.log('dist已更新至：' + dest + '\n可以直接提交！')
   } catch (err) {
     console.log(err)
   }
