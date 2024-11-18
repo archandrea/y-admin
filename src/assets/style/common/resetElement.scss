@@ -1,49 +1,213 @@
-.el-button.is-disabled {
-  background: $bgColor-dark;
-  border-color: $bgColor-dark;
-  color: $txtColor-slight;
+@import './variables.module.scss';
+
+// -------------------el-button-------------------
+
+.el-button {
+  outline: none;
+
+  &:not([disabled]):hover,
+  &:not([disabled]):focus,
+  &:not([disabled]):active {
+    color: $themeColor;
+    background-color: transparentize($themeColor, 0.92);
+    border-color: $themeColor;
+  }
+
+  &.el-button--primary {
+    color: $txtColor-reverse;
+    background-color: $themeColor;
+    border-color: $themeColor;
+
+    &:not([disabled]):hover,
+    &:not([disabled]):focus,
+    &:not([disabled]):active {
+      color: $txtColor-reverse;
+      background-color: $themeColor-light;
+      border-color: $themeColor-light;
+    }
+
+    &.is-plain {
+      color: $themeColor;
+      background-color: transparentize($themeColor, 0.92);
+      border-color: transparentize($themeColor, 0.92);
+    }
+  }
+
+  &.el-button--success {
+    color: $txtColor-reverse;
+    background-color: transparentize($color-success, 0.9);
+    border-color: $color-success;
+
+    &:not([disabled]):hover,
+    &:not([disabled]):focus,
+    &:not([disabled]):active {
+      color: $txtColor-reverse;
+      background-color: $color-success;
+      border-color: $color-success;
+    }
+
+    &.is-plain {
+      color: $color-success;
+      background-color: transparentize($color-success, 0.92);
+      border-color: transparentize($color-success, 0.92);
+    }
+  }
+
+  &.el-button--danger {
+    color: $txtColor-reverse;
+    background-color: transparentize($color-danger, 0.9);
+    border-color: $color-danger;
+
+    &:not([disabled]):hover,
+    &:not([disabled]):focus,
+    &:not([disabled]):active {
+      color: $txtColor-reverse;
+      background-color: $color-danger;
+      border-color: $color-danger;
+    }
+
+    &.is-plain {
+      color: $color-danger;
+      background-color: transparentize($color-danger, 0.92);
+      border-color: transparentize($color-danger, 0.92);
+    }
+  }
+
+  &.el-button--warning {
+    color: $txtColor-reverse;
+    background-color: transparentize($color-warning, 0.9);
+    border-color: $color-warning;
+
+    &:not([disabled]):hover,
+    &:not([disabled]):focus,
+    &:not([disabled]):active {
+      color: $txtColor-reverse;
+      background-color: $color-warning;
+      border-color: $color-warning;
+    }
+
+    &.is-plain {
+      color: $color-warning;
+      background-color: transparentize($color-warning, 0.92);
+      border-color: transparentize($color-warning, 0.92);
+    }
+  }
+
+  &.el-button--info {
+    color: $txtColor-reverse;
+    background-color: transparentize($color-info, 0.9);
+    border-color: $color-info;
+
+    &:not([disabled]):hover,
+    &:not([disabled]):focus,
+    &:not([disabled]):active {
+      color: $txtColor-reverse;
+      background-color: $color-info;
+      border-color: $color-info;
+    }
+
+    &.is-plain {
+      color: $color-info;
+      background-color: transparentize($color-info, 0.92);
+      border-color: transparentize($color-info, 0.92);
+    }
+  }
+
+  &.el-button--text {
+    color: $themeColor;
+    border-color: transparent;
+  }
+
+
+  &.is-disabled {
+    background: $bgColor-dark;
+    border-color: $bgColor-dark;
+    color: $txtColor-slight;
+  }
+
+  &.el-button--small {
+    font-size: 14px;
+  }
+
+  +.el-button {
+    margin-left: 8px;
+  }
+
+  &.mini {
+    padding: 9px 16px;
+  }
 }
 
-.el-button.el-button--primary {
-  background-color: $themeColor;
-  border-color: $themeColor;
+.el-button-group {
+  display: flex;
 }
 
-.el-button.el-button--primary:not([disabled]):hover {
-  background-color: $themeColor-light;
-  border-color: $themeColor-light;
-}
-
-.el-button.el-button--primary:not([disabled]):focus {
-  background-color: $themeColor-dark;
-  border-color: $themeColor-dark;
-}
-
-.el-button.el-button--primary.is-plain {
-  color: $themeColor;
-  background-color: transparentize($themeColor, 0.92);
-  border-color: transparentize($themeColor, 0.92);
-}
+// -------------------el-link-------------------
 
 .el-link {
-  color: $themeColor;
   font-size: 14px;
+
+  &.el-link--default,
+  {
+  color: $color-info;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-info;
+  }
 }
 
-.el-link:hover {
+&.el-link--primary,
+{
+color: $themeColor;
+
+&:hover,
+&:active,
+&:focus {
   color: $themeColor;
 }
-
-.el-link:active {
-  color: $themeColor;
 }
 
-.el-link:focus {
-  color: $themeColor;
-}
-
-.el-link.el-link--danger {
+&.el-link--danger {
   color: $color-danger;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-danger;
+  }
+}
+
+&.el-link--success {
+  color: $color-success;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-success;
+  }
+}
+
+&.el-link--warning {
+  color: $color-warning;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-warning;
+  }
+}
+
+&.el-link--info {
+  color: $color-info;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-info;
+  }
+}
 }
 
 .el-notification .el-notification__content {
@@ -333,6 +497,29 @@
 
 .el-time-panel__btn.confirm {
   color: $themeColor;
+}
+
+.el-date-editor {
+  .el-input__inner {
+    padding-left: 30px;
+  }
+
+  .el-range-input {
+    background: $bgColor;
+  }
+}
+
+.el-range-editor {
+  border-color: $borderColor;
+  background-color: $bgColor;
+
+  .el-range-input {
+    background-color: $bgColor;
+  }
+
+  .el-range-separator {
+    width: 10%;
+  }
 }
 
 .el-range-editor.is-active,
@@ -679,14 +866,6 @@ video {
   line-height: 32px;
 }
 
-.el-date-editor .el-input__inner {
-  padding-left: 30px;
-}
-
-.el-date-editor .el-range-input {
-  background: $bgColor-dark;
-}
-
 .el-drawer__header *:focus {
   outline: 0;
 }
@@ -702,10 +881,6 @@ video {
 
 
 // 新增
-.el-button-group {
-  display: flex;
-}
-
 .el-row {
   width: 100%;
 }
@@ -714,67 +889,9 @@ video {
   border: none;
 }
 
-.el-button {
-  outline: none;
-  border-color: $themeColor;
-
-  &.el-button--small {
-    font-size: 14px;
-  }
-
-  +.el-button {
-    margin-left: 8px;
-  }
-
-  &.mini {
-    padding: 9px 16px;
-  }
-
-  &.is-plain {
-    color: $themeColor;
-
-    &:hover,
-    &:active,
-    &:focus {
-      color: $txtColor-reverse;
-      background-color: transparentize($themeColor, 0.25);
-    }
-
-    &.el-button--danger {
-      color: $color-danger;
-      background-color: transparentize($color-danger, 0.9);
-
-      &:hover,
-      &:active,
-      &:focus {
-        color: $txtColor-reverse;
-        background-color: $color-danger;
-      }
-    }
-
-    &.is-active {
-      color: $txtColor-reverse;
-      background-color: $themeColor;
-    }
-  }
-}
-
 .el-input-group__append,
 .el-input-group__prepend {
   border: none;
-}
-
-.el-range-editor {
-  border-color: $bgColor-dark;
-  background-color: $bgColor-dark;
-
-  .el-range-input {
-    background-color: $bgColor-dark;
-  }
-
-  .el-range-separator {
-    width: 10%;
-  }
 }
 
 .el-input .el-input__count {
