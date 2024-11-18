@@ -5,7 +5,7 @@
     v-loading="loading">
     <iframe
       ref="iframe"
-      :src="route?.meta?.link"
+      :src="src"
       frameborder="0"></iframe>
   </base-card>
 </template>
@@ -25,7 +25,12 @@ export default {
       loading: true,
     }
   },
-  computed: {},
+  computed: {
+    src() {
+      let query = new URLSearchParams(this.route.query)
+      return `${this.route.meta?.link}?${query.toString()}`
+    },
+  },
   watch: {},
   mounted() {
     this.$refs.iframe &&
