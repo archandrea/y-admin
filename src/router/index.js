@@ -17,23 +17,10 @@ Router.prototype.replace = function replace(location, resolve, reject) {
 export const constantRoutes = [
   {
     path: '/',
-    redirect: '/dashboard',
+    name: 'Home',
+    hidden: true,
     component: () => import('@/layout'),
-    children: [
-      {
-        path: 'dashboard',
-        name: 'Dashboard',
-        component: () => import('@/views/dashboard'),
-        meta: { title: '首页', icon: 'home-line', tagIcon: 'home-fill', affix: true }
-      },
-    ]
   },
-  // 如果没有默认首页，则需要添加此路由
-  // {
-  //   path: '/',
-  //   hidden: true,
-  //   component: () => import('@/layout'),
-  // },
   {
     path: '/login',
     hidden: true,
@@ -70,26 +57,6 @@ const router = createRouter()
 export function resetRouter() {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher // reset router
-}
-
-Router.prototype.openTemporaryPage = (parent, option) => {
-  let { path, name, hidden, meta, component, query, casheAs } = option
-
-  const args = [{
-    path,
-    name,
-    hidden,
-    meta,
-    casheAs,
-    component,
-  }]
-
-  if (parent) {
-    args.unshift(parent)
-  }
-
-  router.addRoute(args)
-  router.push({ name, query })
 }
 
 export default router

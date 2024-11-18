@@ -1,9 +1,14 @@
 <template>
   <div :class="`${namespace}-tagBar`">
     <div
+      :class="`${namespace}-tagBar-btn`"
+      @click="scrollLeft">
+      <i class="el-icon-arrow-left"></i>
+    </div>
+    <div
       :class="`${namespace}-tagBar-wrapper`"
-      v-scroll-horizontal
-      v-if="visitedViews.length > 0">
+      ref="tagBarWrapper"
+      v-scroll-horizontal>
       <router-link
         :class="[`${namespace}-tagBar-item`, 'layout-flex-row', isActive(tag) ? 'is-active' : '']"
         v-for="tag in visitedViews"
@@ -41,11 +46,17 @@
         </li>
       </ul>
     </div>
+    <div
+      :class="`${namespace}-tagBar-btn`"
+      @click="scrollRight">
+      <i class="el-icon-arrow-right"></i>
+    </div>
   </div>
 </template>
 
 <script>
 import path from 'path'
+import { formatRoutes } from '@/utils/formatter'
 const localViews = JSON.parse(sessionStorage.getItem(process.env.VUE_APP_TITLE + '-VISITED-VIEWS') || '[]')
 
 export default {
@@ -92,8 +103,12 @@ export default {
     this.initTags()
     this.addTag()
 
-    // 页面关闭前存储tag
+    this.eventBusRegister()
     window.addEventListener('beforeunload', this.saveViews)
+  },
+  beforeDestroy() {
+    this.eventBusUnregister()
+    window.removeEventListener('beforeunload', this.saveViews)
   },
   methods: {
     initTags() {
@@ -106,8 +121,11 @@ export default {
       }
 
       // 本地存储
-      // TODO: 排除没有菜单权限的views
       for (const view of localViews) {
+        let find = this.findRoute(view)
+        if (!find) {
+          continue
+        }
         if (!view.meta.affix) {
           const tagPath = path.resolve('/', view.path)
           const tag = {
@@ -231,47 +249,106 @@ export default {
         )
       )
     },
+    scrollLeft() {
+      this.$refs.tagBarWrapper.scrollLeft = 0
+    },
+    scrollRight() {
+      this.$refs.tagBarWrapper.scrollLeft = this.$refs.tagBarWrapper.scrollWidth
+    },
+    openTab(option) {
+      const args = {
+        ...option,
+        name: option.name || Date.now(),
+      }
+      let find = this.findRoute(args)
+      !find && this.$router.addRoute('Home', formatRoutes(args))
+      this.$router.push({ name: option.name, query: option.query })
+    },
+    closeTab() {
+      this.delSelectedTag(this.$route)
+    },
+    findRoute(route) {
+      return this.routes.find((r) => r.name === route.name || r.children?.find((child) => child.name === route.name))
+    },
+    eventBusRegister() {
+      this.$root.$on('openTab', this.openTab)
+      this.$root.$on('closeTab', this.closeTab)
+      window.addEventListener('message', this.handleMessage)
+    },
+    eventBusUnregister() {
+      this.$root.$off('openTab', this.openTab)
+      this.$root.$off('closeTab', this.closeTab)
+      window.removeEventListener('message', this.handleMessage)
+    },
+    handleMessage(e) {
+      if (e.origin === window.location.origin && e.data.type === 'eventBus') {
+        const { type, handler, payload } = e.data
+        if (this[handler] && typeof this[handler] === 'function') {
+          this[handler](payload)
+        }
+      }
+    },
   },
 }
 </script>
 
 <style lang="scss">
 .#{$namespace}-tagBar {
-  height: 45px;
+  display: flex;
+  height: 48px;
+  background-color: $bgColor;
   overflow: hidden;
 }
 
+.#{$namespace}-tagBar-btn {
+  padding: 13px 16px;
+  color: $txtColor-light;
+  font-size: 16px;
+
+  &:hover {
+    color: $txtColor;
+    cursor: pointer;
+  }
+
+  &:first-child {
+    border-right: 1px solid $borderColor;
+  }
+
+  &:last-child {
+    border-left: 1px solid $borderColor;
+  }
+}
+
 .#{$namespace}-tagBar-wrapper {
+  flex: 1;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  margin: 16px 0 0 16px;
+  margin: 8px 4px 0 4px;
   padding-right: 16px;
-  width: 100%;
   height: max-content;
-  background-color: $bgColor-dark;
   overflow: auto;
 }
 
 .#{$namespace}-tagBar-item {
   flex: 0;
-  padding: 8px;
+  align-items: center;
+  padding: 9px 16px;
   font-size: 14px;
-  line-height: 14px;
+  line-height: 22px;
   color: $txtColor;
-  border-radius: 4px;
+  border-radius: 8px 8px 0px 0px;
   background-color: $bgColor;
 
   & + .#{$namespace}-tagBar-item {
-    margin-left: 8px;
   }
 
   &.is-active {
-    color: $txtColor-reverse;
-    background-color: $themeColor;
+    color: $themeColor;
+    background-color: $bgColor-dark; /*  */
 
     i {
-      color: $txtColor-reverse;
+      color: $themeColor;
     }
   }
 
