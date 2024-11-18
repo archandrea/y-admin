@@ -1,7 +1,6 @@
 <!-- TODO: 
- 1. 优化iframe页面首次加载（不应该一次性加载所有） 
- 2. 优化iframe页面缓存逻辑
- 3. 测试noCache对iframe页面是否有效
+ 1. 优化iframe页面缓存逻辑
+ 2. 测试noCache对iframe页面是否有效
  -->
 <template>
   <div
@@ -24,7 +23,7 @@
             mode="out-in">
             <inner-link
               v-for="view in iframeViews"
-              :key="view.name"
+              :key="view.fullPath"
               :route="view"
               v-show="view.fullPath === routeKey"></inner-link>
           </transition-group>
@@ -80,7 +79,7 @@ export default {
       return this.$store.state.tagBar.cachedViews
     },
     iframeViews() {
-      return this.visitedViews.filter((view) => this.isIframePage(view))
+      return this.cachedViews.map((name) => this.visitedViews.find((view) => view.name === name)).filter((view) => view && this.isIframePage(view))
     },
     iframeViewNames() {
       return this.iframeViews.map((view) => view.name)
@@ -88,11 +87,11 @@ export default {
     noIframeCachedViews() {
       return this.cachedViews.filter((view) => !this.iframeViewNames.includes(view))
     },
-    routeName() {
-      return this.$route.name
-    },
     routeKey() {
       return this.$route.path
+    },
+    showRouterView() {
+      return this.noIframeCachedViews.includes(this.$route.name) || (this.routeKey && this.routeKey.startsWith('/redirect/'))
     },
     ...mapState({
       namespace: (state) => state.setting.namespace,
@@ -116,9 +115,6 @@ export default {
     // document.removeEventListener('visibilitychange', this.verifySession)
   },
   methods: {
-    showRouterView() {
-      return this.noIframeCachedViews.includes(this.routeName) || this.routerKey.startsWith('/redirect/')
-    },
     isIframePage(route) {
       return route.meta?.target === 'inner' && route.meta?.link
     },
