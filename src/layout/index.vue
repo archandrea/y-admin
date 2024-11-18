@@ -23,9 +23,9 @@
             mode="out-in">
             <inner-link
               v-for="view in iframeViews"
-              :key="view.fullPath"
+              :key="view.path"
               :route="view"
-              v-show="view.fullPath === routeKey"></inner-link>
+              v-show="view.path === routeKey"></inner-link>
           </transition-group>
           <transition
             appear
