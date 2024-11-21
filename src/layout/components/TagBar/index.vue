@@ -265,6 +265,9 @@ export default {
     closeTab() {
       this.delSelectedTag(this.$route)
     },
+    refreshTab() {
+      this.refreshSelectedTag(this.$route)
+    },
     findRoute(route) {
       let find = null
       const search = (routes) => {
@@ -283,19 +286,19 @@ export default {
     eventBusRegister() {
       this.$root.$on('openTab', this.openTab)
       this.$root.$on('closeTab', this.closeTab)
+      this.$root.$on('refreshTab', this.refreshTab)
       window.addEventListener('message', this.handleMessage)
     },
     eventBusUnregister() {
       this.$root.$off('openTab', this.openTab)
       this.$root.$off('closeTab', this.closeTab)
+      this.$root.$off('refreshTab', this.refreshTab)
       window.removeEventListener('message', this.handleMessage)
     },
     handleMessage(e) {
-      if (e.origin === window.location.origin && e.data.type === 'eventBus') {
+      if (e.data.type === 'eventBus') {
         const { type, handler, payload } = e.data
-        if (this[handler] && typeof this[handler] === 'function') {
-          this[handler](payload)
-        }
+        this.$root.$emit(handler, payload)
       }
     },
   },

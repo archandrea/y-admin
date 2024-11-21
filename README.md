@@ -74,9 +74,7 @@ api(params).then(([err, res])=>{})
 
 ### Route配置
 
-TODO: 
-1. 添加示例
-2. 默认导航至菜单第一项和临时页面刷新重新定向的说明
+TODO: 添加示例
 
 ```js
 /* 
@@ -120,7 +118,6 @@ TODO:
 
 
 ##### openTab
-
 **description**: 打开一个临时标签页
 
 **params**: Object<Route>
@@ -130,8 +127,17 @@ TODO:
 
 
 ##### closeTab
-
 **description**: 关闭当前标签页，导航至最后一个标签页
+
+**params**: void
+
+**return**: void
+
+
+
+##### refreshTab
+
+**description**: 刷新当前标签页，在openTab后调用可以达到打开并刷新标签页的效果
 
 **params**: void
 
@@ -149,6 +155,9 @@ this.$root.$emit('openTab', params)
 
 // closeTab
 this.$root.$emit('closeTab')
+
+// refreshTab
+this.$root.$emit('refreshTab')
 ```
 
 
@@ -190,5 +199,11 @@ top.postMessage(
 top.postMessage({
   type: 'eventBus',
   handler: 'closeTab',
+})
+
+// refreshTab
+top.postMessage({
+  type: 'eventBus',
+  handler: 'refreshTab',
 })
 ```
