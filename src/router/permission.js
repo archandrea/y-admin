@@ -47,6 +47,13 @@ router.beforeEach(async (to, from, next) => {
   //   router.push(firstMenu)
   // }
 
+  // 如果路由不存在，重新导航过去，注意：因为在tagBar里面重新添加了这个路由，否则会死循环
+  // if (to.path === '/404') {
+  //   router.push({
+  //     path: '/redirect' + to.redirectedFrom
+  //   })
+  // }
+
   next()
 })
 

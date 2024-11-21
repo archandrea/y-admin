@@ -123,9 +123,7 @@ export default {
       // 本地存储
       for (const view of localViews) {
         let find = this.findRoute(view)
-        if (!find) {
-          continue
-        }
+        !find && this.$router.addRoute('Home', view)
         if (!view.meta.affix) {
           const tagPath = path.resolve('/', view.path)
           const tag = {
@@ -268,7 +266,19 @@ export default {
       this.delSelectedTag(this.$route)
     },
     findRoute(route) {
-      return this.routes.find((r) => r.name === route.name || r.children?.find((child) => child.name === route.name))
+      let find = null
+      const search = (routes) => {
+        for (const r of routes) {
+          if (r.name === route.name) {
+            find = r
+            break
+          } else if (r.children) {
+            search(r.children)
+          }
+        }
+      }
+      search(this.routes)
+      return find
     },
     eventBusRegister() {
       this.$root.$on('openTab', this.openTab)
