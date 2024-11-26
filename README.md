@@ -32,13 +32,13 @@ npm run new
 # pnpm(推荐)
 
 # 启动
-npm run serve
+pnpm serve
 #打包portal
-npm run build
+pnpm build
 #打包login
-npm run build:login
+pnpm build:login
 #快速构建页面
-npm run new
+pnpm new
 ```
 
 
