@@ -123,7 +123,14 @@ export default {
       // 本地存储
       for (const view of localViews) {
         let find = this.findRoute(view)
-        !find && this.$router.addRoute('Home', view)
+        if (!find) {
+          // 临时页面无需权限，直接添加，否则不添加
+          if (view.meta.temporary) {
+            this.$router.addRoute('Home', view)
+          } else {
+            continue
+          }
+        }
         if (!view.meta.affix) {
           const tagPath = path.resolve('/', view.path)
           const tag = {
@@ -258,6 +265,7 @@ export default {
         ...option,
         name: option.name || Date.now(),
       }
+      args.meta.temporary = true
       let find = this.findRoute(args)
       !find && this.$router.addRoute('Home', formatRoutes(args))
       this.$router.push({ name: option.name, query: option.query })

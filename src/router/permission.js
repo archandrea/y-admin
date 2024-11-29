@@ -44,14 +44,18 @@ router.beforeEach(async (to, from, next) => {
 
   // 在'#/'根路由没有首页的情况，导航到菜单的第一个路由
   // if (to.path === '/' && firstMenu) {
-  //   router.push(firstMenu)
+  //   router.replace(firstMenu)
   // }
 
-  // 如果路由不存在，重新导航过去，注意：因为在tagBar里面重新添加了这个路由，否则会死循环
+  // 如果路由不存在，重新导航过去，注意：因为在tagBar里面重新添加了这个路由
   // if (to.path === '/404') {
-  //   router.push({
-  //     path: '/redirect' + to.redirectedFrom
-  //   })
+  //   // 二次重新导航，说明路由真的不存在，导航到默认菜单
+  //   if (from.path.startsWith('/redirect/')) {
+  //     router.replace(firstMenu)
+  //     return
+  //   }
+  //   // 重新导航
+  //   router.replace({ path: '/redirect' + to.redirectedFrom })
   // }
 
   next()
