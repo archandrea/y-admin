@@ -265,7 +265,10 @@ export default {
         ...option,
         name: option.name || Date.now(),
       }
-      args.meta.temporary = true
+      args.meta = {
+        ...option.meta,
+        temporary: true,
+      }
       let find = this.findRoute(args)
       !find && this.$router.addRoute('Home', formatRoutes(args))
       this.$router.push({ name: option.name, query: option.query })
