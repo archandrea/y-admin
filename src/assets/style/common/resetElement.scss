@@ -13,6 +13,85 @@
     border-color: $themeColor;
   }
 
+  &.el-button--default {
+    color: $themeColor;
+    border-color: $themeColor;
+    background-color: transparent;
+
+    &:not([disabled]):hover,
+    &:not([disabled]):focus,
+    &:not([disabled]):active {
+      color: $themeColor;
+      border-color: $themeColor;
+      background-color: transparentize($themeColor, 0.92);
+    }
+
+    &.primary {
+      color: $themeColor;
+      border-color: $themeColor;
+
+      &:not([disabled]):hover,
+      &:not([disabled]):focus,
+      &:not([disabled]):active {
+        color: $themeColor;
+        border-color: $themeColor;
+        background-color: transparentize($themeColor, 0.92);
+      }
+    }
+
+    &.danger {
+      color: $color-danger;
+      border-color: $color-danger;
+
+      &:not([disabled]):hover,
+      &:not([disabled]):focus,
+      &:not([disabled]):active {
+        color: $color-danger;
+        border-color: $color-danger;
+        background-color: transparentize($color-danger, 0.92);
+      }
+    }
+
+    &.success {
+      color: $color-success;
+      border-color: $color-success;
+
+      &:not([disabled]):hover,
+      &:not([disabled]):focus,
+      &:not([disabled]):active {
+        color: $color-success;
+        border-color: $color-success;
+        background-color: transparentize($color-success, 0.92);
+      }
+    }
+
+    &.warning {
+      color: $color-warning;
+      border-color: $color-warning;
+
+      &:not([disabled]):hover,
+      &:not([disabled]):focus,
+      &:not([disabled]):active {
+        color: $color-warning;
+        border-color: $color-warning;
+        background-color: transparentize($color-warning, 0.92);
+      }
+    }
+
+    &.info {
+      color: $color-info;
+      border-color: $color-info;
+
+      &:not([disabled]):hover,
+      &:not([disabled]):focus,
+      &:not([disabled]):active {
+        color: $color-info;
+        border-color: $color-info;
+        background-color: transparentize($color-info, 0.92);
+      }
+    }
+  }
+
   &.el-button--primary {
     color: $txtColor-reverse;
     background-color: $themeColor;
@@ -118,11 +197,18 @@
     border-color: transparent;
   }
 
-
   &.is-disabled {
-    background: $bgColor-dark;
-    border-color: $bgColor-dark;
-    color: $txtColor-slight;
+    background: $bgColor-dark !important;
+    border-color: $bgColor-dark !important;
+    color: $txtColor-slight !important;
+
+    &:not([disabled]):hover,
+    &:not([disabled]):focus,
+    &:not([disabled]):active {
+      background: $bgColor-dark !important;
+      border-color: $bgColor-dark !important;
+      color: $txtColor-slight !important;
+    }
   }
 
   &.el-button--small {
@@ -147,67 +233,97 @@
 .el-link {
   font-size: 14px;
 
-  &.el-link--default,
-  {
-  color: $color-info;
-
-  &:hover,
-  &:active,
-  &:focus {
+  &.el-link--default {
     color: $color-info;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $color-info;
+    }
   }
-}
 
-&.el-link--primary,
-{
-color: $themeColor;
+  &.el-link--primary {
+    color: $themeColor;
 
-&:hover,
-&:active,
-&:focus {
-  color: $themeColor;
-}
-}
+    &:hover,
+    &:active,
+    &:focus {
+      color: $themeColor;
+    }
+  }
 
-&.el-link--danger {
-  color: $color-danger;
-
-  &:hover,
-  &:active,
-  &:focus {
+  &.el-link--danger {
     color: $color-danger;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $color-danger;
+    }
   }
-}
 
-&.el-link--success {
-  color: $color-success;
-
-  &:hover,
-  &:active,
-  &:focus {
+  &.el-link--success {
     color: $color-success;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $color-success;
+    }
   }
-}
 
-&.el-link--warning {
-  color: $color-warning;
-
-  &:hover,
-  &:active,
-  &:focus {
+  &.el-link--warning {
     color: $color-warning;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $color-warning;
+    }
   }
-}
 
-&.el-link--info {
-  color: $color-info;
-
-  &:hover,
-  &:active,
-  &:focus {
+  &.el-link--info {
     color: $color-info;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $color-info;
+    }
   }
 }
+
+// -------------------el-link-------------------
+.el-tag {
+  color: $themeColor;
+  background-color: transparentize($themeColor, 0.92);
+  border: none;
+
+  &.el-tag--primary {
+    color: $themeColor;
+    background-color: transparentize($themeColor, 0.92);
+  }
+
+  &.el-tag--success {
+    color: $color-success;
+    background-color: transparentize($color-success, 0.92);
+  }
+
+  &.el-tag--warning {
+    color: $color-warning;
+    background-color: transparentize($color-warning, 0.92);
+  }
+
+  &.el-tag--danger {
+    color: $color-danger;
+    background-color: transparentize($color-danger, 0.92);
+  }
+
+  &.el-tag--info {
+    color: $color-info;
+    background-color: transparentize($color-info, 0.92);
+  }
 }
 
 .el-notification .el-notification__content {
@@ -244,50 +360,42 @@ color: $themeColor;
   background: $borderColor;
 }
 
-.el-textarea .el-input__count {
-  background: transparent;
-  color: $txtColor-slight;
-}
+.el-textarea {
+  .el-input__count {
+    background: transparent;
+    color: $txtColor-slight;
+  }
 
-.el-textarea .el-textarea__inner {
-  padding: 10px 16px;
-  border-color: $bgColor-dark;
-  padding-left: 12px;
-  background: $bgColor-dark;
-}
+  .el-textarea__inner {
+    padding: 10px 16px;
+    padding-left: 12px;
 
-.el-textarea .el-textarea__inner:hover {
-  border-color: $themeColor;
-}
 
-.el-textarea .el-textarea__inner:active {
-  border-color: $themeColor;
-}
+  }
 
-.el-textarea .el-textarea__inner:focus {
-  border-color: $themeColor;
-  box-shadow: 0px 0px 8px 0px transparentize($themeColor, 0.4);
-}
+  &:not(.is-disabled) {
+    .el-textarea__inner {
+      border-color: $bgColor-dark;
+      background: $bgColor-dark;
 
-.el-textarea textarea::placeholder {
-  font-family: "Helvetica Neue", Helvetica, "PingFang SC";
-}
+      &:hover {
+        border-color: $themeColor;
+      }
 
-.el-textarea__inner {
-  padding-left: 12px;
-}
+      &:active {
+        border-color: $themeColor;
+      }
 
-.el-textarea__inner:hover {
-  border-color: $themeColor;
-}
+      &:focus {
+        border-color: $themeColor;
+        box-shadow: 0px 0px 8px 0px transparentize($themeColor, 0.4);
+      }
+    }
+  }
 
-.el-textarea__inner:active {
-  border-color: $themeColor;
-}
-
-.el-textarea__inner:focus {
-  border-color: $themeColor;
-  box-shadow: 0px 0px 8px 0px transparentize($themeColor, 0.4);
+  textarea::placeholder {
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC";
+  }
 }
 
 .el-switch.inSide {
@@ -710,18 +818,10 @@ color: $themeColor;
   padding: 16px 24px;
 }
 
-// .el-dialog__body {
-//   border-top: 1px solid $borderColor;
-//   border-bottom: 1px solid $borderColor;
-// }
-
-.el-dialog__headerbtn {
-  top: 13px;
-}
-
-.el-dialog__footer {
-  display: flex;
-  justify-content: flex-end;
+.el-dialog__body {
+  overflow-y: auto;
+  border-top: 1px solid $borderColor;
+  border-bottom: 1px solid $borderColor;
 }
 
 .el-dialog__close {
@@ -856,14 +956,21 @@ video {
   padding: 0 8px 0 0;
 }
 
-.el-form.el-form--inline .el-form-item {
-  margin-right: 16px;
-  margin-bottom: 16px;
-}
+.el-form.el-form--inline {
+  .el-form-item {
+    margin-right: 16px;
+    margin-bottom: 16px;
+  }
 
-.el-form.el-form--inline .el-input__inner {
-  height: 32px;
-  line-height: 32px;
+  .el-input__inner {
+    height: 32px;
+    line-height: 32px;
+  }
+
+  .el-range-editor.el-input__inner {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
 
 .el-drawer__header *:focus {
@@ -883,10 +990,6 @@ video {
 // 新增
 .el-row {
   width: 100%;
-}
-
-.el-tag {
-  border: none;
 }
 
 .el-input-group__append,
@@ -911,6 +1014,8 @@ video {
 }
 
 .el-table {
+  color: $txtColor-light;
+
   .el-link {
     +.el-link {
       margin-left: 16px;
