@@ -51,6 +51,7 @@ export default {
 
 .#{$namespace}-layout_user {
   align-items: center;
+  width: max-content;
   color: $txtColor-reverse;
   cursor: pointer;
 
