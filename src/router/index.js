@@ -17,16 +17,9 @@ Router.prototype.replace = function replace(location, resolve, reject) {
 export const constantRoutes = [
   {
     path: '/',
-    redirect: '/dashboard',
+    name: 'Home',
+    hidden: true,
     component: () => import('@/layout'),
-    children: [
-      {
-        path: 'dashboard',
-        name: 'Dashboard',
-        component: () => import('@/views/dashboard'),
-        meta: { title: '首页', icon: 'home-line', tagIcon: 'home-fill', affix: true }
-      },
-    ]
   },
   {
     path: '/login',
@@ -40,14 +33,14 @@ export const constantRoutes = [
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: () => import('@/views/redirect')
+        component: () => import('@/views/built-in/redirect')
       }
     ]
   },
   {
     path: '/404',
     hidden: true,
-    component: () => import('@/views/not-found'),
+    component: () => import('@/views/built-in/not-found'),
     meta: { title: 'not-found' }
   },
   { path: '*', redirect: '/404', hidden: true }
@@ -64,26 +57,6 @@ const router = createRouter()
 export function resetRouter() {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher // reset router
-}
-
-Router.prototype.openTemporaryPage = (parent, option) => {
-  let { path, name, hidden, meta, component, query, casheAs } = option
-
-  const args = [{
-    path,
-    name,
-    hidden,
-    meta,
-    casheAs,
-    component,
-  }]
-
-  if (parent) {
-    args.unshift(parent)
-  }
-
-  router.addRoute(args)
-  router.push({ name, query })
 }
 
 export default router

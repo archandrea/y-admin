@@ -33,13 +33,14 @@ export default {
     setPermission({ commit, dispatch }, tags = []) {
       commit('RESET_PERMISSION')
       tags.forEach(tag => commit('SET_PERMISSION', tag))
-      dispatch('setRoutes', JSON.parse(JSON.stringify(asyncRoutes)))
+      // 如果由服务端返回权限，则修改此处
+      asyncRoutes = formatRoutes(asyncRoutes)
+      dispatch('setRoutes', asyncRoutes)
       dispatch('tagBar/delAllViews', null, { root: true })
     },
     // 鉴权成功后调用
     setRoutes({ state, commit, dispatch }, asyncRoutes) {
       resetRouter()
-      asyncRoutes = formatRoutes(asyncRoutes)
       if (permissionRequired) {
         asyncRoutes = filterPermissionRoutes(asyncRoutes, state.permissionTags)
       }

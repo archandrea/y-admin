@@ -24,11 +24,12 @@
 </template>
 
 <script>
+import MenuItem from './components/MenuItem.vue'
 import { debounce } from '@/utils'
 
 export default {
   components: {
-    MenuItem: () => import('./components//MenuItem.vue'),
+    MenuItem,
   },
   data() {
     return {
@@ -49,7 +50,6 @@ export default {
     },
   },
   created() {
-    // this.resizeHandler = debounce(() => this.collapseHandler(), 500)
     window.addEventListener('resize', this.resizeHandler)
   },
   beforeDestroy() {
@@ -105,15 +105,27 @@ export default {
 
     .el-menu-item,
     .el-submenu__title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 16px;
       line-height: 56px;
     }
 
     .sub-el-icon,
     .svg-icon {
+      flex: 0 0 16px;
       margin-right: 16px;
       text-align: center;
       font-size: 16px;
+      vertical-align: -0.12em;
+    }
+
+    .el-submenu__icon-arrow {
+      position: static;
+      flex: 0 0 16px;
+      margin-top: 0;
+      margin-left: 16px;
       vertical-align: -0.12em;
     }
 
@@ -170,6 +182,9 @@ export default {
 }
 
 .el-menu--popup {
+  max-height: 100vh;
+  overflow-y: auto;
+  
   .svg-icon {
     display: none;
   }

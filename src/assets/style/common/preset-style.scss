@@ -7,23 +7,13 @@
 
 // 通用bar
 .#{$namespace}-bar {
-  @include flex-row;
-  flex-wrap: wrap;
-  padding: 12px 24px;
-  padding-bottom: 4px;
-  width: 100%;
+  @include bar;
 
   &.no-padding {
     padding: 0;
   }
 
-  .#{$namespace}-title {
-    flex: 1;
-    white-space: nowrap;
-  }
-
-  div {
-
+  >div {
     +div,
     +span,
     +button {
@@ -31,23 +21,26 @@
     }
   }
 
-  span {
+  >span {
     +div {
       margin-left: 8px;
     }
   }
+}
 
-  &+.#{$namespace}-bar,
-  &+.#{$namespace}-container,
-  &+.#{$namespace}-container--tight {
-    padding-top: 0;
+.#{$namespace}-header {
+  @include bar;
+  border-bottom: 1px solid $borderColor;
+
+  .#{$namespace}-title {
+    flex: 1;
+    white-space: nowrap;
   }
 }
 
-#app .#{$namespace}-bar {
-  >* {
-    margin-bottom: 8px;
-  }
+.#{$namespace}-footer {
+  @include bar;
+  border-top: 1px solid $borderColor;
 }
 
 // 普通容器，可以配合no-padding类名

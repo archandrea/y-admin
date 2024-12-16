@@ -25,21 +25,28 @@
   flex-direction: column;
 }
 
-@mixin container {
+@mixin container($v-padding: 24px, $h-padding: 24px) {
   @include flex-col;
   justify-content: flex-start;
   align-items: flex-start;
   flex: 1;
-  padding: 24px;
+  padding: $v-padding $h-padding;
   width: 100%;
   height: 100%;
 }
 
 @mixin title {
-  width: max-content;
+  // width: max-content;
   font-size: 16px;
   font-weight: 600;
   // white-space: nowrap;
+}
+
+@mixin bar($v-padding: 12px, $h-padding: 24px) {
+  @include flex-row;
+  flex-wrap: wrap;
+  padding: $v-padding $h-padding;
+  width: 100%;
 }
 
 @mixin text-overflow($line) {

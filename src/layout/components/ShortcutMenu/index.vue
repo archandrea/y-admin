@@ -22,9 +22,10 @@
 </template>
 
 <script>
+import ConfigForm from './components/ConfigForm'
 export default {
   components: {
-    'config-form': () => import('./components/ConfigForm'),
+    ConfigForm,
   },
   data() {
     return {}

@@ -38,14 +38,16 @@
 </template>
 
 <script>
+import Item from './Item.vue'
+import AppLink from './Link.vue'
 import path from 'path'
 import { isExternal } from '@/utils/validate'
 
 export default {
   name: 'MenuItem',
   components: {
-    Item: () => import('./Item.vue'),
-    AppLink: () => import('./Link.vue'),
+    Item,
+    AppLink,
   },
   props: {
     item: {

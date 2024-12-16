@@ -15,7 +15,7 @@ export function formatRoutes(routes) {
   } else if (typeof routes === 'object') {
     // inner类型链接处理
     if (routes?.meta?.target === 'inner') {
-      routes.component = 'views/inner-link'
+      routes.component = 'views/built-in/inner-link'
       routes.meta.link = routes.path
       routes.path = '/' + routes.name
     }
@@ -23,7 +23,7 @@ export function formatRoutes(routes) {
     if (typeof routes.component === 'string') {
       let compStr = routes.component
       if (compStr === 'router-view') {
-        compStr = 'views/view'
+        compStr = 'views/built-in/view'
       }
       routes.component = loadComponent(compStr)
     }
