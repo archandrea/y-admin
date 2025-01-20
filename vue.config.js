@@ -18,6 +18,7 @@ module.exports = defineConfig({
   devServer: {
     open: true,
     hot: true,
+    compress: false,
     proxy: {
       '/api': {
         target: 'http://172.0.0.1:8080/',
