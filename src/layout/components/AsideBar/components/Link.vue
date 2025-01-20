@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     isExternal() {
-      return isExternal(this.to)
+      return isExternal(this.to) || this.target !== 'inner'
     },
     type() {
       if (this.isExternal) {
@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     linkProps(to) {
-      if (this.isExternal && this.target !== 'inner') {
+      if (this.isExternal) {
         return {
           href: to,
           target: '_' + this.target,

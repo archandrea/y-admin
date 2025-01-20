@@ -33,7 +33,6 @@ export default {
       const [err, res] = await getUserInfo()
       if (res) {
         commit('SET_USERINFO', res)
-        commit('SET_USERINFO', res)
       }
       return [err, res]
     },
