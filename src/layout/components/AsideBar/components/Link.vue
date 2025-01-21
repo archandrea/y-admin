@@ -17,12 +17,11 @@ export default {
     },
     target: {
       type: String, // blank | self | inner
-      default: 'blank',
     },
   },
   computed: {
     isExternal() {
-      return isExternal(this.to) || this.target !== 'inner'
+      return isExternal(this.to) || (this.target && this.target !== 'inner')
     },
     type() {
       if (this.isExternal) {

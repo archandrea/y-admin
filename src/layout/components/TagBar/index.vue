@@ -1,14 +1,9 @@
 <template>
   <div :class="`${namespace}-tagBar`">
     <div
-      :class="`${namespace}-tagBar-btn`"
-      @click="scrollLeft">
-      <i class="el-icon-arrow-left"></i>
-    </div>
-    <div
       :class="`${namespace}-tagBar-wrapper`"
-      ref="tagBarWrapper"
-      v-scroll-horizontal>
+      v-scroll-horizontal
+      v-if="visitedViews.length > 0">
       <router-link
         :class="[`${namespace}-tagBar-item`, 'layout-flex-row', isActive(tag) ? 'is-active' : '']"
         v-for="tag in visitedViews"
@@ -45,11 +40,6 @@
           关闭全部
         </li>
       </ul>
-    </div>
-    <div
-      :class="`${namespace}-tagBar-btn`"
-      @click="scrollRight">
-      <i class="el-icon-arrow-right"></i>
     </div>
   </div>
 </template>
@@ -318,61 +308,41 @@ export default {
 
 <style lang="scss">
 .#{$namespace}-tagBar {
-  display: flex;
-  height: 48px;
-  background-color: $bgColor;
+  height: 46px;
   overflow: hidden;
 }
 
-.#{$namespace}-tagBar-btn {
-  padding: 13px 16px;
-  color: $txtColor-light;
-  font-size: 16px;
-
-  &:hover {
-    color: $txtColor;
-    cursor: pointer;
-  }
-
-  &:first-child {
-    border-right: 1px solid $borderColor;
-  }
-
-  &:last-child {
-    border-left: 1px solid $borderColor;
-  }
-}
-
 .#{$namespace}-tagBar-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  margin: 8px 4px 0 4px;
+  margin: 16px 0 0 16px;
   padding-right: 16px;
+  width: 100%;
   height: max-content;
+  background-color: $bgColor-dark;
   overflow: auto;
 }
 
 .#{$namespace}-tagBar-item {
   flex: 0;
-  align-items: center;
-  padding: 9px 16px;
+  padding: 8px;
   font-size: 14px;
-  line-height: 22px;
+  line-height: 14px;
   color: $txtColor;
-  border-radius: 8px 8px 0px 0px;
+  border-radius: 4px;
   background-color: $bgColor;
 
   & + .#{$namespace}-tagBar-item {
+    margin-left: 8px;
   }
 
   &.is-active {
-    color: $themeColor;
-    background-color: $bgColor-dark; /*  */
+    color: $txtColor-reverse;
+    background-color: $themeColor;
 
     i {
-      color: $themeColor;
+      color: $txtColor-reverse;
     }
   }
 
