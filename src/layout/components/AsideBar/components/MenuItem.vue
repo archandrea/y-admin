@@ -1,6 +1,6 @@
 <template>
   <div v-if="!item.hidden">
-    <template v-if="hasOneShowingChild(item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && !item.alwaysShow">
+    <template v-if="isAppLink">
       <app-link
         v-if="onlyOneChild.meta"
         :to="resolvePath(onlyOneChild.path)"
@@ -68,10 +68,15 @@ export default {
     },
   },
   data() {
-    this.onlyOneChild = null
-    return {}
+    return {
+      onlyOneChild: null,
+    }
   },
-  computed: {},
+  computed: {
+    isAppLink() {
+      return this.hasOneShowingChild(this.item) && (!this.onlyOneChild.children || this.onlyOneChild.noShowingChildren) && !this.item.alwaysShow
+    },
+  },
   methods: {
     hasOneShowingChild(parent) {
       if (!parent.children) {

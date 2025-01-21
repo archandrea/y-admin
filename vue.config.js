@@ -35,10 +35,10 @@ module.exports = defineConfig({
         // 防止重复注入
         additionalData: (content, loaderContext) => {
           const { resourcePath } = loaderContext;
-          if (/variables\.module\.scss/.test(resourcePath) || /mixin\.scss/.test(resourcePath)) {
+          if (/mixin\.scss/.test(resourcePath) || /variables\.module\.scss/.test(resourcePath)) {
             return content
           }
-          return '@import "@/assets/style/common/variables.module.scss";' + '@import "@/assets/style/common/mixin.scss";' + content
+          return '@use "@/assets/style/common/mixin.scss" as *;' + content
         },
         sassOptions: { outputStyle: 'expanded' } // fix: 解决 element-ui 图标 icon 偶现乱码问题
       }

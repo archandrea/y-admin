@@ -10,11 +10,6 @@
     <div class="container layout-flex-row">
       <aside-bar v-if="showAsideBar"></aside-bar>
       <div class="container layout-flex-col">
-        <top-bar
-          v-if="showTopBar"
-          @collapse="$refs.asideBar && ($refs.asideBar.isCollapse = $event)"></top-bar>
-        <!-- 预留话务条 -->
-        <traffic-bar v-if="false"></traffic-bar>
         <tag-bar v-if="showTagBar"></tag-bar>
         <div :class="`${namespace}-layout_main`">
           <transition-group
@@ -50,7 +45,6 @@
 import TopBar from './components/TopBar'
 import AsideBar from './components/AsideBar'
 import TagBar from './components/TagBar'
-import TrafficBar from './components/TrafficBar'
 import Setting from './components/Setting'
 import RightPanel from '@/components/RightPanel'
 import InnerLink from '@/views/built-in/inner-link'
@@ -63,7 +57,6 @@ export default {
     TopBar,
     AsideBar,
     TagBar,
-    TrafficBar,
     Setting,
     RightPanel,
     InnerLink,

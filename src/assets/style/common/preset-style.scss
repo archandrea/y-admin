@@ -1,4 +1,5 @@
 // y系列公共样式
+@use './mixin.scss' as *;
 
 // 页面
 .#{$namespace}-page {
