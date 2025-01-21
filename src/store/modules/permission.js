@@ -34,8 +34,7 @@ export default {
       commit('RESET_PERMISSION')
       tags.forEach(tag => commit('SET_PERMISSION', tag))
       // 如果由服务端返回权限，则修改此处
-      asyncRoutes = formatRoutes(asyncRoutes)
-      dispatch('setRoutes', asyncRoutes)
+      dispatch('setRoutes', formatRoutes(asyncRoutes))
       dispatch('tagBar/delAllViews', null, { root: true })
     },
     // 鉴权成功后调用

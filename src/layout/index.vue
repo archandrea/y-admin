@@ -50,7 +50,6 @@
 import TopBar from './components/TopBar'
 import AsideBar from './components/AsideBar'
 import TagBar from './components/TagBar'
-import TrafficBar from './components/TrafficBar'
 import Setting from './components/Setting'
 import RightPanel from '@/components/RightPanel'
 import InnerLink from '@/views/built-in/inner-link'
@@ -63,7 +62,6 @@ export default {
     TopBar,
     AsideBar,
     TagBar,
-    TrafficBar,
     Setting,
     RightPanel,
     InnerLink,
