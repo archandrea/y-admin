@@ -46,7 +46,7 @@
 
 <script>
 import path from 'path'
-import { formatRoutes } from '@/utils/formatter'
+import { formatRoutes } from '@/utils/router
 const localViews = JSON.parse(sessionStorage.getItem(process.env.VUE_APP_TITLE + '-VISITED-VIEWS') || '[]')
 
 export default {

@@ -1,5 +1,5 @@
 import router, { resetRouter, constantRoutes } from '@/router'
-import { formatRoutes, filterPermissionRoutes } from '@/utils/formatter.js'
+import { formatRoutes, filterPermissionRoutes } from '@/utils/router.js'
 import settings from '@/setting.js'
 import asyncRoutes from '@/router/asyncRoutes.js'
 const { permissionRequired } = settings
