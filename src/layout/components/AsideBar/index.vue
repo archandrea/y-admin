@@ -81,7 +81,7 @@ export default {
 <style lang="scss">
 .#{$namespace}-layout_nav {
   flex: 0;
-  height: calc(100vh - 64px);
+  height: 100%;
   background-color: $bgColor;
   box-shadow: 0px 3px 16px 0px rgba(38, 38, 38, 0.12);
 
