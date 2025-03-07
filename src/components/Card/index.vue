@@ -37,16 +37,13 @@ export default {
 
 <style lang="scss">
 .base-card {
-  position: relative;
+  @include card;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  background: $bgColor;
-  border-radius: 4px;
   border-color: $borderColor;
-  
 
   &.active {
     border-color: $themeColor;
