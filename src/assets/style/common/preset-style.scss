@@ -13,24 +13,12 @@
   &.no-padding {
     padding: 0;
   }
-
-  >div {
-    +div,
-    +span,
-    +button {
-      margin-left: 16px;
-    }
-  }
-
-  >span {
-    +div {
-      margin-left: 8px;
-    }
-  }
 }
 
+// 头部
 .#{$namespace}-header {
-  @include bar;
+  @include bar(12px, 24px, flex-start, center);
+
   border-bottom: 1px solid $borderColor;
 
   .#{$namespace}-title {
@@ -39,8 +27,9 @@
   }
 }
 
+// 底部
 .#{$namespace}-footer {
-  @include bar;
+  @include bar(12px, 24px, flex-end, center);
   border-top: 1px solid $borderColor;
 }
 
