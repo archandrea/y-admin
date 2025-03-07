@@ -5,12 +5,15 @@
 .el-button {
   outline: none;
 
-  &:not([disabled]):hover,
-  &:not([disabled]):focus,
-  &:not([disabled]):active {
-    color: $themeColor;
-    background-color: transparentize($themeColor, 0.92);
-    border-color: $themeColor;
+  &:not(.el-button--text) {
+
+    &:not([disabled]):hover,
+    &:not([disabled]):focus,
+    &:not([disabled]):active {
+      color: $themeColor;
+      background-color: transparentize($themeColor, 0.92);
+      border-color: $themeColor;
+    }
   }
 
   &.el-button--default {
@@ -195,6 +198,10 @@
   &.el-button--text {
     color: $themeColor;
     border-color: transparent;
+
+    &:not([disabled]):active {
+      color: $themeColor-dark;
+    }
   }
 
   &.is-disabled {
