@@ -262,3 +262,20 @@ export function extractParamsFromStr(str, reg = /\$\{([^}(${)])+?\}/g) {
   const matches = Array.from(str.matchAll(reg))
   return matches
 }
+
+/**
+ * @description 生成随机ID（简版）
+ * @param {number} n - 随机ID的长度
+ * @returns {string} 随机ID
+ * @example
+ * const id = generateId() // 返回一个8位随机ID
+ */
+// TODO: 生成随机ID（复杂版）
+export function generateId(n = 8) {
+  let id = ''
+  let chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+  for (let i = 0; i < n; i++) {
+    id += chars[Math.floor(Math.random() * chars.length)]
+  }
+  return id
+}
