@@ -1,4 +1,5 @@
 @forward './variables.module.scss';
+@use './variables.module.scss' as *;
 
 @mixin full {
   width: 100%;
@@ -57,4 +58,10 @@
   text-overflow: ellipsis;
   text-align: justify;
   word-break: break-all;
+}
+
+@mixin card {
+  position: relative;
+  background-color: $bgColor;
+  border-radius: 4px;
 }
