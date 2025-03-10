@@ -11,9 +11,9 @@ export const get = (url, params, clearFn, headers) => {
       .then((result) => {
         let res
         if (clearFn !== undefined) {
-          res = clearFn(result.data)
+          res = clearFn(result)
         } else {
-          res = result.data
+          res = result
         }
         resolve([null, res])
       })

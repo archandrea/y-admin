@@ -83,6 +83,7 @@
 
 <script>
 import { getCodeSrc } from '@/api/auth'
+// import store from '@/store'
 // import { resolve } from 'path-browserify'
 
 export default {
@@ -130,9 +131,10 @@ export default {
           return false
         }
         try {
-          // await this.$store.dispatch('user/login', this.formData)
+          // await store.dispatch('user/login', this.formData)
           this.$router.push({ path: '/login' })
         } catch (err) {
+          this.$message.error(err.message)
           this.getAuthCode()
           this.formData.code = ''
         }
