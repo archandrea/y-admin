@@ -28,7 +28,7 @@
   flex-direction: column;
 }
 
-@mixin container($v-padding: 24px, $h-padding: 24px, $justify-content: flex-start, $align-items: flex-start) {
+@mixin container($v-padding: 24px, $h-padding: 24px, $justify-content: normal, $align-items: normal) {
   @include flex-col($justify-content, $align-items);
   flex: 1;
   padding: $v-padding $h-padding;

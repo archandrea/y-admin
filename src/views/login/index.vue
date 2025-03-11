@@ -134,7 +134,6 @@ export default {
           // await store.dispatch('user/login', this.formData)
           this.$router.push({ path: '/login' })
         } catch (err) {
-          this.$message.error(err.message)
           this.getAuthCode()
           this.formData.code = ''
         }

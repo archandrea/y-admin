@@ -1,7 +1,6 @@
-{{#if template}}
 <template>
   <base-card
-    id="{{ kebabCase name }}"
+    id="list-page"
     class="y-page">
     <div class="y-container no-padding">
       <div class="y-header">
@@ -138,16 +137,14 @@
     </div>
   </base-card>
 </template>
-{{/if}}
 
 
-{{#if script}}
 <script>
 // 引入你的API
 import { getList } from '@/api/some-module'
 
 export default {
-  name: '{{ properCase name }}',
+  name: 'ListPage',
   components: { },
   data() {
     return {
@@ -198,12 +195,9 @@ export default {
   },
 }
 </script>
-{{/if}}
 
-{{#if style}}
 <style lang="scss">
-#{{ kebabCase name }} {
+#list-page {
   @import '@/assets/style/modules/table-page.scss';
 }
 </style>
-{{/if}}
