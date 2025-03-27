@@ -38,7 +38,7 @@ module.exports = defineConfig({
           if (/mixin\.scss/.test(resourcePath) || /variables\.module\.scss/.test(resourcePath)) {
             return content
           }
-          return '@use "@/assets/style/common/mixin.scss" as *;' + content
+          return '@use "@/assets/styles/common/mixin.scss" as *;' + content
         },
         sassOptions: { outputStyle: 'expanded' } // fix: 解决 element-ui 图标 icon 偶现乱码问题
       }

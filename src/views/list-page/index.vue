@@ -141,7 +141,7 @@
 
 <script>
 // 引入你的API
-import { getList } from '@/api/some-module'
+// import { getList } from '@/api/some-module'
 
 export default {
   name: 'ListPage',
@@ -176,11 +176,11 @@ export default {
         ...this.formData,
       }
 
-      const [err, res] = await getList(payload)
-      if (res) {
-        this.list = res.data || []
-        this.total = res.totalRow
-      }
+      // const [err, res] = await getList(payload)
+      // if (res) {
+      //   this.list = res.data || []
+      //   this.total = res.totalRow
+      // }
       this.loading = false
     },
     resetSearch() {
@@ -198,6 +198,6 @@ export default {
 
 <style lang="scss">
 #list-page {
-  @import '@/assets/style/modules/table-page.scss';
+  @import '@/assets/styles/modules/table-page.scss';
 }
 </style>

@@ -1,5 +1,5 @@
-@use '../variables.module.scss' as *;
-@use '../mixin.scss' as *;
+@use '../common/variables.module.scss' as *;
+@use '../common/mixin.scss' as *;
 
 .card-container {
   @include full;

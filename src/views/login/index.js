@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './index.vue'
 import '@/plugins/element'
 import '@/http/axios.js'
-import '@/assets/style/common/index.scss'
+import '@/assets/styles/common/index.scss'
 
 // icons
 import SvgIcon from '@/components/SvgIcon'
