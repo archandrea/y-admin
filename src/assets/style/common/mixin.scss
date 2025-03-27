@@ -50,7 +50,7 @@
   width: 100%;
 }
 
-@mixin text-overflow($line) {
+@mixin text-overflow($line: 1) {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: $line;
@@ -58,10 +58,20 @@
   text-overflow: ellipsis;
   text-align: justify;
   word-break: break-all;
+
+  @if $line ==1 {
+    white-space: normal;
+  }
 }
 
 @mixin card {
   position: relative;
   background-color: $bgColor;
   border-radius: 4px;
+}
+
+@mixin card-wrapper($padding: 16px 0, $column-min: 408px, $row: max-content) {
+  padding: $padding;
+  grid-auto-rows: $row;
+  grid-template-columns: repeat(auto-fill, minmax($column-min, 1fr));
 }

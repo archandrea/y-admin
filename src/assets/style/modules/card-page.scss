@@ -1,0 +1,16 @@
+@use '../variables.module.scss' as *;
+@use '../mixin.scss' as *;
+
+>.y-container:first-child {
+  @include card;
+  flex: 0 0 max-content;
+}
+
+.y-card-wrapper {
+  @include card-wrapper;
+}
+
+.y-footer {
+  @include card;
+  border: none;
+}

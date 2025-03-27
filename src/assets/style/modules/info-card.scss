@@ -1,0 +1,58 @@
+@use '../variables.module.scss' as *;
+@use '../mixin.scss' as *;
+
+.card-container {
+  @include full;
+  @include flex-row(flex-start, flex-start);
+  gap: 16px;
+  padding: 24px;
+  padding-bottom: 16px;
+  background: linear-gradient(90deg,
+      color-mix(in srgb, $bgColor 90%, $themeColor) 0%,
+      color-mix(in srgb, $bgColor 100%, $themeColor) 40%,
+      $bgColor 100%), $bgColor;
+
+  >.icon {
+    flex: 0 0 80px;
+    align-self: center;
+    width: 80px;
+    height: 80px;
+  }
+
+  >.info {
+    @include flex-col(flex-start, flex-start);
+    gap: 16px;
+    flex: 1;
+    height: 100%;
+
+    .y-title {
+      @include text-overflow;
+      font-size: 20px;
+    }
+
+    .body {
+      @include flex-row(flex-start, center);
+      gap: 8px 24px;
+      flex-wrap: wrap;
+
+      .text-overflow {
+        @include text-overflow;
+      }
+    }
+
+    // btn在info最下
+    >.btn-set {
+      flex: 1;
+      width: 100%;
+    }
+  }
+
+  .btn-set {
+    @include flex-row(flex-end, flex-end);
+  }
+
+  // btn在info右侧
+  >.btn-set {
+    height: 100%;
+  }
+}

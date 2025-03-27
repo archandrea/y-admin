@@ -1,3 +1,6 @@
+@use '../variables.module.scss' as *;
+@use '../mixin.scss' as *;
+
 >.y-container {
   >.y-header {
     justify-content: flex-start;
@@ -12,7 +15,7 @@
       }
     }
   }
-
+  
   .base-pagination {
     align-self: flex-end;
     padding: 24px 8px;

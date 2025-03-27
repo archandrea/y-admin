@@ -1,0 +1,100 @@
+// table标签专用，模仿el-table样式
+.y-table {
+  overflow: hidden;
+  flex: unset;
+  border: 1px solid $borderColor;
+  border-radius: 4px;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      border-right: 1px solid $borderColor;
+      border-bottom: 1px solid $borderColor;
+    }
+
+    .no-bb {
+      border-bottom: none;
+    }
+
+    .no-br {
+      border-right: none;
+    }
+  }
+
+  .cell span {
+    font-size: 14px;
+    font-weight: normal;
+    color: $txtColor;
+  }
+}
+
+// 无数据
+.y-no-data {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: $txtColor-light
+}
+
+// 复选框
+.y-checkbox {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  background: $bgColor-dark;
+  border: 1px solid #c5c5c5;
+  cursor: pointer;
+  z-index: 99;
+
+  .svg-icon {
+    display: none;
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    font-size: 12px;
+    color: $txtColor-reverse;
+  }
+
+  &.checked {
+    background-color: $themeColor;
+    border-color: $themeColor;
+
+    .svg-icon {
+      display: block;
+    }
+  }
+}
+
+// 可增删的input组
+.y-multi-input {
+  @include flex-col;
+  width: 100%;
+
+  .y-multi-input_item {
+    @include flex-row;
+    width: 100%;
+
+    >div {
+      flex: 1;
+
+      +div {
+        margin-left: 8px;
+      }
+    }
+
+    .el-button {
+      margin-left: 8px;
+      padding: 12px;
+    }
+
+    +.y-multi-input_item {
+      margin-top: 16px;
+    }
+  }
+}
