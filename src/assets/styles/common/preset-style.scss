@@ -83,7 +83,7 @@
 // 卡片布局
 .#{$namespace}-card-wrapper {
   display: grid;
-  justif#{$namespace}-content: space-around;
+  justify-content: space-around;
   gap: 16px;
   flex-wrap: wrap;
   overflow: unset;
