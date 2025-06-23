@@ -1,6 +1,7 @@
 {
   "name": "y-admin",
   "version": "1.0.0",
+  "author": "Luc-xz",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
