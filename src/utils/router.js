@@ -87,9 +87,9 @@ export function filterPermissionRoutes(routes, permissions) {
  * const component = loadComponent('views/dashboard/index')
  */
 export const loadComponent = (path) => {
-  // 开发环境使用require直接加载，生产环境使用import懒加载
-  if (process.env.NODE_ENV === 'development') {
-    return require(`@/${path}`).default
-  }
+  // 开发环境使用require直接加载，生产环境使用import懒加载（热更新有时无法正确替换）
+  // if (process.env.NODE_ENV === 'development') {
+  //   return require(`@/${path}`).default
+  // }
   return () => import(`@/${path}`)
 }

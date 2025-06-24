@@ -125,7 +125,7 @@
           </el-table-column>
           <el-empty
             slot="empty"
-            :image="require('@/assets/images/no-info.png')"
+            :image="require('@/assets/images/no-info.svg')"
             description="暂无信息"></el-empty>
         </el-table>
       </div>

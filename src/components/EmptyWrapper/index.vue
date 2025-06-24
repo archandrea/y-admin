@@ -2,7 +2,9 @@
   <div class="empty-wrapper y-container no-padding">
     <el-empty
       v-if="toggle"
-      v-bind="attrs"></el-empty>
+      v-bind="attrs">
+      <slot name="empty"></slot>
+    </el-empty>
     <slot v-else></slot>
   </div>
 </template>
@@ -25,7 +27,7 @@ export default {
     attrs() {
       return {
         // 默认值
-        image: require('@/assets/images/no-info.png'),
+        image: require('@/assets/images/no-info.svg'),
         description: '暂无信息',
         ...this.$attrs,
       }
