@@ -26,11 +26,16 @@
             appear
             name="fade-transform"
             mode="out-in">
-            <keep-alive :include="noIframeCachedViews">
+            <keep-alive
+              v-if="enableKeepAlive"
+              :include="noIframeCachedViews">
               <router-view
                 :key="routeKey"
                 v-if="showRouterView"></router-view>
             </keep-alive>
+            <router-view
+              v-else
+              :key="routeKey"></router-view>
           </transition>
         </div>
       </div>
@@ -65,6 +70,9 @@ export default {
     return {}
   },
   computed: {
+    enableKeepAlive() {
+      return process.env.NODE_ENV === 'production' || this.$store.state.setting.enableKeepAlive
+    },
     visitedViews() {
       return this.$store.state.tagBar.visitedViews
     },
