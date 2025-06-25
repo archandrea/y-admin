@@ -3,6 +3,7 @@
     <div
       :class="['multi-switch_item', isActive(key) ? 'is-active' : '', mode]"
       v-for="(item, key) in options"
+      :key="key"
       :style="[cursorStyle]"
       @click="onSwitch(String(key))">
       {{ item }}
@@ -99,6 +100,20 @@ export default {
       border: 1px solid $bgColor-dark;
       border-radius: 4px;
       background-color: $bgColor-dark;
+
+      &.is-active {
+        background-color: transparentize($themeColor, 0.95);
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 16px;
+          height: 16px;
+          background: url('@/assets/images/corner-tick.svg') no-repeat center/cover;
+        }
+      }
     }
 
     &.tab {
@@ -106,7 +121,7 @@ export default {
       line-height: 24px;
 
       &.is-active {
-        position: relative;
+        font-weight: 600;
 
         &::after {
           content: '';
@@ -121,16 +136,9 @@ export default {
     }
 
     &.is-active {
+      position: relative;
       color: $themeColor;
       border-color: $themeColor;
-
-      &.tab {
-        font-weight: 600;
-      }
-
-      &.button {
-        background-color: transparentize($themeColor, 0.95);
-      }
     }
 
     & + .multi-switch_item {
