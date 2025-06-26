@@ -714,72 +714,76 @@
   content: '';
 }
 
-.el-menu .el-menu-item {
-  color: $txtColor;
-}
+.el-menu {
+  .el-menu-item {
+    color: $txtColor;
 
-.el-menu .el-menu-item>i {
-  font-size: 16px;
-  color: $txtColor-light;
-}
+    & > i {
+      font-size: 16px;
+      color: $txtColor-light;
+    }
 
-.el-menu .el-menu-item .el-menu-item {
-  color: $txtColor;
-}
+    .el-menu-item {
+      color: $txtColor;
 
-.el-menu .el-menu-item .el-menu-item>i {
-  color: $txtColor-light;
-}
+      & > i {
+        color: $txtColor-light;
+      }
+    }
 
-.el-menu .el-menu-item:focus,
-.el-menu .el-menu-item:hover {
-  color: $themeColor;
-  background-color: transparentize($themeColor, 0.92);
-}
+    &:focus,
+    &:hover {
+      color: $themeColor;
+      background-color: transparentize($themeColor, 0.92);
 
-.el-menu .el-menu-item:focus>i,
-.el-menu .el-menu-item:hover>i {
-  color: $themeColor;
-}
+      & > i {
+        color: $themeColor;
+      }
+    }
 
-.el-menu .el-menu-item.is-active {
-  color: $themeColor;
-  background-color: transparentize($themeColor, 0.92);
-}
+    &.is-active {
+      color: $themeColor;
+      background-color: transparentize($themeColor, 0.92);
 
-.el-menu .el-menu-item.is-active>i {
-  color: $themeColor;
-}
+      & > i {
+        color: $themeColor;
+      }
+    }
+  }
 
-.el-menu .el-submenu__title {
-  color: $txtColor;
-}
+  .el-submenu__title {
+    color: $txtColor;
 
-.el-menu .el-submenu__title>i {
-  color: $txtColor;
-}
+    & > i {
+      color: $txtColor;
+    }
 
-.el-menu .el-submenu__title:focus,
-.el-menu .el-submenu__title:hover {
-  color: $themeColor;
-  background-color: transparentize($themeColor, 0.92);
-}
+    &:focus,
+    &:hover {
+      color: $themeColor;
+      background-color: transparentize($themeColor, 0.92);
 
-.el-menu .el-submenu__title:focus>i,
-.el-menu .el-submenu__title:hover>i {
-  color: $themeColor;
-}
+      & > i {
+        color: $themeColor;
+      }
+    }
+  }
 
-.el-menu--collapse .el-submenu>.el-submenu__title span {
-  height: 0;
-  width: 0;
-  overflow: hidden;
-  visibility: hidden;
-  display: none;
-}
+  &--collapse {
+    .el-submenu > .el-submenu__title {
+      span {
+        height: 0;
+        width: 0;
+        overflow: hidden;
+        visibility: hidden;
+        display: none;
+      }
 
-.el-menu--collapse .el-submenu>.el-submenu__title .el-submenu__icon-arrow {
-  display: none;
+      .el-submenu__icon-arrow {
+        display: none;
+      }
+    }
+  }
 }
 
 .el-checkbox__input.is-checked+.el-checkbox__label,
