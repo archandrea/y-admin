@@ -7,9 +7,9 @@
     :id="`${namespace}-layout`"
     class="clearfix">
     <top-bar v-if="showTopBar"></top-bar>
-    <div class="container layout-flex-row">
+    <div class="container-content layout-flex-row">
       <aside-bar v-if="showAsideBar"></aside-bar>
-      <div class="container layout-flex-col">
+      <div class="container-content layout-flex-col">
         <tag-bar v-if="showTagBar"></tag-bar>
         <div :class="`${namespace}-layout_main`">
           <transition-group
@@ -131,11 +131,11 @@ export default {
   flex-direction: column;
   background-color: $bgColor-dark;
 
-  & > .container {
+  & > .container-content {
     flex: 1;
     overflow: hidden;
 
-    & > .container {
+    & > .container-content {
       flex: 1;
       overflow: hidden;
     }

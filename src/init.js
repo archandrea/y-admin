@@ -6,6 +6,7 @@ import './http/axios'
 
 // style
 import './assets/styles/common/index.scss'
+import './assets/styles/common/tailwind.css'
 
 // permission
 import './router/permission.js'

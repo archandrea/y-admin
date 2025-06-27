@@ -5,7 +5,7 @@
         <h1 style="color: #fff">LOGO</h1>
       </router-link>
     </div>
-    <div class="container layout-flex-row">
+    <div class="container-content layout-flex-row">
       <div :class="[`${namespace}-layout_tools`, 'layout-flex-row']">
         <svg-icon icon="notification"></svg-icon>
         <svg-icon icon="tag"></svg-icon>
@@ -43,7 +43,7 @@ export default {
   height: 64px;
   background-color: $themeColor;
 
-  & > .container {
+  & > .container-content {
     flex: 0;
     justify-content: flex-end;
   }
