@@ -117,14 +117,14 @@
 
   &.el-button--success {
     color: $txtColor-reverse;
-    background-color: transparentize($color-success, 0.9);
+    background-color: $color-success;
     border-color: $color-success;
 
     &:not([disabled]):hover,
     &:not([disabled]):focus,
     &:not([disabled]):active {
       color: $txtColor-reverse;
-      background-color: $color-success;
+      background-color: transparentize($color-success, 0.3);
       border-color: $color-success;
     }
 
@@ -137,14 +137,14 @@
 
   &.el-button--danger {
     color: $txtColor-reverse;
-    background-color: transparentize($color-danger, 0.9);
+    background-color: $color-danger;
     border-color: $color-danger;
 
     &:not([disabled]):hover,
     &:not([disabled]):focus,
     &:not([disabled]):active {
       color: $txtColor-reverse;
-      background-color: $color-danger;
+      background-color: transparentize($color-danger, 0.3);
       border-color: $color-danger;
     }
 
@@ -157,14 +157,14 @@
 
   &.el-button--warning {
     color: $txtColor-reverse;
-    background-color: transparentize($color-warning, 0.9);
+    background-color: $color-warning;
     border-color: $color-warning;
 
     &:not([disabled]):hover,
     &:not([disabled]):focus,
     &:not([disabled]):active {
       color: $txtColor-reverse;
-      background-color: $color-warning;
+      background-color: transparentize($color-warning, 0.3);
       border-color: $color-warning;
     }
 
@@ -177,14 +177,14 @@
 
   &.el-button--info {
     color: $txtColor-reverse;
-    background-color: transparentize($color-info, 0.9);
+    background-color: $color-info;
     border-color: $color-info;
 
     &:not([disabled]):hover,
     &:not([disabled]):focus,
     &:not([disabled]):active {
       color: $txtColor-reverse;
-      background-color: $color-info;
+      background-color: transparentize($color-info, 0.3);
       border-color: $color-info;
     }
 
@@ -403,6 +403,11 @@
   textarea::placeholder {
     font-family: "Helvetica Neue", Helvetica, "PingFang SC";
   }
+}
+
+.el-switch.is-checked .el-switch__core {
+  background-color: $color-success;
+  border-color: $color-success;
 }
 
 .el-switch.inSide {
@@ -830,6 +835,7 @@
 }
 
 .el-dialog__body {
+  padding: 0px;
   overflow-y: auto;
   border-top: 1px solid $borderColor;
   border-bottom: 1px solid $borderColor;
