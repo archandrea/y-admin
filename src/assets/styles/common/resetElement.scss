@@ -410,51 +410,6 @@
   border-color: $color-success;
 }
 
-.el-switch.inSide {
-  height: 24px;
-  line-height: 24px;
-}
-
-.el-switch.inSide .el-switch__label {
-  width: 60px;
-  height: 24px;
-  position: absolute;
-  border-radius: 15px;
-  display: none;
-  color: $txtColor-reverse;
-}
-
-.el-switch.inSide .el-switch__label.el-switch__label--left {
-  z-index: 9;
-  left: 22px;
-}
-
-.el-switch.inSide .el-switch__label.el-switch__label--left.is-active {
-  color: $txtColor-light;
-}
-
-.el-switch.inSide .el-switch__label.el-switch__label--right {
-  z-index: 9;
-  left: -1px;
-}
-
-.el-switch.inSide .el-switch__label.is-active {
-  display: block;
-}
-
-.el-switch.inSide .el-switch__core {
-  width: 60px;
-  height: 24px;
-  border-radius: 15px;
-}
-
-.el-switch.inSide .el-switch__core::after {
-  top: 3px;
-  width: 16px;
-  height: 16px;
-  border-radius: 15px;
-}
-
 .el-select-dropdown__item.selected {
   color: $themeColor;
 }
