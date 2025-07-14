@@ -115,7 +115,7 @@ export default {
     .sub-el-icon,
     .svg-icon {
       flex: 0 0 16px;
-      margin-right: 16px;
+      margin-right: 8px;
       text-align: center;
       font-size: 16px;
       vertical-align: -0.12em;
@@ -127,10 +127,6 @@ export default {
       margin-top: 0;
       margin-left: 16px;
       vertical-align: -0.12em;
-    }
-
-    .sub-el-icon {
-      color: $txtColor;
     }
 
     &.el-menu--collapse {
@@ -155,7 +151,7 @@ export default {
   }
 
   .el-menu:not(.el-menu--collapse) {
-    width: 264px;
+    width: 224px;
 
     .el-menu:not(.el-menu--collapse) {
       width: 100%;

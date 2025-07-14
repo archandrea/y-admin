@@ -678,7 +678,7 @@
   .el-menu-item {
     color: $txtColor;
 
-    & > i {
+    &>i {
       font-size: 16px;
       color: $txtColor-light;
     }
@@ -686,7 +686,7 @@
     .el-menu-item {
       color: $txtColor;
 
-      & > i {
+      &>i {
         color: $txtColor-light;
       }
     }
@@ -696,7 +696,7 @@
       color: $themeColor;
       background-color: transparentize($themeColor, 0.92);
 
-      & > i {
+      &>i {
         color: $themeColor;
       }
     }
@@ -705,7 +705,7 @@
       color: $themeColor;
       background-color: transparentize($themeColor, 0.92);
 
-      & > i {
+      &>i {
         color: $themeColor;
       }
     }
@@ -714,8 +714,9 @@
   .el-submenu__title {
     color: $txtColor;
 
-    & > i {
-      color: $txtColor;
+    &>i,
+    &>.svg-icon {
+      color: $txtColor-light;
     }
 
     &:focus,
@@ -723,14 +724,15 @@
       color: $themeColor;
       background-color: transparentize($themeColor, 0.92);
 
-      & > i {
+      &>i,
+      &>.svg-icon {
         color: $themeColor;
       }
     }
   }
 
   &--collapse {
-    .el-submenu > .el-submenu__title {
+    .el-submenu>.el-submenu__title {
       span {
         height: 0;
         width: 0;

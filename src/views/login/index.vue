@@ -2,7 +2,7 @@
   <div class="y-login">
     <el-image
       class="y-login_logo"
-      style="width: 176px; height: 65px"
+      style="width: 189px; height: 58px"
       src=""></el-image>
     <el-form
       class="y-login_form"
@@ -12,7 +12,7 @@
       :rules="rules">
       <el-row>
         <el-col :span="24">
-          <h2 class="y-login_title">用户登陆</h2>
+          <h2 class="y-login_title">用户登录</h2>
         </el-col>
       </el-row>
       <el-row>
@@ -75,8 +75,9 @@
         class="y-login_btn"
         type="primary"
         @click.native="login"
-        >登陆</el-button
+        >登录</el-button
       >
+      <el-divider>欢迎使用后台管理系统</el-divider>
     </el-form>
   </div>
 </template>
@@ -132,7 +133,14 @@ export default {
         }
         try {
           // await store.dispatch('user/login', this.formData)
-          this.$router.push({ path: '/login' })
+          this.$message({
+            message: '登录成功',
+            type: 'success',
+            duration: 1200,
+            onClose: () => {
+              this.$router.push({ path: '/' })
+            },
+          })
         } catch (err) {
           this.getAuthCode()
           this.formData.code = ''
@@ -157,7 +165,7 @@ export default {
   min-width: 650px;
   height: 100%;
   overflow: auto;
-  // background: url('') no-repeat center/cover;
+  // background: url() no-repeat center/cover;
 }
 
 .y-login_logo {
@@ -167,30 +175,30 @@ export default {
 }
 
 .y-login_form {
-  
   overflow: auto;
   position: absolute;
   top: 50%;
   right: 8.2%;
-  padding: 30px 62px 72px;
-  width: 540px;
+  padding: 30px 62px 40px;
+  width: 530px;
   max-height: 100vh;
   border-radius: 12px;
-  background: $bgColor;
-  box-shadow: 0px 8px 32px 0px rgba(5, 85, 206, 0.15);
+  background: transparentize($bgColor, 0.3);
+  backdrop-filter: blur(2px);
+  box-shadow: 0px 0px 30px 0px rgba(3, 70, 136, 0.2);
   transform: translate(0, -50%);
 
   .el-row {
     &:nth-child(2) {
-      margin-bottom: 8px;
+      margin-bottom: 2px;
     }
 
     &:nth-child(3) {
-      margin-bottom: 28px;
+      margin-bottom: 2px;
     }
 
     &:nth-child(4) {
-      margin-bottom: 48px;
+      margin-bottom: 42px;
     }
   }
 
@@ -210,6 +218,7 @@ export default {
     .el-input__inner {
       padding: 15px 24px;
       height: 58px;
+      background-color: $bgColor;
 
       &:focus {
         background-color: $bgColor;
@@ -223,12 +232,10 @@ export default {
     }
 
     .el-input__suffix {
-      
       padding: 15px 24px;
     }
 
     .el-input__prefix {
-      
       padding: 15px 18px;
 
       &:after {
@@ -268,13 +275,13 @@ export default {
 }
 
 .y-login_btn {
-  padding: 18px 0;
+  padding: 16px 0;
   width: 100%;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: normal;
   line-height: normal;
-  cursor: pointer;
+  border-radius: 8px;
 }
 
 .y-login_code {
@@ -284,5 +291,15 @@ export default {
   height: 58px;
   vertical-align: middle;
   cursor: pointer;
+}
+
+.el-divider {
+  margin: 60px 0 10px;
+  background-color: #cdddf5;
+
+  .el-divider__text {
+    padding: 0;
+    color: #868686;
+  }
 }
 </style>
