@@ -438,19 +438,27 @@
   border-bottom: 0;
 }
 
-.el-upload-dragger:hover {
-  border-color: $themeColor;
-  background: $bgColor-dark;
-}
+.el-upload {
+  width: 100%;
 
-.el-upload-dragger .el-upload__text em {
-  color: $themeColor;
-  font-style: normal;
-}
+  .el-upload-dragger {
+    padding: 24px;
+    width: 100%;
+    border-color: $themeColor;
 
-.el-upload-dragger.is-dragover {
-  border: 2px dashed $themeColor;
-  background-color: $bgColor-dark;
+    &:hover {
+      background: transparentize($themeColor, .95);
+    }
+  }
+
+  &.is-dragover {
+    border-width: 2px;
+  }
+
+  .el-upload__text em {
+    color: $themeColor;
+    font-style: normal;
+  }
 }
 
 .el-table thead {
@@ -584,12 +592,15 @@
   }
 }
 
+.el-date-editor,
 .el-range-editor {
-  border-color: $borderColor;
-  background-color: $bgColor;
+  &.el-input__inner {
+    border-color: $bgColor-dark;
+    background-color: $bgColor-dark;
+  }
 
   .el-range-input {
-    background-color: $bgColor;
+    background-color: $bgColor-dark;
   }
 
   .el-range-separator {

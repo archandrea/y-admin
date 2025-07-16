@@ -129,9 +129,9 @@ const handleNodeExpand = (data, node) => {
         // border-left: 3px solid $themeColor;
         background-color: transparentize($themeColor, 0.95);
 
-        * {
-          color: $themeColor;
-        }
+        // * {
+        //   color: $themeColor;
+        // }
       }
 
       .node-name {
