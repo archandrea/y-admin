@@ -8,42 +8,30 @@
         <h2 class="y-title">列表页面</h2>
         <el-button
           type="primary"
-          plain>
+          plain
+          size="small">
           <i class="el-icon-download"></i>
           下载模板
         </el-button>
         <el-button
           type="primary"
-          plain>
+          plain
+          size="small">
           <svg-icon icon="exit"></svg-icon>
           导出
         </el-button>
-        <!-- 修改on-change回调函数 -->
-        <el-upload
-          ref="upload"
-          action=""
-          accept=".xlsx, .xls"
-          :auto-upload="false"
-          :show-file-list="false"
-          :multiple="false"
-          :on-change="someMethod">
-          <el-button
-            type="primary"
-            plain
-            style="margin-left: 8px">
-            <svg-icon icon="enter"></svg-icon>
-            导入
-          </el-button>
-        </el-upload>
         <el-button
           type="danger"
           plain
+          size="small"
           style="margin-left: 8px">
           <svg-icon icon="remove"></svg-icon>
           批量删除
         </el-button>
         <el-button
-          type="primary">
+          type="primary"
+          size="small"
+          @click="handleOperation(null)">
           <svg-icon icon="add"></svg-icon>
           添加
         </el-button>
@@ -54,14 +42,12 @@
           :inline="true"
           :model="searchForm"
           :rules="rules"
-          size="small"
-          style="margin-top: 16px">
-          <el-form-item 
+          size="small">
+          <el-form-item
             label="关键字"
             prop="keyword">
             <el-input
               v-model="searchForm.keyword"
-              v-trim
               clearable
               style="width: 220px"
               placeholder="请输入关键字进行搜索"></el-input>
@@ -84,89 +70,134 @@
           </el-form-item>
         </el-form>
         <el-table
+          ref="table"
           :data="list"
           v-loading="loading"
-          v-reset-scroll="'div.el-table__body-wrapper'"
           stripe
           height="100%"
           fit
-          ref="table"
           style="width: 100%">
           <el-table-column
             type="selection"
-            width="50">
-          </el-table-column>
+            width="55" />
           <el-table-column
-            type="index"
-            label="序号"
-            width="50">
-          </el-table-column>
+            label="部门id"
+            prop="deptId" />
           <el-table-column
-            label="some label"
-            prop="SOME_PROP"
-            show-overflow-tooltip>
-          </el-table-column>
+            label="用户id"
+            prop="userId" />
           <el-table-column
-            label="操作"
-            width="100"
-            fixed="right">
-            <template slot-scope="scope">
+            label="排序号"
+            prop="orderNum" />
+          <el-table-column
+            label="key键"
+            prop="testKey" />
+          <el-table-column
+            label="值"
+            prop="value" />
+          <el-table-column label="操作">
+            <template #default="scope">
               <el-link
+                @click="handleOperation(scope.row)"
                 type="primary"
                 :underline="false"
                 >编辑</el-link
               >
               <el-link
+                @click="handleDelete(scope.row)"
                 type="danger"
                 :underline="false"
                 >删除</el-link
               >
             </template>
           </el-table-column>
-          <el-empty
-            slot="empty"
-            :image="require('@/assets/images/no-info.svg')"
-            description="暂无信息"></el-empty>
+          <template #empty>
+            <el-empty description="暂无信息"></el-empty>
+          </template>
         </el-table>
       </div>
-      <pagination
-        :current-page.sync="formData.pageNum"
-        :page-size.sync="formData.pageSize"
-        :total="total"
-        @page="fetchData"></pagination>
+      <div class="y-footer">
+        <pagination
+          :current-page.sync="formData.pageNum"
+          :page-size.sync="formData.pageSize"
+          :total="total"
+          @page="fetchData"></pagination>
+      </div>
     </div>
+    <!-- 添加 Drawer 组件 -->
+    <drawer
+      :visible.sync="drawerVisible"
+      :user-id="drawerData?.userId"
+      @success="fetchData" />
   </base-card>
 </template>
 
-
 <script>
-// 引入你的API
-// import { getList } from '@/api/some-module'
+import Drawer from './components/Drawer'
 
 export default {
   name: 'ListPage',
-  components: { },
+  components: {
+    Drawer,
+  },
   data() {
     return {
       loading: false,
       searchForm: {
         keyword: '',
+        dateRange: [],
       },
       rules: {},
       formData: {
-        pageSize: 15,
         pageNum: 1,
-        pageType: 3,
+        pageSize: 15,
       },
+      // TODO：清空列表
+      list: [
+        {
+          deptId: 1,
+          userId: 101,
+          orderNum: 1,
+          testKey: 'key1',
+          value: '值1',
+        },
+        {
+          deptId: 2,
+          userId: 102,
+          orderNum: 2,
+          testKey: 'key2',
+          value: '值2',
+        },
+        {
+          deptId: 3,
+          userId: 103,
+          orderNum: 3,
+          testKey: 'key3',
+          value: '值3',
+        },
+        {
+          deptId: 4,
+          userId: 104,
+          orderNum: 4,
+          testKey: 'key4',
+          value: '值4',
+        },
+        {
+          deptId: 5,
+          userId: 105,
+          orderNum: 5,
+          testKey: 'key5',
+          value: '值5',
+        },
+      ],
       total: 0,
-      list: [],
+      drawerVisible: false,
+      drawerData: null,
     }
   },
-  computed: {},
   created() {
     this.fetchData()
   },
-  mounted() {},
   methods: {
     async fetchData() {
       this.loading = true
@@ -192,11 +223,38 @@ export default {
       }
       this.fetchData()
     },
+    handleOperation(row) {
+      this.drawerVisible = true
+      this.drawerData = row
+    },
+    async handleDelete(row) {
+      try {
+        await this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+        })
+
+        this.loading = true
+        // TODO: 调用删除 API
+        // const [err, res] = await deleteRecord(row.id);
+        this.loading = false
+
+        this.$message({
+          message: '删除成功！',
+          type: 'success',
+          duration: 800,
+          onClose: () => {
+            this.fetchData()
+          },
+        })
+      } catch (e) {}
+    },
   },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #list-page {
   @import '@/assets/styles/modules/table-page.scss';
 }

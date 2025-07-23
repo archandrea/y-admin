@@ -34,19 +34,19 @@ export default [
     path: '/template',
     component: 'layout',
     redirect: '/dashboard',
-    meta: { title: '模板', icon: 'function' },
+    meta: { title: '模板', icon: 'el-icon-document-copy' },
     children: [
       {
-        path: 'table-template',
-        name: 'TableTemplate',
+        path: 'list-page',
+        name: 'ListPage',
         meta: { title: '列表' },
-        component: 'views/table-template',
+        component: 'views/template/list-page',
       },
       {
-        path: 'tree-template',
-        name: 'TreeTemplate',
+        path: 'tree-page',
+        name: 'TreePage',
         meta: { title: '树型' },
-        component: 'views/tree-template',
+        component: 'views/template/tree-page',
       },
     ]
   },
@@ -54,7 +54,7 @@ export default [
     path: '/test',
     component: 'layout',
     redirect: '/dashboard',
-    meta: { title: '测试', icon: 'function' },
+    meta: { title: '功能测试', icon: 'el-icon-set-up' },
     children: [
       {
         path: 'setting-test',
@@ -71,14 +71,19 @@ export default [
         meta: { title: 'Baidu123', icon: 'el-icon-link', target: 'self' }
       },
       {
-        path: 'http://localhost:8081/#/dashboard',
-        name: 'InnerLink',
-        meta: { title: 'InnerLink', icon: 'el-icon-link', target: 'inner' }
+        path: 'http://localhost:8080/#/dashboard',
+        name: 'InnerLink1',
+        meta: { title: 'InnerLink1', icon: 'el-icon-link', target: 'inner' }
       },
       {
         path: 'http://172.16.66.41:8082',
-        name: 'InnerLinkTest',
-        meta: { title: 'InnerLink-Test-1', icon: 'el-icon-link', target: 'inner' }
+        name: 'InnerLink2',
+        meta: { title: 'InnerLink2', icon: 'el-icon-link', target: 'inner' }
+      },
+      {
+        path: '/#/template/table-template',
+        name: 'InnerLink3',
+        meta: { title: 'InnerLink3', icon: 'el-icon-link', target: 'inner' }
       },
       {
         path: 'dynamic-router-test',
@@ -94,28 +99,10 @@ export default [
         component: 'views/independent-tagview-test',
       },
       {
-        path: 'composition-api',
-        name: 'CompositionApi',
-        meta: { title: 'composition-api' },
-        component: 'views/composition-api',
-      },
-      {
         path: 'span-table',
         name: 'CompositionApi',
         meta: { title: 'el-table自动span写法' },
         component: 'views/span-table',
-      },
-    ]
-  },
-  {
-    path: '/inner',
-    component: 'layout',
-    meta: { title: 'InnerLink2', icon: 'el-icon-link' },
-    children: [
-      {
-        path: '/#/template/table-template',
-        name: 'InnerLink3',
-        meta: { title: 'InnerLink3', icon: 'el-icon-link', target: 'inner' }
       },
     ]
   },

@@ -9,6 +9,10 @@
   >.y-container--tight {
     padding: 0 24px;
 
+    .el-form {
+      padding-top: 16px;
+    }
+
     .el-table {
       &::before {
         content: none;
