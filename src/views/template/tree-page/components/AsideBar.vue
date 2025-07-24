@@ -35,7 +35,62 @@ export default {
       loading: false,
       activeItem: null,
       keyword: '',
-      menuList: [],
+      menuList: [
+        {
+          deptId: 1,
+          deptName: '总公司',
+          children: [
+            {
+              deptId: 11,
+              deptName: '研发部',
+              children: [
+                {
+                  deptId: 111,
+                  deptName: '前端组',
+                },
+                {
+                  deptId: 112,
+                  deptName: '后端组',
+                }
+              ]
+            },
+            {
+              deptId: 12,
+              deptName: '市场部',
+              children: [
+                {
+                  deptId: 121,
+                  deptName: '销售组',
+                },
+                {
+                  deptId: 122,
+                  deptName: '推广组',
+                }
+              ]
+            }
+          ]
+        },
+        {
+          deptId: 2,
+          deptName: '分公司',
+          children: [
+            {
+              deptId: 21,
+              deptName: '人事部',
+              children: [
+                {
+                  deptId: 211,
+                  deptName: '招聘组',
+                },
+                {
+                  deptId: 212,
+                  deptName: '培训组',
+                }
+              ]
+            }
+          ]
+        }
+      ],
     }
   },
   created() {

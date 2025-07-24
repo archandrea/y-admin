@@ -60,7 +60,7 @@ export default [
         path: 'setting-test',
         name: 'SettingTest',
         meta: { title: '全局设置' },
-        component: 'views/setting-test',
+        component: 'views/test/setting-test',
       },
       {
         path: 'https://www.baidu.com/',
@@ -84,20 +84,20 @@ export default [
         path: 'dynamic-router-test',
         name: 'DynamicRouterTest',
         meta: { title: '动态路由独立组件测试' },
-        component: 'views/dynamic-router-test',
+        component: 'views/test/dynamic-router-test',
       },
       {
         path: ':id/test',
         name: 'IndependentTagviewTest',
         hidden: true,
         meta: { title: '独立组件${id}' },
-        component: 'views/independent-tagview-test',
+        component: 'views/test/independent-tagview-test',
       },
       {
         path: 'span-table',
         name: 'CompositionApi',
         meta: { title: 'el-table自动span写法' },
-        component: 'views/span-table',
+        component: 'views/test/span-table',
       },
     ]
   },
@@ -113,7 +113,7 @@ export default [
         name: 'PermissionTest',
         meta: { title: '权限测试-子菜单' },
         permissionTag: 'permission-test-admin',
-        component: 'views/permission-test',
+        component: 'views/test/permission-test',
       },
     ]
   },
