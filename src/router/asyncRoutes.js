@@ -76,14 +76,9 @@ export default [
         meta: { title: 'InnerLink1', icon: 'el-icon-link', target: 'inner' }
       },
       {
-        path: 'http://172.16.66.41:8082',
+        path: '/#/dashboard',
         name: 'InnerLink2',
         meta: { title: 'InnerLink2', icon: 'el-icon-link', target: 'inner' }
-      },
-      {
-        path: '/#/template/table-template',
-        name: 'InnerLink3',
-        meta: { title: 'InnerLink3', icon: 'el-icon-link', target: 'inner' }
       },
       {
         path: 'dynamic-router-test',

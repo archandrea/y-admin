@@ -17,9 +17,17 @@ Router.prototype.replace = function replace(location, resolve, reject) {
 export const constantRoutes = [
   {
     path: '/',
-    name: 'Home',
     hidden: true,
+    redirect: '/dashboard',
     component: () => import('@/layout'),
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        meta: { affix: true, tagIcon: 'home-fill' },
+        component: () => import('@/views/dashboard')
+      }
+    ]
   },
   {
     path: '/login',

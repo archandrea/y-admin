@@ -1,205 +1,88 @@
 <template>
-  <div
+  <base-card
     id="dashboard"
-    class="y-page flex-row">
-    <div class="y-dashboard_left flex">
-      <base-card class="flex">
-        <div class="y-bar">
-          <h4 class="y-title">发送数据量</h4>
-          <el-button-group>
-            <el-button
-              :class="['btn-switch', isActive === idx ? 'is-active' : '', 'mini']"
-              size="small"
-              v-for="(btn, idx) in ['本月', '上月', '自定义']"
-              @click="isActive = idx"
-              plain
-              >{{ btn }}</el-button
-            >
-          </el-button-group>
-          <el-date-picker
-            v-model="dateRange"
-            type="daterange"
-            size="small"
-            :picker-options="pickerOptions"
-            :disabled="isActive !== 2"
-            range-separator="至"
-            start-placeholder="开始日期"
-            end-placeholder="结束日期">
-          </el-date-picker>
-        </div>
-      </base-card>
-      <div class="y-dashboard_left_bottom flex-row">
-        <base-card class="flex">
-          <div class="y-bar">
-            <h4 class="y-title">发送量类型占比分析</h4>
-          </div>
-        </base-card>
-        <base-card class="flex">
-          <div class="y-bar">
-            <h4 class="y-title">发送量类型分析</h4>
-          </div>
-        </base-card>
-      </div>
+    class="y-page">
+    <div class="welcome-container">
+      <h1 class="welcome-title">欢迎登录</h1>
+      <div class="decoration-line"></div>
     </div>
-    <div class="y-dashboard_right flex">
-      <base-card class="flex">
-        <div class="y-bar">
-          <h4 class="y-title">最近编辑</h4>
-          <router-link
-            to="/function/template-manage"
-            class="btn-more"
-            >更多<i class="el-icon-d-arrow-right"></i
-          ></router-link>
-        </div>
-      </base-card>
-      <base-card class="flex">
-        <div class="y-bar">
-          <h4 class="y-title">已群发消息</h4>
-          <router-link
-            to="/manage/msg-history"
-            class="btn-more"
-            >更多<i class="el-icon-d-arrow-right"></i
-          ></router-link>
-        </div>
-      </base-card>
-    </div>
-  </div>
+  </base-card>
 </template>
 
 <script>
 export default {
   name: 'Dashboard',
-  components: {},
   data() {
-    return {
-      // 日期选择
-      isActive: 0,
-      // 自定义日期
-      selfDefinedDateRange: [],
-      pickerOptions: {
-        // 禁止选中今日之后的日期
-        disabledDate(time) {
-          return time.getTime() > Date.now()
-        },
-      },
-    }
-  },
-  computed: {
-    dateRange: {
-      get() {
-        const today = new Date()
-        const year = today.getFullYear()
-        const month = today.getMonth() + 1
-        const firstDayOfMonth = new Date(`${year}-${month}-1`)
-        // 本月
-        if (this.isActive === 0) {
-          return [firstDayOfMonth, today]
-        }
-        // 上月
-        else if (this.isActive === 1) {
-          const lastDayOfLastMonth = new Date(firstDayOfMonth.setDate(-1))
-          const firstDayOfLastMonth = new Date(`${year}-${((month + 10) % 12) + 1}-1`)
-          return [firstDayOfLastMonth, lastDayOfLastMonth]
-        }
-        // 自定义
-        else if (this.isActive === 2) {
-          return this.selfDefinedDateRange
-        }
-        // 未知
-        else {
-          return []
-        }
-      },
-      set(val) {
-        this.selfDefinedDateRange = val
-      },
-    },
-  },
-  watch: {
-    dateRange: {
-      handler(dateRange) {
-        if (dateRange.length !== 0) {
-          this.fetchData()
-        }
-      },
-    },
-    deep: true,
-    immediate: true,
-  },
-  created() {
-    this.fetchData()
-  },
-  methods: {
-    async fetchData() {
-      // const [err, res] = await fetchData()
-      // if (res) {
-      //   // ...
-      // }
-    },
+    return {}
   },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #dashboard {
-  // 首页布局
-  .y-dashboard_left {
-    margin-right: 8px;
-    width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
 
-    & > div:nth-child(1) {
-      margin-bottom: 16px;
-      height: 60%;
-    }
+.welcome-container {
+  text-align: center;
+  animation: fadeIn 1.5s ease-out;
+}
 
-    .y-dashboard_left_bottom {
-      height: calc(40% - 16px);
+.welcome-title {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  animation: scaleIn 1s ease-out;
+}
 
-      & > div:nth-child(1) {
-        margin-right: 16px;
-        width: 35%;
-      }
+.decoration-line {
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+  margin: 0 auto;
+  animation: lineGrow 1.5s ease-out forwards;
+}
 
-      & > div:nth-child(2) {
-        width: calc(65% - 16px);
-      }
-    }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-
-  .y-dashboard_right {
-    width: calc(30% - 16px);
-
-    & > div:nth-child(1) {
-      margin-bottom: 16px;
-      height: 40%;
-    }
-
-    & > div:nth-child(2) {
-      height: calc(60% - 16px);
-    }
+  to {
+    opacity: 1;
   }
+}
 
-  // 细节样式
-  .btn-more {
-    white-space: nowrap;
-    color: $txtColor;
-    cursor: pointer;
-
-    i {
-      margin-left: 4px;
-    }
-
-    &:hover {
-      color: $themeColor;
-    }
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
   }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 
-  .btn-switch {
-    border: 1px solid $themeColor;
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
-    &:hover {
-      border-color: transparentize($themeColor, 0.25);
-    }
+@keyframes lineGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100px;
   }
 }
 </style>
