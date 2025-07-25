@@ -43,10 +43,22 @@ export default [
         component: 'views/template/list-page',
       },
       {
-        path: 'tree-page',
-        name: 'TreePage',
-        meta: { title: '树型' },
-        component: 'views/template/tree-page',
+        path: 'card-list-page',
+        name: 'CardListPage',
+        meta: { title: '卡片列表' },
+        component: 'views/template/card-list-page',
+      },
+      {
+        path: 'tree-list-page',
+        name: 'TreeListPage',
+        meta: { title: '树形边栏-列表' },
+        component: 'views/template/tree-list-page',
+      },
+      {
+        path: 'tree-card-page',
+        name: 'TreeCardPage',
+        meta: { title: '树形边栏-卡片列表' },
+        component: 'views/template/tree-card-page',
       },
     ]
   },

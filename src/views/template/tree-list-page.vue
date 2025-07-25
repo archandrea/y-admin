@@ -1,19 +1,34 @@
 <template>
   <div
-    id="tree-page"
+    id="tree-list-page"
     class="y-page y-container no-padding">
     <aside-bar
       ref="asideBar"
       @set-current="setCurrent($event)"></aside-bar>
-    <base-card class="right-panel y-container no-padding">
+    <base-card class="right-panel y-page">
       <div class="y-container no-padding">
         <div class="y-header">
-          <h2 class="y-title">部门人员列表</h2>
+          <!-- 修改标题 -->
+          <h2 class="y-title">列表页面</h2>
+          <el-button
+            type="primary"
+            plain
+            size="small">
+            <i class="el-icon-download"></i>
+            下载模板
+          </el-button>
+          <el-button
+            type="primary"
+            plain
+            size="small">
+            <svg-icon icon="exit"></svg-icon>
+            导出
+          </el-button>
           <el-button
             type="danger"
             plain
             size="small"
-            @click="handleDelete(null)">
+            style="margin-left: 8px">
             <svg-icon icon="remove"></svg-icon>
             批量删除
           </el-button>
@@ -25,52 +40,93 @@
             添加
           </el-button>
         </div>
-        <div>
+        <div class="y-container--tight">
           <el-form
             ref="searchForm"
             :inline="true"
             :model="searchForm"
-            :rules="rules">
+            :rules="rules"
+            size="small">
             <el-form-item
               label="关键字"
               prop="keyword">
               <el-input
                 v-model="searchForm.keyword"
-                style="width: 220px"
                 clearable
+                style="width: 220px"
                 placeholder="请输入关键字进行搜索"></el-input>
             </el-form-item>
             <el-form-item>
               <el-button
-                @click="fetchData"
                 type="primary"
-                size="small">
+                size="small"
+                plain
+                @click.native="resetSearch">
+                <svg-icon icon="reset"></svg-icon>
+                重置
+              </el-button>
+              <el-button
+                v-debounce="fetchData"
+                type="primary">
                 <i class="el-icon-search"></i>
                 搜索
               </el-button>
             </el-form-item>
           </el-form>
+          <el-table
+            ref="table"
+            :data="list"
+            v-loading="loading"
+            stripe
+            height="100%"
+            fit
+            style="width: 100%">
+            <el-table-column
+              type="selection"
+              width="55" />
+            <el-table-column
+              label="部门id"
+              prop="deptId" />
+            <el-table-column
+              label="用户id"
+              prop="userId" />
+            <el-table-column
+              label="排序号"
+              prop="orderNum" />
+            <el-table-column
+              label="key键"
+              prop="testKey" />
+            <el-table-column
+              label="值"
+              prop="value" />
+            <el-table-column label="操作">
+              <template #default="scope">
+                <el-link
+                  @click="handleOperation(scope.row)"
+                  type="primary"
+                  :underline="false"
+                  >编辑</el-link
+                >
+                <el-link
+                  @click="handleDelete(scope.row)"
+                  type="danger"
+                  :underline="false"
+                  >删除</el-link
+                >
+              </template>
+            </el-table-column>
+            <template #empty>
+              <el-empty description="暂无信息"></el-empty>
+            </template>
+          </el-table>
         </div>
-      </div>
-      <empty-wrapper
-        class="y-container--tight"
-        :toggle="!list || list.length === 0"
-        v-loading="loading">
-        <div class="y-card-wrapper y-container--tight no-padding">
-          <Card
-            v-for="(item, index) in list"
-            :key="index"
-            :data="item"
-            @delete="handleDelete(item)"
-            @edit="handleOperation(item)"></Card>
+        <div class="y-footer">
+          <pagination
+            :current-page.sync="formData.pageNum"
+            :page-size.sync="formData.pageSize"
+            :total="total"
+            @page="fetchData"></pagination>
         </div>
-      </empty-wrapper>
-      <div class="y-footer">
-        <pagination
-          :current-page.sync="formData.pageNum"
-          :page-size.sync="formData.pageSize"
-          :total="total"
-          @page="fetchData"></pagination>
       </div>
     </base-card>
     <!-- 添加 Drawer 组件 -->
@@ -84,14 +140,12 @@
 <script>
 import Drawer from './components/Drawer'
 import AsideBar from './components/AsideBar'
-import Card from './components/Card'
 
 export default {
-  name: 'TreePage',
+  name: 'TreeListPage',
   components: {
     Drawer,
     AsideBar,
-    Card,
   },
   data() {
     return {
@@ -212,7 +266,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#tree-page {
+#tree-list-page {
   @include flex-row;
   background-color: transparent;
 
@@ -222,16 +276,7 @@ export default {
   }
 
   .right-panel {
-    @import '@/assets/styles/modules/card-page.scss';
-    background-color: transparent;
-
-    .el-form {
-      padding: 16px 8px 0 24px;
-    }
-
-    .y-card-wrapper {
-      @include card-wrapper(null, 900px); // padding, width, height（default: auto）
-    }
+    @import '@/assets/styles/modules/table-page.scss';
   }
 }
 </style>
